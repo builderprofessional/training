@@ -1,0 +1,3 @@
+bundle:
+    resource: "@TrainingTrainingBundle/Controller"
+    type:     annotation
