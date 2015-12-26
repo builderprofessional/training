@@ -3144,12 +3144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThirdEngine/PropelSOA.git",
-                "reference": "7ea4756eec4019f6449c1a2d07adfc82ce04e656"
+                "reference": "caaa336e9cddcc1621a0f1194453bdbfc8705c78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThirdEngine/PropelSOA/zipball/7ea4756eec4019f6449c1a2d07adfc82ce04e656",
-                "reference": "7ea4756eec4019f6449c1a2d07adfc82ce04e656",
+                "url": "https://api.github.com/repos/ThirdEngine/PropelSOA/zipball/caaa336e9cddcc1621a0f1194453bdbfc8705c78",
+                "reference": "caaa336e9cddcc1621a0f1194453bdbfc8705c78",
                 "shasum": ""
             },
             "require": {
@@ -3165,7 +3165,7 @@
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
-                    "ThirdEngine\\PropelSOA\\": "src"
+                    "ThirdEngine\\PropelSOABundle\\": ""
                 }
             },
             "license": [
@@ -3193,7 +3193,7 @@
                 "source": "https://github.com/ThirdEngine/PropelSOA/tree/master",
                 "issues": "https://github.com/ThirdEngine/PropelSOA/issues"
             },
-            "time": "2015-12-26 20:21:07"
+            "time": "2015-12-26 22:36:37"
         },
         {
             "name": "twig/extensions",
