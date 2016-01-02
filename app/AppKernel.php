@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Engine\EngineBundle\EngineBundle(),
             new Engine\MediaBundle\EngineMediaBundle(),
             new Engine\ReportBundle\EngineReportBundle(),
+            new Engine\SupportBundle\EngineSupportBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
