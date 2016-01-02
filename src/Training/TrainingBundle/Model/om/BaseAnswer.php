@@ -10,29 +10,29 @@ use \Exception;
 use \PDO;
 use \Persistent;
 use \Propel;
-use \PropelCollection;
 use \PropelDateTime;
 use \PropelException;
-use \PropelObjectCollection;
 use \PropelPDO;
-use Training\TrainingBundle\Model\Course;
-use Training\TrainingBundle\Model\CoursePeer;
-use Training\TrainingBundle\Model\CourseQuery;
+use Engine\AuthBundle\Model\User;
+use Engine\AuthBundle\Model\UserQuery;
+use Training\TrainingBundle\Model\Answer;
+use Training\TrainingBundle\Model\AnswerPeer;
+use Training\TrainingBundle\Model\AnswerQuery;
 use Training\TrainingBundle\Model\Question;
 use Training\TrainingBundle\Model\QuestionQuery;
 
-abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implements Persistent
+abstract class BaseAnswer extends \Engine\EngineBundle\Base\EngineModel implements Persistent
 {
     /**
      * Peer class name
      */
-    const PEER = 'Training\\TrainingBundle\\Model\\CoursePeer';
+    const PEER = 'Training\\TrainingBundle\\Model\\AnswerPeer';
 
     /**
      * The Peer class.
      * Instance provides a convenient way of calling static methods on a class
      * that calling code may not be able to identify.
-     * @var        CoursePeer
+     * @var        AnswerPeer
      */
     protected static $peer;
 
@@ -43,10 +43,10 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     protected $startCopy = false;
 
     /**
-     * The value for the training_course_id field.
+     * The value for the training_answer_id field.
      * @var        int
      */
-    protected $training_course_id;
+    protected $training_answer_id;
 
     /**
      * The value for the date_modified field.
@@ -62,22 +62,26 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     protected $date_created;
 
     /**
-     * The value for the name field.
-     * @var        string
+     * The value for the training_question_id field.
+     * @var        int
      */
-    protected $name;
+    protected $training_question_id;
 
     /**
-     * The value for the code field.
-     * @var        string
+     * The value for the auth_user_id field.
+     * @var        int
      */
-    protected $code;
+    protected $auth_user_id;
 
     /**
-     * @var        PropelObjectCollection|Question[] Collection to store aggregation of Question objects.
+     * @var        Question
      */
-    protected $collQuestions;
-    protected $collQuestionsPartial;
+    protected $aQuestion;
+
+    /**
+     * @var        User
+     */
+    protected $aUser;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -100,12 +104,6 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     protected $alreadyInClearAllReferencesDeep = false;
 
     /**
-     * An array of objects scheduled for deletion.
-     * @var		PropelObjectCollection
-     */
-    protected $questionsScheduledForDeletion = null;
-
-    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -116,7 +114,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     }
 
     /**
-     * Initializes internal state of BaseCourse object.
+     * Initializes internal state of BaseAnswer object.
      * @see        applyDefaults()
      */
     public function __construct()
@@ -126,13 +124,13 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     }
 
     /**
-     * Get the [training_course_id] column value.
+     * Get the [training_answer_id] column value.
      *
      * @return int
      */
-    public function getCourseId()
+    public function getAnswerId()
     {
-        return $this->training_course_id;
+        return $this->training_answer_id;
     }
 
     /**
@@ -216,52 +214,52 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     }
 
     /**
-     * Get the [name] column value.
+     * Get the [training_question_id] column value.
      *
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getQuestionId()
     {
-        return $this->name;
+        return $this->training_question_id;
     }
 
     /**
-     * Get the [code] column value.
+     * Get the [auth_user_id] column value.
      *
-     * @return string
+     * @return int
      */
-    public function getCode()
+    public function getAuthUserId()
     {
-        return $this->code;
+        return $this->auth_user_id;
     }
 
     /**
-     * Set the value of [training_course_id] column.
+     * Set the value of [training_answer_id] column.
      *
      * @param int $v new value
-     * @return Course The current object (for fluent API support)
+     * @return Answer The current object (for fluent API support)
      */
-    public function setCourseId($v)
+    public function setAnswerId($v)
     {
         if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
-        if ($this->training_course_id !== $v) {
-            $this->training_course_id = $v;
-            $this->modifiedColumns[] = CoursePeer::TRAINING_COURSE_ID;
+        if ($this->training_answer_id !== $v) {
+            $this->training_answer_id = $v;
+            $this->modifiedColumns[] = AnswerPeer::TRAINING_ANSWER_ID;
         }
 
 
         return $this;
-    } // setCourseId()
+    } // setAnswerId()
 
     /**
      * Sets the value of [date_modified] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
      *               Empty strings are treated as null.
-     * @return Course The current object (for fluent API support)
+     * @return Answer The current object (for fluent API support)
      */
     public function setDateModified($v)
     {
@@ -271,7 +269,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
             if ($currentDateAsString !== $newDateAsString) {
                 $this->date_modified = $newDateAsString;
-                $this->modifiedColumns[] = CoursePeer::DATE_MODIFIED;
+                $this->modifiedColumns[] = AnswerPeer::DATE_MODIFIED;
             }
         } // if either are not null
 
@@ -284,7 +282,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
      *               Empty strings are treated as null.
-     * @return Course The current object (for fluent API support)
+     * @return Answer The current object (for fluent API support)
      */
     public function setDateCreated($v)
     {
@@ -294,7 +292,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
             if ($currentDateAsString !== $newDateAsString) {
                 $this->date_created = $newDateAsString;
-                $this->modifiedColumns[] = CoursePeer::DATE_CREATED;
+                $this->modifiedColumns[] = AnswerPeer::DATE_CREATED;
             }
         } // if either are not null
 
@@ -303,46 +301,54 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     } // setDateCreated()
 
     /**
-     * Set the value of [name] column.
+     * Set the value of [training_question_id] column.
      *
-     * @param string $v new value
-     * @return Course The current object (for fluent API support)
+     * @param int $v new value
+     * @return Answer The current object (for fluent API support)
      */
-    public function setName($v)
+    public function setQuestionId($v)
     {
         if ($v !== null && is_numeric($v)) {
-            $v = (string) $v;
+            $v = (int) $v;
         }
 
-        if ($this->name !== $v) {
-            $this->name = $v;
-            $this->modifiedColumns[] = CoursePeer::NAME;
+        if ($this->training_question_id !== $v) {
+            $this->training_question_id = $v;
+            $this->modifiedColumns[] = AnswerPeer::TRAINING_QUESTION_ID;
+        }
+
+        if ($this->aQuestion !== null && $this->aQuestion->getQuestionId() !== $v) {
+            $this->aQuestion = null;
         }
 
 
         return $this;
-    } // setName()
+    } // setQuestionId()
 
     /**
-     * Set the value of [code] column.
+     * Set the value of [auth_user_id] column.
      *
-     * @param string $v new value
-     * @return Course The current object (for fluent API support)
+     * @param int $v new value
+     * @return Answer The current object (for fluent API support)
      */
-    public function setCode($v)
+    public function setAuthUserId($v)
     {
         if ($v !== null && is_numeric($v)) {
-            $v = (string) $v;
+            $v = (int) $v;
         }
 
-        if ($this->code !== $v) {
-            $this->code = $v;
-            $this->modifiedColumns[] = CoursePeer::CODE;
+        if ($this->auth_user_id !== $v) {
+            $this->auth_user_id = $v;
+            $this->modifiedColumns[] = AnswerPeer::AUTH_USER_ID;
+        }
+
+        if ($this->aUser !== null && $this->aUser->getUserId() !== $v) {
+            $this->aUser = null;
         }
 
 
         return $this;
-    } // setCode()
+    } // setAuthUserId()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -376,11 +382,11 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         try {
 
-            $this->training_course_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
+            $this->training_answer_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->date_modified = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->date_created = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->name = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->training_question_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
+            $this->auth_user_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -389,10 +395,10 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 5; // 5 = CoursePeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 5; // 5 = AnswerPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException("Error populating Course object", $e);
+            throw new PropelException("Error populating Answer object", $e);
         }
     }
 
@@ -412,6 +418,12 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     public function ensureConsistency()
     {
 
+        if ($this->aQuestion !== null && $this->training_question_id !== $this->aQuestion->getQuestionId()) {
+            $this->aQuestion = null;
+        }
+        if ($this->aUser !== null && $this->auth_user_id !== $this->aUser->getUserId()) {
+            $this->aUser = null;
+        }
     } // ensureConsistency
 
     /**
@@ -435,13 +447,13 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(CoursePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(AnswerPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $stmt = CoursePeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+        $stmt = AnswerPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
         $row = $stmt->fetch(PDO::FETCH_NUM);
         $stmt->closeCursor();
         if (!$row) {
@@ -451,8 +463,8 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collQuestions = null;
-
+            $this->aQuestion = null;
+            $this->aUser = null;
         } // if (deep)
     }
 
@@ -473,12 +485,12 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(CoursePeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(AnswerPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         $con->beginTransaction();
         try {
-            $deleteQuery = CourseQuery::create()
+            $deleteQuery = AnswerQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -516,7 +528,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(CoursePeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(AnswerPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         $con->beginTransaction();
@@ -536,7 +548,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                CoursePeer::addInstanceToPool($this);
+                AnswerPeer::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -566,6 +578,25 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
+            // We call the save method on the following object(s) if they
+            // were passed to this object by their coresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aQuestion !== null) {
+                if ($this->aQuestion->isModified() || $this->aQuestion->isNew()) {
+                    $affectedRows += $this->aQuestion->save($con);
+                }
+                $this->setQuestion($this->aQuestion);
+            }
+
+            if ($this->aUser !== null) {
+                if ($this->aUser->isModified() || $this->aUser->isNew()) {
+                    $affectedRows += $this->aUser->save($con);
+                }
+                $this->setUser($this->aUser);
+            }
+
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -575,24 +606,6 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 }
                 $affectedRows += 1;
                 $this->resetModified();
-            }
-
-            if ($this->questionsScheduledForDeletion !== null) {
-                if (!$this->questionsScheduledForDeletion->isEmpty()) {
-                    foreach ($this->questionsScheduledForDeletion as $question) {
-                        // need to save related object because we set the relation to null
-                        $question->save($con);
-                    }
-                    $this->questionsScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collQuestions !== null) {
-                foreach ($this->collQuestions as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
             }
 
             $this->alreadyInSave = false;
@@ -615,30 +628,30 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[] = CoursePeer::TRAINING_COURSE_ID;
-        if (null !== $this->training_course_id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . CoursePeer::TRAINING_COURSE_ID . ')');
+        $this->modifiedColumns[] = AnswerPeer::TRAINING_ANSWER_ID;
+        if (null !== $this->training_answer_id) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . AnswerPeer::TRAINING_ANSWER_ID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(CoursePeer::TRAINING_COURSE_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`training_course_id`';
+        if ($this->isColumnModified(AnswerPeer::TRAINING_ANSWER_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`training_answer_id`';
         }
-        if ($this->isColumnModified(CoursePeer::DATE_MODIFIED)) {
+        if ($this->isColumnModified(AnswerPeer::DATE_MODIFIED)) {
             $modifiedColumns[':p' . $index++]  = '`date_modified`';
         }
-        if ($this->isColumnModified(CoursePeer::DATE_CREATED)) {
+        if ($this->isColumnModified(AnswerPeer::DATE_CREATED)) {
             $modifiedColumns[':p' . $index++]  = '`date_created`';
         }
-        if ($this->isColumnModified(CoursePeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+        if ($this->isColumnModified(AnswerPeer::TRAINING_QUESTION_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`training_question_id`';
         }
-        if ($this->isColumnModified(CoursePeer::CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`code`';
+        if ($this->isColumnModified(AnswerPeer::AUTH_USER_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`auth_user_id`';
         }
 
         $sql = sprintf(
-            'INSERT INTO `training_course` (%s) VALUES (%s)',
+            'INSERT INTO `training_answer` (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -647,8 +660,8 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`training_course_id`':
-                        $stmt->bindValue($identifier, $this->training_course_id, PDO::PARAM_INT);
+                    case '`training_answer_id`':
+                        $stmt->bindValue($identifier, $this->training_answer_id, PDO::PARAM_INT);
                         break;
                     case '`date_modified`':
                         $stmt->bindValue($identifier, $this->date_modified, PDO::PARAM_STR);
@@ -656,11 +669,11 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                     case '`date_created`':
                         $stmt->bindValue($identifier, $this->date_created, PDO::PARAM_STR);
                         break;
-                    case '`name`':
-                        $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
+                    case '`training_question_id`':
+                        $stmt->bindValue($identifier, $this->training_question_id, PDO::PARAM_INT);
                         break;
-                    case '`code`':
-                        $stmt->bindValue($identifier, $this->code, PDO::PARAM_STR);
+                    case '`auth_user_id`':
+                        $stmt->bindValue($identifier, $this->auth_user_id, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -675,7 +688,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', $e);
         }
-        $this->setCourseId($pk);
+        $this->setAnswerId($pk);
 
         $this->setNew(false);
     }
@@ -756,18 +769,28 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $failureMap = array();
 
 
-            if (($retval = CoursePeer::doValidate($this, $columns)) !== true) {
-                $failureMap = array_merge($failureMap, $retval);
+            // We call the validate method on the following object(s) if they
+            // were passed to this object by their coresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aQuestion !== null) {
+                if (!$this->aQuestion->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aQuestion->getValidationFailures());
+                }
+            }
+
+            if ($this->aUser !== null) {
+                if (!$this->aUser->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aUser->getValidationFailures());
+                }
             }
 
 
-                if ($this->collQuestions !== null) {
-                    foreach ($this->collQuestions as $referrerFK) {
-                        if (!$referrerFK->validate($columns)) {
-                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-                        }
-                    }
-                }
+            if (($retval = AnswerPeer::doValidate($this, $columns)) !== true) {
+                $failureMap = array_merge($failureMap, $retval);
+            }
+
 
 
             $this->alreadyInValidation = false;
@@ -788,7 +811,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
     {
-        $pos = CoursePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+        $pos = AnswerPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -805,7 +828,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         switch ($pos) {
             case 0:
-                return $this->getCourseId();
+                return $this->getAnswerId();
                 break;
             case 1:
                 return $this->getDateModified();
@@ -814,10 +837,10 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 return $this->getDateCreated();
                 break;
             case 3:
-                return $this->getName();
+                return $this->getQuestionId();
                 break;
             case 4:
-                return $this->getCode();
+                return $this->getAuthUserId();
                 break;
             default:
                 return null;
@@ -842,21 +865,24 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
-        if (isset($alreadyDumpedObjects['Course'][$this->getPrimaryKey()])) {
+        if (isset($alreadyDumpedObjects['Answer'][$this->getPrimaryKey()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['Course'][$this->getPrimaryKey()] = true;
-        $keys = CoursePeer::getFieldNames($keyType);
+        $alreadyDumpedObjects['Answer'][$this->getPrimaryKey()] = true;
+        $keys = AnswerPeer::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getCourseId(),
+            $keys[0] => $this->getAnswerId(),
             $keys[1] => $this->getDateModified(),
             $keys[2] => $this->getDateCreated(),
-            $keys[3] => $this->getName(),
-            $keys[4] => $this->getCode(),
+            $keys[3] => $this->getQuestionId(),
+            $keys[4] => $this->getAuthUserId(),
         );
         if ($includeForeignObjects) {
-            if (null !== $this->collQuestions) {
-                $result['Questions'] = $this->collQuestions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            if (null !== $this->aQuestion) {
+                $result['Question'] = $this->aQuestion->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->aUser) {
+                $result['User'] = $this->aUser->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
         }
 
@@ -876,7 +902,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
     {
-        $pos = CoursePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+        $pos = AnswerPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 
         $this->setByPosition($pos, $value);
     }
@@ -893,7 +919,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         switch ($pos) {
             case 0:
-                $this->setCourseId($value);
+                $this->setAnswerId($value);
                 break;
             case 1:
                 $this->setDateModified($value);
@@ -902,10 +928,10 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 $this->setDateCreated($value);
                 break;
             case 3:
-                $this->setName($value);
+                $this->setQuestionId($value);
                 break;
             case 4:
-                $this->setCode($value);
+                $this->setAuthUserId($value);
                 break;
         } // switch()
     }
@@ -929,13 +955,13 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
     {
-        $keys = CoursePeer::getFieldNames($keyType);
+        $keys = AnswerPeer::getFieldNames($keyType);
 
-        if (array_key_exists($keys[0], $arr)) $this->setCourseId($arr[$keys[0]]);
+        if (array_key_exists($keys[0], $arr)) $this->setAnswerId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setDateModified($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setDateCreated($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setName($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setCode($arr[$keys[4]]);
+        if (array_key_exists($keys[3], $arr)) $this->setQuestionId($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setAuthUserId($arr[$keys[4]]);
     }
 
     /**
@@ -945,13 +971,13 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(CoursePeer::DATABASE_NAME);
+        $criteria = new Criteria(AnswerPeer::DATABASE_NAME);
 
-        if ($this->isColumnModified(CoursePeer::TRAINING_COURSE_ID)) $criteria->add(CoursePeer::TRAINING_COURSE_ID, $this->training_course_id);
-        if ($this->isColumnModified(CoursePeer::DATE_MODIFIED)) $criteria->add(CoursePeer::DATE_MODIFIED, $this->date_modified);
-        if ($this->isColumnModified(CoursePeer::DATE_CREATED)) $criteria->add(CoursePeer::DATE_CREATED, $this->date_created);
-        if ($this->isColumnModified(CoursePeer::NAME)) $criteria->add(CoursePeer::NAME, $this->name);
-        if ($this->isColumnModified(CoursePeer::CODE)) $criteria->add(CoursePeer::CODE, $this->code);
+        if ($this->isColumnModified(AnswerPeer::TRAINING_ANSWER_ID)) $criteria->add(AnswerPeer::TRAINING_ANSWER_ID, $this->training_answer_id);
+        if ($this->isColumnModified(AnswerPeer::DATE_MODIFIED)) $criteria->add(AnswerPeer::DATE_MODIFIED, $this->date_modified);
+        if ($this->isColumnModified(AnswerPeer::DATE_CREATED)) $criteria->add(AnswerPeer::DATE_CREATED, $this->date_created);
+        if ($this->isColumnModified(AnswerPeer::TRAINING_QUESTION_ID)) $criteria->add(AnswerPeer::TRAINING_QUESTION_ID, $this->training_question_id);
+        if ($this->isColumnModified(AnswerPeer::AUTH_USER_ID)) $criteria->add(AnswerPeer::AUTH_USER_ID, $this->auth_user_id);
 
         return $criteria;
     }
@@ -966,8 +992,8 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function buildPkeyCriteria()
     {
-        $criteria = new Criteria(CoursePeer::DATABASE_NAME);
-        $criteria->add(CoursePeer::TRAINING_COURSE_ID, $this->training_course_id);
+        $criteria = new Criteria(AnswerPeer::DATABASE_NAME);
+        $criteria->add(AnswerPeer::TRAINING_ANSWER_ID, $this->training_answer_id);
 
         return $criteria;
     }
@@ -978,18 +1004,18 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function getPrimaryKey()
     {
-        return $this->getCourseId();
+        return $this->getAnswerId();
     }
 
     /**
-     * Generic method to set the primary key (training_course_id column).
+     * Generic method to set the primary key (training_answer_id column).
      *
      * @param  int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setCourseId($key);
+        $this->setAnswerId($key);
     }
 
     /**
@@ -999,7 +1025,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     public function isPrimaryKeyNull()
     {
 
-        return null === $this->getCourseId();
+        return null === $this->getAnswerId();
     }
 
     /**
@@ -1008,7 +1034,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param object $copyObj An object of Course (or compatible) type.
+     * @param object $copyObj An object of Answer (or compatible) type.
      * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
@@ -1017,8 +1043,8 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         $copyObj->setDateModified($this->getDateModified());
         $copyObj->setDateCreated($this->getDateCreated());
-        $copyObj->setName($this->getName());
-        $copyObj->setCode($this->getCode());
+        $copyObj->setQuestionId($this->getQuestionId());
+        $copyObj->setAuthUserId($this->getAuthUserId());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1027,19 +1053,13 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             // store object hash to prevent cycle
             $this->startCopy = true;
 
-            foreach ($this->getQuestions() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addQuestion($relObj->copy($deepCopy));
-                }
-            }
-
             //unflag object copy
             $this->startCopy = false;
         } // if ($deepCopy)
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setCourseId(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setAnswerId(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1052,7 +1072,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      * objects.
      *
      * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return Course Clone of current object.
+     * @return Answer Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1072,274 +1092,119 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      * same instance for all member of this class. The method could therefore
      * be static, but this would prevent one from overriding the behavior.
      *
-     * @return CoursePeer
+     * @return AnswerPeer
      */
     public function getPeer()
     {
         if (self::$peer === null) {
-            self::$peer = new CoursePeer();
+            self::$peer = new AnswerPeer();
         }
 
         return self::$peer;
     }
 
-
     /**
-     * Initializes a collection based on the name of a relation.
-     * Avoids crafting an 'init[$relationName]s' method name
-     * that wouldn't work when StandardEnglishPluralizer is used.
+     * Declares an association between this object and a Question object.
      *
-     * @param string $relationName The name of the relation to initialize
-     * @return void
-     */
-    public function initRelation($relationName)
-    {
-        if ('Question' == $relationName) {
-            $this->initQuestions();
-        }
-    }
-
-    /**
-     * Clears out the collQuestions collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return Course The current object (for fluent API support)
-     * @see        addQuestions()
-     */
-    public function clearQuestions()
-    {
-        $this->collQuestions = null; // important to set this to null since that means it is uninitialized
-        $this->collQuestionsPartial = null;
-
-        return $this;
-    }
-
-    /**
-     * reset is the collQuestions collection loaded partially
-     *
-     * @return void
-     */
-    public function resetPartialQuestions($v = true)
-    {
-        $this->collQuestionsPartial = $v;
-    }
-
-    /**
-     * Initializes the collQuestions collection.
-     *
-     * By default this just sets the collQuestions collection to an empty array (like clearcollQuestions());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initQuestions($overrideExisting = true)
-    {
-        if (null !== $this->collQuestions && !$overrideExisting) {
-            return;
-        }
-        $this->collQuestions = new PropelObjectCollection();
-        $this->collQuestions->setModel('Question');
-    }
-
-    /**
-     * Gets an array of Question objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this Course is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|Question[] List of Question objects
+     * @param             Question $v
+     * @return Answer The current object (for fluent API support)
      * @throws PropelException
      */
-    public function getQuestions($criteria = null, PropelPDO $con = null)
+    public function setQuestion(Question $v = null)
     {
-        $partial = $this->collQuestionsPartial && !$this->isNew();
-        if (null === $this->collQuestions || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collQuestions) {
-                // return empty collection
-                $this->initQuestions();
-            } else {
-                $collQuestions = QuestionQuery::create(null, $criteria)
-                    ->filterByCourse($this)
-                    ->find($con);
-                if (null !== $criteria) {
-                    if (false !== $this->collQuestionsPartial && count($collQuestions)) {
-                      $this->initQuestions(false);
-
-                      foreach($collQuestions as $obj) {
-                        if (false == $this->collQuestions->contains($obj)) {
-                          $this->collQuestions->append($obj);
-                        }
-                      }
-
-                      $this->collQuestionsPartial = true;
-                    }
-
-                    $collQuestions->getInternalIterator()->rewind();
-                    return $collQuestions;
-                }
-
-                if($partial && $this->collQuestions) {
-                    foreach($this->collQuestions as $obj) {
-                        if($obj->isNew()) {
-                            $collQuestions[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collQuestions = $collQuestions;
-                $this->collQuestionsPartial = false;
-            }
+        if ($v === null) {
+            $this->setQuestionId(NULL);
+        } else {
+            $this->setQuestionId($v->getQuestionId());
         }
 
-        return $this->collQuestions;
-    }
+        $this->aQuestion = $v;
 
-    /**
-     * Sets a collection of Question objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param PropelCollection $questions A Propel collection.
-     * @param PropelPDO $con Optional connection object
-     * @return Course The current object (for fluent API support)
-     */
-    public function setQuestions(PropelCollection $questions, PropelPDO $con = null)
-    {
-        $questionsToDelete = $this->getQuestions(new Criteria(), $con)->diff($questions);
-
-        $this->questionsScheduledForDeletion = unserialize(serialize($questionsToDelete));
-
-        foreach ($questionsToDelete as $questionRemoved) {
-            $questionRemoved->setCourse(null);
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Question object, it will not be re-added.
+        if ($v !== null) {
+            $v->addAnswer($this);
         }
 
-        $this->collQuestions = null;
-        foreach ($questions as $question) {
-            $this->addQuestion($question);
-        }
-
-        $this->collQuestions = $questions;
-        $this->collQuestionsPartial = false;
 
         return $this;
     }
 
+
     /**
-     * Returns the number of related Question objects.
+     * Get the associated Question object
      *
-     * @param Criteria $criteria
-     * @param boolean $distinct
-     * @param PropelPDO $con
-     * @return int             Count of related Question objects.
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Question The associated Question object.
      * @throws PropelException
      */
-    public function countQuestions(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    public function getQuestion(PropelPDO $con = null, $doQuery = true)
     {
-        $partial = $this->collQuestionsPartial && !$this->isNew();
-        if (null === $this->collQuestions || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collQuestions) {
-                return 0;
-            }
-
-            if($partial && !$criteria) {
-                return count($this->getQuestions());
-            }
-            $query = QuestionQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCourse($this)
-                ->count($con);
+        if ($this->aQuestion === null && ($this->training_question_id !== null) && $doQuery) {
+            $this->aQuestion = QuestionQuery::create()->findPk($this->training_question_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aQuestion->addAnswers($this);
+             */
         }
 
-        return count($this->collQuestions);
+        return $this->aQuestion;
     }
 
     /**
-     * Method called to associate a Question object to this object
-     * through the Question foreign key attribute.
+     * Declares an association between this object and a User object.
      *
-     * @param    Question $l Question
-     * @return Course The current object (for fluent API support)
+     * @param             User $v
+     * @return Answer The current object (for fluent API support)
+     * @throws PropelException
      */
-    public function addQuestion(Question $l)
+    public function setUser(User $v = null)
     {
-        if ($this->collQuestions === null) {
-            $this->initQuestions();
-            $this->collQuestionsPartial = true;
-        }
-        if (!in_array($l, $this->collQuestions->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddQuestion($l);
+        if ($v === null) {
+            $this->setAuthUserId(NULL);
+        } else {
+            $this->setAuthUserId($v->getUserId());
         }
 
-        return $this;
-    }
+        $this->aUser = $v;
 
-    /**
-     * @param	Question $question The question object to add.
-     */
-    protected function doAddQuestion($question)
-    {
-        $this->collQuestions[]= $question;
-        $question->setCourse($this);
-    }
-
-    /**
-     * @param	Question $question The question object to remove.
-     * @return Course The current object (for fluent API support)
-     */
-    public function removeQuestion($question)
-    {
-        if ($this->getQuestions()->contains($question)) {
-            $this->collQuestions->remove($this->collQuestions->search($question));
-            if (null === $this->questionsScheduledForDeletion) {
-                $this->questionsScheduledForDeletion = clone $this->collQuestions;
-                $this->questionsScheduledForDeletion->clear();
-            }
-            $this->questionsScheduledForDeletion[]= $question;
-            $question->setCourse(null);
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the User object, it will not be re-added.
+        if ($v !== null) {
+            $v->addAnswer($this);
         }
+
 
         return $this;
     }
 
 
     /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Course is new, it will return
-     * an empty collection; or if this Course has previously
-     * been saved, it will retrieve related Questions from storage.
+     * Get the associated User object
      *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Course.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return PropelObjectCollection|Question[] List of Question objects
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return User The associated User object.
+     * @throws PropelException
      */
-    public function getQuestionsJoinUser($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public function getUser(PropelPDO $con = null, $doQuery = true)
     {
-        $query = QuestionQuery::create(null, $criteria);
-        $query->joinWith('User', $join_behavior);
+        if ($this->aUser === null && ($this->auth_user_id !== null) && $doQuery) {
+            $this->aUser = UserQuery::create()->findPk($this->auth_user_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aUser->addAnswers($this);
+             */
+        }
 
-        return $this->getQuestions($query, $con);
+        return $this->aUser;
     }
 
     /**
@@ -1347,11 +1212,11 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function clear()
     {
-        $this->training_course_id = null;
+        $this->training_answer_id = null;
         $this->date_modified = null;
         $this->date_created = null;
-        $this->name = null;
-        $this->code = null;
+        $this->training_question_id = null;
+        $this->auth_user_id = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;
@@ -1375,19 +1240,18 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         if ($deep && !$this->alreadyInClearAllReferencesDeep) {
             $this->alreadyInClearAllReferencesDeep = true;
-            if ($this->collQuestions) {
-                foreach ($this->collQuestions as $o) {
-                    $o->clearAllReferences($deep);
-                }
+            if ($this->aQuestion instanceof Persistent) {
+              $this->aQuestion->clearAllReferences($deep);
+            }
+            if ($this->aUser instanceof Persistent) {
+              $this->aUser->clearAllReferences($deep);
             }
 
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
-        if ($this->collQuestions instanceof PropelCollection) {
-            $this->collQuestions->clearIterator();
-        }
-        $this->collQuestions = null;
+        $this->aQuestion = null;
+        $this->aUser = null;
     }
 
     /**
@@ -1397,7 +1261,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      */
     public function __toString()
     {
-        return (string) $this->exportTo(CoursePeer::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(AnswerPeer::DEFAULT_STRING_FORMAT);
     }
 
     /**

@@ -708,13 +708,67 @@
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
   </table>
+  <table name="training_answer" phpName="TrainingAnswer" idMethod="native">
+    <column name="training_answer_id" phpName="TrainingAnswerId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
+    <column name="training_question_id" phpName="TrainingQuestionId" type="INTEGER" required="true"/>
+    <column name="auth_user_id" phpName="AuthUserId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="training_question" name="training_answer_ibfk_1">
+      <reference local="training_question_id" foreign="training_question_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="auth_user" name="training_answer_ibfk_2">
+      <reference local="auth_user_id" foreign="auth_user_id"/>
+    </foreign-key>
+    <index name="date_created">
+      <index-column name="date_created"/>
+    </index>
+    <index name="training_question_id">
+      <index-column name="training_question_id"/>
+    </index>
+    <index name="auth_user_id">
+      <index-column name="auth_user_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
   <table name="training_course" phpName="TrainingCourse" idMethod="native">
     <column name="training_course_id" phpName="TrainingCourseId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
     <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
     <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="code" phpName="Code" type="VARCHAR" size="255" required="true"/>
     <index name="date_created">
       <index-column name="date_created"/>
+    </index>
+    <index name="code">
+      <index-column name="code"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="training_question" phpName="TrainingQuestion" idMethod="native">
+    <column name="training_question_id" phpName="TrainingQuestionId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
+    <column name="auth_user_id" phpName="AuthUserId" type="INTEGER" required="true"/>
+    <column name="training_course_id" phpName="TrainingCourseId" type="INTEGER" required="false"/>
+    <foreign-key foreignTable="auth_user" name="training_question_ibfk_1">
+      <reference local="auth_user_id" foreign="auth_user_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="training_course" name="training_question_ibfk_2">
+      <reference local="training_course_id" foreign="training_course_id"/>
+    </foreign-key>
+    <index name="date_created">
+      <index-column name="date_created"/>
+    </index>
+    <index name="auth_user_id">
+      <index-column name="auth_user_id"/>
+    </index>
+    <index name="training_course_id">
+      <index-column name="training_course_id"/>
     </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>

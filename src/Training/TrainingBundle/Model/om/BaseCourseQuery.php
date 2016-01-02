@@ -5,29 +5,38 @@ namespace Training\TrainingBundle\Model\om;
 use \Criteria;
 use \Exception;
 use \ModelCriteria;
+use \ModelJoin;
 use \PDO;
 use \Propel;
+use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
 use Training\TrainingBundle\Model\Course;
 use Training\TrainingBundle\Model\CoursePeer;
 use Training\TrainingBundle\Model\CourseQuery;
+use Training\TrainingBundle\Model\Question;
 
 /**
  * @method CourseQuery orderByCourseId($order = Criteria::ASC) Order by the training_course_id column
  * @method CourseQuery orderByDateModified($order = Criteria::ASC) Order by the date_modified column
  * @method CourseQuery orderByDateCreated($order = Criteria::ASC) Order by the date_created column
  * @method CourseQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method CourseQuery orderByCode($order = Criteria::ASC) Order by the code column
  *
  * @method CourseQuery groupByCourseId() Group by the training_course_id column
  * @method CourseQuery groupByDateModified() Group by the date_modified column
  * @method CourseQuery groupByDateCreated() Group by the date_created column
  * @method CourseQuery groupByName() Group by the name column
+ * @method CourseQuery groupByCode() Group by the code column
  *
  * @method CourseQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CourseQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method CourseQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ *
+ * @method CourseQuery leftJoinQuestion($relationAlias = null) Adds a LEFT JOIN clause to the query using the Question relation
+ * @method CourseQuery rightJoinQuestion($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Question relation
+ * @method CourseQuery innerJoinQuestion($relationAlias = null) Adds a INNER JOIN clause to the query using the Question relation
  *
  * @method Course findOne(PropelPDO $con = null) Return the first Course matching the query
  * @method Course findOneOrCreate(PropelPDO $con = null) Return the first Course matching the query, or a new Course object populated from the query conditions when no match is found
@@ -35,11 +44,13 @@ use Training\TrainingBundle\Model\CourseQuery;
  * @method Course findOneByDateModified(string $date_modified) Return the first Course filtered by the date_modified column
  * @method Course findOneByDateCreated(string $date_created) Return the first Course filtered by the date_created column
  * @method Course findOneByName(string $name) Return the first Course filtered by the name column
+ * @method Course findOneByCode(string $code) Return the first Course filtered by the code column
  *
  * @method array findByCourseId(int $training_course_id) Return Course objects filtered by the training_course_id column
  * @method array findByDateModified(string $date_modified) Return Course objects filtered by the date_modified column
  * @method array findByDateCreated(string $date_created) Return Course objects filtered by the date_created column
  * @method array findByName(string $name) Return Course objects filtered by the name column
+ * @method array findByCode(string $code) Return Course objects filtered by the code column
  */
 abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
 {
@@ -141,7 +152,7 @@ abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `training_course_id`, `date_modified`, `date_created`, `name` FROM `training_course` WHERE `training_course_id` = :p0';
+        $sql = 'SELECT `training_course_id`, `date_modified`, `date_created`, `name`, `code` FROM `training_course` WHERE `training_course_id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -385,6 +396,109 @@ abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
         }
 
         return $this->addUsingAlias(CoursePeer::NAME, $name, $comparison);
+    }
+
+    /**
+     * Filter the query on the code column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByCode('fooValue');   // WHERE code = 'fooValue'
+     * $query->filterByCode('%fooValue%'); // WHERE code LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $code The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CourseQuery The current query, for fluid interface
+     */
+    public function filterByCode($code = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($code)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $code)) {
+                $code = str_replace('*', '%', $code);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CoursePeer::CODE, $code, $comparison);
+    }
+
+    /**
+     * Filter the query by a related Question object
+     *
+     * @param   Question|PropelObjectCollection $question  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CourseQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByQuestion($question, $comparison = null)
+    {
+        if ($question instanceof Question) {
+            return $this
+                ->addUsingAlias(CoursePeer::TRAINING_COURSE_ID, $question->getCourseId(), $comparison);
+        } elseif ($question instanceof PropelObjectCollection) {
+            return $this
+                ->useQuestionQuery()
+                ->filterByPrimaryKeys($question->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByQuestion() only accepts arguments of type Question or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Question relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CourseQuery The current query, for fluid interface
+     */
+    public function joinQuestion($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Question');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Question');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Question relation Question object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Training\TrainingBundle\Model\QuestionQuery A secondary query class using the current class as primary query
+     */
+    public function useQuestionQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinQuestion($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Question', '\Training\TrainingBundle\Model\QuestionQuery');
     }
 
     /**

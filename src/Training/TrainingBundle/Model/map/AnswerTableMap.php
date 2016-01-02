@@ -7,7 +7,7 @@ use \TableMap;
 
 
 /**
- * This class defines the structure of the 'training_course' table.
+ * This class defines the structure of the 'training_answer' table.
  *
  *
  *
@@ -18,13 +18,13 @@ use \TableMap;
  *
  * @package    propel.generator.src.Training.TrainingBundle.Model.map
  */
-class CourseTableMap extends TableMap
+class AnswerTableMap extends TableMap
 {
 
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'src.Training.TrainingBundle.Model.map.CourseTableMap';
+    const CLASS_NAME = 'src.Training.TrainingBundle.Model.map.AnswerTableMap';
 
     /**
      * Initialize the table attributes, columns and validators
@@ -36,17 +36,17 @@ class CourseTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('training_course');
-        $this->setPhpName('Course');
-        $this->setClassname('Training\\TrainingBundle\\Model\\Course');
+        $this->setName('training_answer');
+        $this->setPhpName('Answer');
+        $this->setClassname('Training\\TrainingBundle\\Model\\Answer');
         $this->setPackage('src.Training.TrainingBundle.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('training_course_id', 'CourseId', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('training_answer_id', 'AnswerId', 'INTEGER', true, null, null);
         $this->addColumn('date_modified', 'DateModified', 'TIMESTAMP', true, null, 'CURRENT_TIMESTAMP');
         $this->addColumn('date_created', 'DateCreated', 'TIMESTAMP', true, null, null);
-        $this->addColumn('name', 'Name', 'VARCHAR', true, 255, null);
-        $this->addColumn('code', 'Code', 'VARCHAR', true, 255, null);
+        $this->addForeignKey('training_question_id', 'QuestionId', 'INTEGER', 'training_question', 'training_question_id', true, null, null);
+        $this->addForeignKey('auth_user_id', 'AuthUserId', 'INTEGER', 'auth_user', 'auth_user_id', true, null, null);
         // validators
     } // initialize()
 
@@ -55,7 +55,8 @@ class CourseTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Question', 'Training\\TrainingBundle\\Model\\Question', RelationMap::ONE_TO_MANY, array('training_course_id' => 'training_course_id', ), null, null, 'Questions');
+        $this->addRelation('Question', 'Training\\TrainingBundle\\Model\\Question', RelationMap::MANY_TO_ONE, array('training_question_id' => 'training_question_id', ), null, null);
+        $this->addRelation('User', 'Engine\\AuthBundle\\Model\\User', RelationMap::MANY_TO_ONE, array('auth_user_id' => 'auth_user_id', ), null, null);
     } // buildRelations()
 
-} // CourseTableMap
+} // AnswerTableMap

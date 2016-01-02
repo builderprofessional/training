@@ -29,13 +29,13 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
     const TM_CLASS = 'CourseTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 4;
+    const NUM_COLUMNS = 5;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 4;
+    const NUM_HYDRATE_COLUMNS = 5;
 
     /** the column name for the training_course_id field */
     const TRAINING_COURSE_ID = 'training_course.training_course_id';
@@ -48,6 +48,9 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
 
     /** the column name for the name field */
     const NAME = 'training_course.name';
+
+    /** the column name for the code field */
+    const CODE = 'training_course.code';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -68,12 +71,12 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
      * e.g. CoursePeer::$fieldNames[CoursePeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('CourseId', 'DateModified', 'DateCreated', 'Name', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId', 'dateModified', 'dateCreated', 'name', ),
-        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID, CoursePeer::DATE_MODIFIED, CoursePeer::DATE_CREATED, CoursePeer::NAME, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID', 'DATE_MODIFIED', 'DATE_CREATED', 'NAME', ),
-        BasePeer::TYPE_FIELDNAME => array ('training_course_id', 'date_modified', 'date_created', 'name', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('CourseId', 'DateModified', 'DateCreated', 'Name', 'Code', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId', 'dateModified', 'dateCreated', 'name', 'code', ),
+        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID, CoursePeer::DATE_MODIFIED, CoursePeer::DATE_CREATED, CoursePeer::NAME, CoursePeer::CODE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID', 'DATE_MODIFIED', 'DATE_CREATED', 'NAME', 'CODE', ),
+        BasePeer::TYPE_FIELDNAME => array ('training_course_id', 'date_modified', 'date_created', 'name', 'code', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -83,12 +86,12 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
      * e.g. CoursePeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('CourseId' => 0, 'DateModified' => 1, 'DateCreated' => 2, 'Name' => 3, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId' => 0, 'dateModified' => 1, 'dateCreated' => 2, 'name' => 3, ),
-        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID => 0, CoursePeer::DATE_MODIFIED => 1, CoursePeer::DATE_CREATED => 2, CoursePeer::NAME => 3, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID' => 0, 'DATE_MODIFIED' => 1, 'DATE_CREATED' => 2, 'NAME' => 3, ),
-        BasePeer::TYPE_FIELDNAME => array ('training_course_id' => 0, 'date_modified' => 1, 'date_created' => 2, 'name' => 3, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('CourseId' => 0, 'DateModified' => 1, 'DateCreated' => 2, 'Name' => 3, 'Code' => 4, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId' => 0, 'dateModified' => 1, 'dateCreated' => 2, 'name' => 3, 'code' => 4, ),
+        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID => 0, CoursePeer::DATE_MODIFIED => 1, CoursePeer::DATE_CREATED => 2, CoursePeer::NAME => 3, CoursePeer::CODE => 4, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID' => 0, 'DATE_MODIFIED' => 1, 'DATE_CREATED' => 2, 'NAME' => 3, 'CODE' => 4, ),
+        BasePeer::TYPE_FIELDNAME => array ('training_course_id' => 0, 'date_modified' => 1, 'date_created' => 2, 'name' => 3, 'code' => 4, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -166,11 +169,13 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
             $criteria->addSelectColumn(CoursePeer::DATE_MODIFIED);
             $criteria->addSelectColumn(CoursePeer::DATE_CREATED);
             $criteria->addSelectColumn(CoursePeer::NAME);
+            $criteria->addSelectColumn(CoursePeer::CODE);
         } else {
             $criteria->addSelectColumn($alias . '.training_course_id');
             $criteria->addSelectColumn($alias . '.date_modified');
             $criteria->addSelectColumn($alias . '.date_created');
             $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.code');
         }
     }
 
