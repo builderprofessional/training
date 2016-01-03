@@ -1,24 +1,46 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
+imports:
+  - { resource: "@EngineAuthBundle/Resources/config/security.yml" }
+
+jms_security_extra:
+  secure_all_services: false
+  expressions: true
+
 security:
+  encoders:
+    Symfony\Component\Security\Core\User\User: plaintext
+    Engine\AuthBundle\Model\User: sha512
+    Engine\AuthBundle\Utility\PasswordUtility: sha512
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
+  role_hierarchy:
+    ROLE_ADMIN:       ROLE_USER
+    ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-    firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+#    providers:
+#        in_memory:
+#            memory:
+#                users:
+#                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+#                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+  providers:
+    main:
+      propel:
+        class: Engine\AuthBundle\Model\User
+        property: login
+  firewalls:
+    public:
+      pattern: ^/public.+$
+      security: false
+    signup:
+      pattern: ^/(signup|index)$
+      security: false
+    auth_area:
+      pattern: ^/auth/login
+      authapi: true
+      context: MainContext
+    secured_area:
+      pattern: ^/.+$
+      authapi: true
+      context: MainContext
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+  access_control:
+    - { path: ^/est, roles: ROLE_ADMIN }
