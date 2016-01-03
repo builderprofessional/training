@@ -11,8 +11,6 @@
   "require": {
     "php": ">=5.5.0",
     "symfony/symfony": "2.7.*",
-    "doctrine/orm": "^2.4.8",
-    "doctrine/doctrine-bundle": "~1.4",
     "symfony/assetic-bundle": "~2.3",
     "symfony/swiftmailer-bundle": "~2.3",
     "symfony/monolog-bundle": "~2.4",
@@ -22,6 +20,7 @@
     "propel/propel1": "1.6.x",
     "twig/extensions": "1.0.*",
     "phpunit/phpunit": "4.3.*",
+    "symfony/phpunit-bridge": "~2.7",
     "h4cc/wkhtmltopdf-amd64": "0.12.*",
     "mikehaertl/phpwkhtmltopdf": "1.2.*",
     "robmorgan/phinx": "0.4.*",
@@ -35,8 +34,7 @@
     "third-engine/propelsoa": "dev-master"
   },
   "require-dev": {
-    "sensio/generator-bundle": "~2.3",
-    "symfony/phpunit-bridge": "~2.7"
+    "sensio/generator-bundle": "~2.3"
   },
   "scripts": {
     "post-install-cmd": [

@@ -3,6 +3,7 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host:     127.0.0.1
+    database_driver:   pdo_mysql
     database_port:     ~
     database_name:     bptraining
     database_user:     bptraining
@@ -10,10 +11,19 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_transport: gmail
+    mailer_user: thirdenginesoftware@gmail.com
+    mailer_password: Third3ngine
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    locale: en
+
+    database_path: null
+    application_name: BuilderTraining.net
+    notification_from: info@builderprofessional.com
+
+    mongo_host: localhost
+    mongo_name: bptraining
+    mongo_user: bptraining
+    mongo_password: bptraining
