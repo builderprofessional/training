@@ -40,11 +40,15 @@
     <column name="role" phpName="Role" type="VARCHAR" size="40" required="true"/>
     <column name="billing_client_id" phpName="BillingClientId" type="INTEGER" required="false"/>
     <column name="demographic_person_id" phpName="DemographicPersonId" type="INTEGER" required="false"/>
+    <column name="support_user_role_id" phpName="SupportUserRoleId" type="INTEGER" required="false"/>
     <foreign-key foreignTable="billing_client" name="auth_user_ibfk_1">
       <reference local="billing_client_id" foreign="billing_client_id"/>
     </foreign-key>
     <foreign-key foreignTable="demographic_person" name="auth_user_ibfk_2">
       <reference local="demographic_person_id" foreign="demographic_person_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="support_user_role" name="auth_user_ibfk_3">
+      <reference local="support_user_role_id" foreign="support_user_role_id"/>
     </foreign-key>
     <index name="date_created">
       <index-column name="date_created"/>
@@ -54,6 +58,9 @@
     </index>
     <index name="auth_user_ibfk_2">
       <index-column name="demographic_person_id"/>
+    </index>
+    <index name="support_user_role_id">
+      <index-column name="support_user_role_id"/>
     </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
@@ -698,6 +705,22 @@
     <column name="class_entity" phpName="ClassEntity" type="VARCHAR" size="255" required="true"/>
     <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
     <column name="class_key" phpName="ClassKey" type="VARCHAR" size="255" required="true"/>
+    <index name="date_created">
+      <index-column name="date_created"/>
+    </index>
+    <index name="code">
+      <index-column name="code"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="support_user_role" phpName="SupportUserRole" idMethod="native">
+    <column name="support_user_role_id" phpName="SupportUserRoleId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="code" phpName="Code" type="VARCHAR" size="255" required="true"/>
     <index name="date_created">
       <index-column name="date_created"/>
     </index>

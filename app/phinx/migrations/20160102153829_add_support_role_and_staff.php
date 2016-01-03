@@ -28,7 +28,7 @@ class AddSupportRoleAndStaff extends AbstractMigration
   public function change()
   {
     $this->execute("
-      INSERT INTO support_role (date_created, name, code) VALUES (NOW(), 'Admin', 'ADMIN');
+      INSERT INTO support_user_role (date_created, name, code) VALUES (NOW(), 'Admin', 'ADMIN');
     ");
   }
 }
