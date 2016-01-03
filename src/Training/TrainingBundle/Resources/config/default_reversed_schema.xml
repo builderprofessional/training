@@ -31,6 +31,7 @@
   
   
   
+  
   <table name="training_answer" phpName="Answer" idMethod="native">
     <column name="training_answer_id" phpName="AnswerId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
