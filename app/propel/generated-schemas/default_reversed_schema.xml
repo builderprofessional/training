@@ -94,7 +94,7 @@
     <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
     <column name="billing_client_id" phpName="BillingClientId" type="INTEGER" required="true"/>
     <column name="billing_product_id" phpName="BillingProductId" type="INTEGER" required="true"/>
-    <column name="next_bill_date" phpName="NextBillDate" type="DATE" required="true"/>
+    <column name="next_bill_date" phpName="NextBillDate" type="DATE" required="false"/>
     <column name="amount" phpName="Amount" type="BIGINT" required="true"/>
     <column name="downgrade_allowed_date" phpName="DowngradeAllowedDate" type="DATE" required="true"/>
     <foreign-key foreignTable="billing_client" name="billing_client_product_ibfk_1">
@@ -376,6 +376,7 @@
     <column name="amount" phpName="Amount" type="BIGINT" required="false"/>
     <column name="description" phpName="Description" type="LONGVARCHAR" required="false"/>
     <column name="position" phpName="Position" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="one_time_flag" phpName="OneTimeFlag" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <index name="date_created">
       <index-column name="date_created"/>
     </index>
