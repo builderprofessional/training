@@ -9,7 +9,7 @@
 /build/
 /vendor/
 /bin/
-.idea
+*.idea*
 /composer.phar
 /bower_components/
 /node_modules/
