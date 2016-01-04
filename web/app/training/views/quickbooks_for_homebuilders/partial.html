@@ -1,4 +1,17 @@
 <div>
-  <h1>Quickbooks for Homebuilds</h1>
-
+  <h1>QuickBooks for Homebuilders</h1>
+  <p>Welcome to the online training course Quickbooks for Homebuilders.  Follow the steps below to complete the course.</p>
+  <ol>
+    <li>Download and print the <a ng-click="switchTo('ebook')">e-book</a> (Approximate time: 5-10 minutes) so you'll be able to follow along.</li>
+    <li>Watch the <a ng-click="switchTo('video')">video</a> (Approximate time: 1 hour)</li>
+    <li>Ask follow up <a ng-click="switchTo('qanda')">questions</a> (Approximate time: 15 minutes) and get answers within the week.</li>
+    <li>Download the additional <a ng-click="switchTo('resources')">resources</a> including reports and an example company file (Approximate time: 30 minutes) and explore.</li>
+  </ol>
+  <p>Approximate total course time: 2 hours</p>
+  <div bs-active-pane="tabs.activeTab" bs-tabs >
+    <div ng-repeat="tab in tabs" title="{{ tab.title }}" name="{{ tab.name }}" disabled="{{ tab.disabled }}" bs-pane>
+      <ng-include src="tab.src" ng-if="tab.src"></ng-include>
+      <div ng-if="tab.content" ng-bind="tab.content"></div>
+    </div>
+  </div>
 </div>

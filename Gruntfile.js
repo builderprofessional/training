@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         {
           this._paths.push(this._getHandle(this._files[i]));
           this._pathMap[this._getHandle(this._files[i])] =
-              this._files[i].replace('.js','');
+              this._files[i].replace(/.js$/,'');
         }
       }
       appExcludeRegex = new RegExp("/FileAPI|^"+appName+"\\/|ngTemplateC/");
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
         if ( this._getHandle(this._sfiles[i]).search(appExcludeRegex) == -1) {
           this._spaths.push(this._getHandle(this._sfiles[i]));
           this._spathMap[this._getHandle(this._sfiles[i])] =
-              this._sfiles[i].replace('.js', '');
+              this._sfiles[i].replace(/.js$/, '');
         }
       }
     },
@@ -88,6 +88,7 @@ module.exports = function(grunt) {
         'vendor/angular-ui-router/angular-ui-router',
         'vendor/angular-animate/angular-animate',
         'vendor/angular-strap/angular-strap',
+        'vendorCustom/vjs-video',
         'engine/engApp/init'
       ];
       this._signupshim = {
@@ -196,7 +197,7 @@ module.exports = function(grunt) {
     bower: {
       install: {
         options: {
-          //verbose: true,
+          verbose: true,
           targetDir: vendorDir,
           layout: 'byType'
         }
