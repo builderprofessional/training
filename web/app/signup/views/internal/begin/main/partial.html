@@ -6,7 +6,7 @@
       </a>
     </div>
     <h1>
-      Your Plan: {{getPlan('Name')}} (<span eng-currency amount="getPlan('Amount')"></span><span ng-show="Totals && Totals.Tax > 0">+<span eng-currency amount="Totals.Tax"></span> Tax</span>)
+      Your Choice: {{getPlan('Name')}} (<span eng-currency amount="getPlan('Amount')"></span><span ng-show="Totals && Totals.Tax > 0">+<span eng-currency amount="Totals.Tax"></span> Tax</span>)
     </h1>
   </div>
 </div>
@@ -41,7 +41,7 @@
     </div>
     <div class="footer actions">
       <div class="pricing">
-        Plan price: <span eng-currency amount="plan.model.Amount"></span>
+        Price: <span eng-currency amount="plan.model.Amount"></span><span ng-show="plan.model.ClassKey == 'recurring'"> / Month</span>
       </div>
       <div class="action-buttons" ng-if="selectedProductId===false">
         <eng-action-button class="btn-lg" ng-if="selectedProductId===false" ng-click="change(plan)" data-button-text="Get Started" data-button-action="upgrade">
@@ -55,8 +55,7 @@
   <div class="cc-form">
     <div class="new-payment-information" ng-if="validator && validator.rules">
       <form>
-        <h1 class="index_main_quote" style="width:100%;">Enter payment info to get started.
-          <span class="index_main_quote_highlight">Cancel Anytime.</span></h1>
+        <h1 class="index_main_quote" style="width:100%;">Enter payment info to get started.</h1>
 
         <fieldset>
         <legend>A Little About You</legend>
@@ -146,7 +145,7 @@
 </div>
 <div ng-if="selectedProductId && phase == 'CONFIRM'" style="width:100%;" ng-class="phase">
   <h1 class="index_main_quote">Your Credit Card has not yet been charged.<br/>
-    <span class="index_main_quote_highlight">Click Confirm to Start Estimating!</span></h1>
+    <span class="index_main_quote_highlight">Click Confirm to Start Training!</span></h1>
   <div class="plan-info info-block marketing-block" ng-class="getPlan('Name')">
     <div class="header">
       <h1>
@@ -166,8 +165,8 @@
   <div class="info-block marketing-block confirm-block">
     <h1>Confirm Purchase</h1>
     <div class="pricing">
-      You will be charged: <span eng-currency amount="Totals.Total"></span> each month until you cancel.
-      You can cancel at any time.
+      You will be charged: <span eng-currency amount="Totals.Total"></span><span ng-show="getPlan('ClassKey') == 'recurring'">each month until you cancel.
+      You can cancel after the first year.</span>
     </div>
     <div>
       <eng-marketing content="getPlan('Code')+'_signup'"></eng-marketing>
@@ -287,7 +286,7 @@
   </div>
   <div class="col-lg-12">
     <h1 class="index_main_quote">
-      <a ng-href="{{env_url}}#/">Click here to continue on to the estimator application</a>
+      <a ng-href="{{env_url}}#/">Click here to continue on to the training</a>
     </h1>
   </div>
 
