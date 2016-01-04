@@ -31,9 +31,6 @@ class SignupController extends BillingSignupController
   /**
    * This action will start the signup process.
    *
-   * @Route("/signup")
-   * @Method({"POST"})
-   *
    * @param Request $request
    */
   public function postAction(Request $request)

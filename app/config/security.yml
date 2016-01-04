@@ -43,4 +43,4 @@ security:
       context: MainContext
 
   access_control:
-    - { path: ^/est, roles: ROLE_ADMIN }
+    - { path: ^/training, roles: ROLE_ADMIN }

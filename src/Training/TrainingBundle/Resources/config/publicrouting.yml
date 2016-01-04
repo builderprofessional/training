@@ -1,0 +1,9 @@
+training_signup_post:
+    path:  /signup
+    defaults: { _controller: TrainingTrainingBundle:Signup:post }
+training_signup_findByToken_get:
+    path:  /signup/findByToken/{token}
+    defaults: { _controller: TrainingTrainingBundle:Signup:findByToken }
+training_signup_complete:
+    path:  /signup/complete
+    defaults: { _controller: TrainingTrainingBundle:Signup:complete }
