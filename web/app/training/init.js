@@ -1,6 +1,6 @@
 // define our angular app that encompasses all of our pages and inject all
 // module dependencies
-trainingApp = angular.module('TrainingApp', ['engApp', 'engAuth', 'ngAnimate', 'engState', 'mgcrea.ngStrap', 'LocalStorageModule']);
+trainingApp = angular.module('TrainingApp', ['engApp', 'engAuth', 'ngAnimate', 'engState', 'mgcrea.ngStrap', 'LocalStorageModule','vjs.video']);
 engApp.constant('APP_CONFIG',{
   App: {
     Name: "Builder Professional Training"
