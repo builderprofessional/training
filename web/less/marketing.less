@@ -1,1 +1,71 @@
 @import "vendors/bootstrap/bootstrap";
+// Marking stuff
+span.plan {
+  .label;
+  .label-info;
+  color:black;
+  border: solid 1px black;
+  min-width:100px;
+  max-width:200px;
+  display:inline-block;
+}
+&.Silver {
+  background-color:grey;
+  background: linear-gradient(45deg, lighten(grey,15%) 0%,lighten(grey,30%) 62%,lighten(grey,20%) 100%);
+}
+&.Gold {
+  background-color:gold;
+  background: linear-gradient(45deg, darken(gold,0%) 0%,lighten(gold,20%) 62%,darken(orange,5%) 100%);
+}
+&.Bronze {
+  background-color:saddlebrown;
+  background: linear-gradient(45deg, lighten(saddlebrown,40%) 0%,lighten(saddlebrown,20%) 62%,lighten(saddlebrown,40%) 100%);
+}
+&.Platinum {
+  background-color:silver;
+  background: linear-gradient(45deg, lighten(silver,30%) 0%,lighten(silver,15%) 62%,darken(silver,0%) 100%);
+}
+.info-block.upgrade-info {
+  &:last-child,&:last-of-type {
+    border:3px @color-secondary solid;
+    padding-bottom:1.2em;
+  }
+}
+.info-block.marketing-block {
+  clear:none;
+  &:last-child,&:last-of-type {
+    border-bottom:3px @color-secondary solid;
+    padding-bottom:1.2em;
+  }
+  .footer.actions .action-buttons{
+    width:100%;
+    margin-top:1em;
+  }
+  .header {
+    h1 {
+      font-size:24pt;
+      text-shadow: 1px 1px white,-1px -1px white ;
+      span.label {
+        font-size:14pt;
+        text-shadow: none;
+      }
+    }
+    hr {
+      color:@color-secondary;
+      width:100%;
+      margin:0px;
+      margin-top:0px;
+      margin-bottom:5px;
+      padding:0px;
+      padding-top:2px;
+      padding-bottom:2px;
+    }
+  }
+}
+.info-block.marketing-block.Bronze {
+  .header {
+    h1 {
+      text-shadow: 1px 1px white;
+    }
+  }
+}

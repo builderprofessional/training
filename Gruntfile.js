@@ -445,9 +445,9 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   //register alias tasks
-  grunt.registerTask('dist', ['clean:build', 'jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less', 'cssmin', 'rjs:write', 'requirejs:build','requirejs:buildsignup', 'clean:buildArtifacts', 'clean:debugHelpers']);
-  grunt.registerTask('dev', ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less', 'rjs:write', 'requirejs:dev','requirejs:devsignup', 'clean:buildArtifacts']);
-  grunt.registerTask('dev:pre', ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less', 'rjs:write']);
-  grunt.registerTask('dev:app', ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build', 'imagemin', 'less', 'rjs:write', 'requirejs:dev', 'clean:buildArtifacts']);
-  grunt.registerTask('dev:signup', ['clean:build','jshint', 'bower', 'copy','ngtemplates:signup', 'imagemin', 'less', 'rjs:write','requirejs:devsignup', 'clean:buildArtifacts']);
+  grunt.registerTask('dist',       ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less', 'cssmin', 'rjs:write', 'requirejs:build','requirejs:buildsignup', 'clean:buildArtifacts', 'clean:debugHelpers']);
+  grunt.registerTask('dev',        ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less',           'rjs:write', 'requirejs:dev',  'requirejs:devsignup',   'clean:buildArtifacts']);
+  grunt.registerTask('dev:pre',    ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less',           'rjs:write']);
+  grunt.registerTask('dev:app',    ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build',                      'imagemin', 'less',           'rjs:write', 'requirejs:dev',                           'clean:buildArtifacts']);
+  grunt.registerTask('dev:signup', ['clean:build','jshint', 'bower', 'copy',                     'ngtemplates:signup', 'imagemin', 'less',           'rjs:write',                   'requirejs:devsignup',   'clean:buildArtifacts']);
 };
