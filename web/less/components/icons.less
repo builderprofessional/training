@@ -1,0 +1,157 @@
+.icon-edit {
+  .glyphicon;
+  .glyphicon-edit;
+}
+.icon-new {
+  .glyphicon;
+  .glyphicon-plus;
+}
+.icon-save {
+  .glyphicon;
+  .glyphicon-save;
+}
+.icon-delete {
+  .glyphicon;
+  .glyphicon-remove;
+}
+.icon-cancel {
+  .glyphicon;
+  .glyphicon-remove;
+}
+.icon-edit-photo {
+  .fa;
+  &:before {
+    content:@fa-var-edit;
+  }
+}
+.icon {
+  .fa;
+  &.icon-help:before {
+    content:@fa-var-question-circle;
+    color:@info-color;
+  }
+  &.icon-cog:before {
+    content:@fa-var-cog;
+  }
+  &.icon-cog:hover {
+    .fa-spin;
+  }
+  &.icon-dropdown:before {
+    content:@fa-var-toggle-down;
+  }
+  &.icon-error-marker:before {
+    content:@fa-var-lightbulb-o;
+  }
+  &.icon-error-marker.dirty:before {
+    content:@fa-var-exclamation-triangle;
+    color:@danger-color;
+  }
+}
+.icon-collapse {
+  .fa;
+  &:before {
+    content:@fa-var-minus-square-o;
+    margin-right:.25em;
+    &:hover {
+      text-decoration:none;
+    }
+    text-decoration:none;
+  }
+}
+.icon-pin-up {
+  .fa;
+  &:before {
+    content:@fa-var-arrow-circle-o-up;
+  }
+}
+.icon-unpin {
+  .fa;
+  &:before {
+    content:@fa-var-dot-circle-o;
+  }
+}
+.icon-pin-down {
+  .fa;
+  &:before {
+    content:@fa-var-arrow-circle-o-down;
+  }
+}
+.icon-running-process {
+  .fa;
+  .fa-spin;
+  &:before {
+    content:@fa-var-spinner;
+  }
+}
+.icon-tax {
+  .fa;
+  &:before {
+    content:@fa-var-square-o;
+    font-size:1.5em;
+    position:relative;
+    top:3px;
+  }
+  &:after {
+    content:'T%';
+    font-size:.7em;
+    left:-1.5em;
+    position:relative;
+    top:-2px;
+  }
+}
+.icon-profit {
+  .fa;
+  &:before {
+    content:@fa-var-dollar;
+  }
+}
+.icon-finished-process {
+  .fa;
+  color:green;
+  &:before {
+    content:@fa-var-check;
+  }
+}
+.icon-failed-process {
+  .fa;
+  color:red;
+  &:before {
+    content:@fa-var-warning;
+  }
+}
+.icon-undo {
+  .fa;
+  &:before {
+    content:@fa-var-undo;
+  }
+}
+.icon-check-empty {
+  .fa;
+  &:before {
+    content:@fa-var-square-o;
+  }
+}
+.icon-check-all {
+  .fa;
+  &:before {
+    content:@fa-var-check-square-o;
+  }
+}
+.icon-rerun {
+  .fa;
+  &:before {
+    content:@fa-var-refresh;
+  }
+}
+.icon-print {
+  .fa;
+  &:before {
+    content:@fa-var-print;
+  }
+}
+.icon-download {
+  .fa;
+  &:before {
+    content:@fa-var-download;
+  }
+}

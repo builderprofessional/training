@@ -1,0 +1,154 @@
+.eng-grid {
+    @header-bg-color-active: @background-color;
+    @header-border-color: @color-secondary;
+    @header-color: @accent-color;
+    @header-bg-color: @background-color;
+    @header-row-height: 30px;
+    @row-height: 2.5em;
+    @row-border-color: @background-color;
+    @row-color: @color-primary;
+    @row-bg-color-even: @grid-row-primary;
+    @row-bg-color-odd: @grid-row-secondary;
+    @row-hover-color: fade(@grid-row-primary,35%);
+    @sort-arrow-color: @accent-color;
+    @sort-arrow-width: 5px;
+    @sort-arrow-flip-duration: 0.4s;
+    @cell-transition-duration: 0.2s;
+    @cell-border-color: transparent;
+    @disabled-color:gray;
+
+    width:100%;
+    .grid-row {
+
+        border-bottom: 1px solid @row-border-color;
+
+        &:nth-child(even) {
+            background-color: @row-bg-color-even;
+        }
+        &:nth-child(odd) {
+            background-color: @row-bg-color-odd;
+        }
+
+        a {
+            color: @row-color;
+        }
+
+        &:hover {
+            background-color: @row-hover-color;
+        }
+
+        &.disabled {
+            color: @disabled-color;
+            height: 100%;
+            &,
+            .ngCellText p {
+                cursor: default !important;
+            }
+            &:hover {
+                background: @disabled-color;
+            }
+        }
+        &:last-child {
+          border-bottom: 2px solid @color-secondary;
+        }
+
+        .grid-cell {
+            height:@row-height;
+        }
+    }
+
+    .grid-header {
+        background-color: @header-bg-color;
+        border-bottom: 2px solid @header-border-color;
+        font-size: 12px;
+        color: @header-color;
+        font-weight:300;
+        letter-spacing: 0.5px;
+
+        .grid-cell {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            height:@header-row-height;
+          text-align: center;
+            &.sortable {
+                cursor: pointer;
+            }
+
+            &.sorted {
+                background-color: @header-bg-color-active;
+                font-weight: bold;
+                + .grid-cell {
+                    border-left-color: transparent;
+                }
+                .sort-arrow {
+                    .transition-transform(@sort-arrow-flip-duration, opacity @cell-transition-duration;);
+                    opacity: 1;
+                }
+            }
+
+            .sort-arrow {
+                display: inline-block;
+                border: @sort-arrow-width solid transparent;
+                border-top: none;
+                border-bottom-color: @sort-arrow-color;
+                margin-left: 1em;
+                opacity: 0;
+                &.descending {
+                    .rotateX(180deg);
+                }
+            }
+        }
+    }
+
+  td.grid-cell {
+    border-right: 1px solid @background-color;
+    &:first-child {
+      //border-left: 1px solid @color-secondary;
+    }
+    &:last-child {
+      //border-right: 1px solid @color-secondary;
+    }
+    text-align: left;
+    &.numeric {
+      text-align:right;
+      font-family:sans-serif;
+    }
+
+  }
+  tr:nth-child(2){
+    td.grid-cell {
+      border-top: solid 2px @color-secondary;
+    }
+  }
+  tr:last-child{
+    border-bottom: solid 2px @color-secondary;
+    td.grid-cell {
+      border-right: solid 1px @background-color;
+      border-bottom: solid 2px @color-secondary;
+      &:last-child {
+        //border-right: solid 1px @color-secondary;
+      }
+    }
+  }
+
+    .grid-cell {
+        border-left: 1px dotted @cell-border-color;
+        vertical-align: middle;
+        padding: 0 10px;
+
+        &.no-pad {
+            padding: 0;
+        }
+
+
+        .center {
+            text-align: center;
+        }
+
+        .ellipsis {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+}

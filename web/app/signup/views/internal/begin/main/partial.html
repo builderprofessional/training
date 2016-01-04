@@ -1,0 +1,294 @@
+<div ng-if="selectedProductId && phase.localeCompare('CHOOSE') == 1">
+  <div class="phase" ng-class="getPlan('Name')">
+    <div class="pull-right expander">
+      <a ng-click="setPhase('CHOOSE')" ng-show="canChange()">
+        Change
+      </a>
+    </div>
+    <h1>
+      Your Plan: {{getPlan('Name')}} (<span eng-currency amount="getPlan('Amount')"></span><span ng-show="Totals && Totals.Tax > 0">+<span eng-currency amount="Totals.Tax"></span> Tax</span>)
+    </h1>
+  </div>
+</div>
+<div ng-if="selectedProductId && vault && phase.localeCompare('COLLECT') == 1">
+  <div class="phase">
+    <div class="pull-right expander">
+      <a ng-click="setPhase('COLLECT')" ng-show="canChange()">
+        Change
+      </a>
+    </div>
+    <h1>
+      Selected Payment Type: XXXX-XXXX-XXXX-{{last4}}
+    </h1>
+  </div>
+</div>
+<div class="change-plan view-content choose-plan" ng-if="!selectedProductId || phase == 'CHOOSE'" style="width:100%">
+  <h1 class="index_main_quote everything">Everything we do comes down to this:
+    <span class="index_main_quote_highlight">We help builders.</span></h1>
+  <h1 class="index_continue">Continue Signing Up</h1>
+  <div class="plan-info info-block marketing-block" ng-repeat="plan in Products" ng-class="plan.model.Name">
+    <div class="header">
+      <h1>
+        <span>{{plan.model.Name}}</span>
+          <span ng-if="plan.model.Code=='GOLD'" class="label best-plan">
+              Best Value
+          </span>
+      </h1>
+      <hr/>
+    </div>
+    <div class="content">
+      <eng-marketing content="plan.model.Code"></eng-marketing>
+    </div>
+    <div class="footer actions">
+      <div class="pricing">
+        Plan price: <span eng-currency amount="plan.model.Amount"></span>
+      </div>
+      <div class="action-buttons" ng-if="selectedProductId===false">
+        <eng-action-button class="btn-lg" ng-if="selectedProductId===false" ng-click="change(plan)" data-button-text="Get Started" data-button-action="upgrade">
+        </eng-action-button>
+      </div>
+    </div>
+  </div>
+</div>
+<eng-alerts alert-prefix="payment"></eng-alerts>
+<div ng-if="selectedProductId && phase == 'COLLECT'" style="width:100%;">
+  <div class="cc-form">
+    <div class="new-payment-information" ng-if="validator && validator.rules">
+      <form>
+        <h1 class="index_main_quote" style="width:100%;">Enter payment info to get started.
+          <span class="index_main_quote_highlight">Cancel Anytime.</span></h1>
+
+        <fieldset>
+        <legend>A Little About You</legend>
+          <eng-field type="text" placeholder="First Name" validator="validator" ng-model="SignUp.FirstName" label="First Name" ></eng-field>
+          <eng-field type="text" placeholder="Last Name" validator="validator" ng-model="SignUp.LastName" label="Last Name" ></eng-field>
+          <eng-field type="text" placeholder="Email" validator="validator" ng-model="SignUp.Email" label="Email" ng-disabled="SignUp.Email.length"></eng-field>
+          <eng-field type="text" placeholder="Company Name" validator="validator" ng-model="SignUp.CompanyName" label="Company Name" ></eng-field>
+        </fieldset>
+        <fieldset class="creditcard">
+          <legend>Payment Info</legend>
+          <eng-field type="text" placeholder="Enter a Valid Credit Card Number" validator="validator" ng-model="SignUp.CreditCardNumber" label="CC #" >
+          </eng-field>
+
+          <eng-field type="cvc"
+                     placeholder="CVV (3 Digit Code)"
+                     validator="validator"
+                     ng-model="SignUp.CVV"
+                     label="CVV/CVC">
+          </eng-field>
+
+          <eng-expiration-input
+              validator="validator"
+              model="SignUp">
+          </eng-expiration-input>
+          <!--
+          <eng-field type="text"
+                     placeholder="Zip Code"
+                     validator="validator"
+                     help="'Be sure to enter the billing zipcode associated with your credit card.'"
+                     ng-model="BrainTree.ZipCode"
+                     label="Zip Code">
+          </eng-field>
+          -->
+        </fieldset>
+        <fieldset>
+          <legend>Billing Address (for tax purposes)</legend>
+        <eng-address address-reference="SignUp" address="Address" ng-if="Address"></eng-address>
+          <div class="address">
+            <eng-field type="text"
+                       placeholder="Street Address (e.g. 314 Brookwood Dr)"
+                       validator="validator"
+                       ng-model="SignUp.Address"
+                       label="Street Address">
+            </eng-field>
+            <eng-field type="text"
+                       placeholder="Suite/Apt # (e.g. Suite 123)"
+                       validator="validator"
+                       ng-model="SignUp.Address2"
+                       label="Suite/Apt #">
+            </eng-field>
+            <eng-field type="text"
+                       placeholder="City"
+                       validator="validator"
+                       ng-model="SignUp.City"
+                       label="City">
+            </eng-field>
+            <eng-field type="text"
+                       placeholder="State"
+                       validator="validator"
+                       ng-model="SignUp.State"
+                       label="State">
+            </eng-field>
+            <eng-field type="text"
+                       placeholder="Zip Code"
+                       validator="validator"
+                       ng-model="SignUp.ZipCode"
+                       label="Zip Code">
+            </eng-field>
+            <eng-field type="text"
+                       placeholder="2 digit Country Code (e.g. US)"
+                       validator="validator"
+                       ng-model="SignUp.Country"
+                       label="Country">
+            </eng-field>
+                  </div>
+        </fieldset>
+
+        <fieldset class="record-actions">
+          <div class="action-buttons">
+            <eng-action-button ng-click="cancelCC()" data-button-text="Cancel" data-button-action="cancel-aside"></eng-action-button>
+            <eng-action-button ng-click="saveCC()" data-button-text="Save" data-button-action="save"></eng-action-button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+<div ng-if="selectedProductId && phase == 'CONFIRM'" style="width:100%;" ng-class="phase">
+  <h1 class="index_main_quote">Your Credit Card has not yet been charged.<br/>
+    <span class="index_main_quote_highlight">Click Confirm to Start Estimating!</span></h1>
+  <div class="plan-info info-block marketing-block" ng-class="getPlan('Name')">
+    <div class="header">
+      <h1>
+        <span>{{getPlan('Name')}} Plan</span>
+      </h1>
+      <hr/>
+    </div>
+      <div class="content">
+        <eng-marketing content="getPlan('Code')"></eng-marketing>
+      </div>
+
+    <div class="footer actions">
+      <div class="action-buttons">
+      </div>
+    </div>
+  </div>
+  <div class="info-block marketing-block confirm-block">
+    <h1>Confirm Purchase</h1>
+    <div class="pricing">
+      You will be charged: <span eng-currency amount="Totals.Total"></span> each month until you cancel.
+      You can cancel at any time.
+    </div>
+    <div>
+      <eng-marketing content="getPlan('Code')+'_signup'"></eng-marketing>
+    </div>
+    <div class="totals-block">
+      <table class="totals">
+        <tbody>
+        <tr>
+          <td colspan="2">
+            To be charged now:
+          </td>
+        </tr>
+        <tr ng-if="Totals.TaxRate > 0">
+          <th>{{getPlan('Name')}}</th>
+          <td><span eng-currency amount="Totals.Subtotal"></span></td>
+        </tr>
+        <tr>
+        <tr ng-if="Totals.TaxRate > 0">
+          <th>Tax (<span>{{Totals.TaxPercentage}}%</span>)</th>
+          <td><span eng-currency amount="Totals.Tax"></span></td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <td><span eng-currency amount="Totals.Total"></span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer actions">
+
+      <eng-action-button class="btn-lg" ng-click="confirm()" data-button-text="Confirm Purchase" data-button-action="confirm-action">
+      </eng-action-button>
+    </div>
+  </div>
+</div>
+<div ng-if="selectedProductId && phase == 'RECEIPT'" style="width:100%;" ng-class="phase">
+  <h1 class="index_main_quote">Thanks for your purchase</h1>
+  <hr class="invoice-bar"/>
+  <div class="pull-right builder-name">
+    Builder Professional
+  </div>
+  <div class="col-md-4 builder-address">
+    PO Box 121068<br/>
+    Arlington, TX 76012-1068<br/><br/>
+    Phone: (916) WE-BUILD / (916) 932-8459<br/>
+    Fax:
+    (800) 494-7705<br/><br/>
+    E-mail:
+    billing@builderprofessional.com<br/>
+  </div>
+  <hr class="invoice-bar"/>
+  <h1 class="index_main_quote receipt">Receipt # <span class="receipt-number">{{client.model.ClientId || '1001'}}</span>
+    </h1>
+  <div>
+    <table width="100%" class="date-line">
+      <thead>
+        <th class="date">Date</th>
+        <th class="bill-to">Billed To</th>
+        <th class="empty"></th>
+        <th class="Total">Total</th>
+      </thead>
+      <tbody>
+        <td class="date">{{today|date:'shortDate'}}</td>
+        <td class="bill-to">
+          {{client.relations.Company.model.Name || Company.model.Name || 'Your Company'}}<br/>
+          {{client.relations.Company.relations.Address.model.Address || 'No Address Provided'}}<br/>
+          {{client.relations.Company.relations.Address.model.City || 'No City'}},
+          {{client.relations.Company.relations.Address.model.State || 'No State'}}
+          {{client.relations.Company.relations.Address.model.ZipCode || 'No Zipcode'}}<br/>
+        </td>
+        <td class="empty"></td>
+        <td class="Total"><span eng-currency amount="Totals.Total"></span></td>
+      </tbody>
+    </table>
+  </div>
+  <div class="description-block">
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Rate</th>
+          <th>Qty</th>
+          <th style="width:8em;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{getPlan('Name')}} Plan</td>
+          <td><span eng-currency amount="getPlan('Amount')"></span></td>
+          <td>1</td>
+          <td class="totals"><span eng-currency amount="getPlan('Amount')"></span></td>
+      </tbody>
+    </table>
+  </div>
+  <div class="pull-right col-lg-4 totals-block">
+    <table class="totals">
+      <tbody>
+        <tr ng-if="Totals.Tax">
+          <th>Tax</th>
+          <td><span eng-currency amount="Totals.Tax"></span></td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <td><span eng-currency amount="Totals.Total"></span></td>
+        </tr>
+        <tr>
+          <th>Paid</th>
+          <td><span eng-currency amount="Totals.Total"></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="msg">
+            Please print this receipt for your records.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-12">
+    <h1 class="index_main_quote">
+      <a ng-href="{{env_url}}#/">Click here to continue on to the estimator application</a>
+    </h1>
+  </div>
+
+</div>

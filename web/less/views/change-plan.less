@@ -1,0 +1,97 @@
+@import "../vendors/bootstrap/bootstrap";
+.view-header .account-status {
+  font-size: @font-size-h4;
+  display:inline-block;
+  position:relative;
+  top:-5px;
+}
+.info-block {
+  .footer {
+    .upgrade-button {
+      width:100%;
+      margin-right:auto;
+      .btn;
+      .btn-info;
+    }
+  }
+}
+.info-block.upgrade-info {
+  border: solid 1px grey;
+  .border-bottom-radius(15px);
+  .border-top-radius(15px);
+  .make-xs-column(12);
+  .make-sm-column(6);
+  .make-lg-column(8);
+  padding-bottom: 10px;
+  clear: none;
+}
+@media (min-width: 1320px) {
+  .info-block.upgrade-info {
+    margin-left:20px;
+  }
+}
+button.cancel {
+  .btn;
+  .btn-danger;
+}
+.info-block.marketing-block {
+  .make-xs-column(12);
+  .make-sm-column(6);
+  .make-lg-column(3);
+  position:relative;
+  min-height:450px;
+//  max-height:950px;
+  overflow-y:auto;
+  border: solid 1px grey;
+  .border-bottom-radius(15px);
+  .border-top-radius(15px);
+  .content {
+//    padding-bottom:4em;
+//    margin-bottom:2em;
+  }
+  .label.my-plan {
+    color: @color-secondary;
+  }
+  .label.best-plan {
+    color: @label-success-bg;
+  }
+  .footer {
+//    height:8em;
+    .pricing,.downgrade-message {
+      text-align:left;
+      height:3em;
+    }
+    .pricing {
+      font-weight: bolder;
+      height:2em;
+    }
+//    position:absolute;
+//    bottom:0;
+//    left:0;
+    width:100%;
+    padding-left:15px;
+    padding-right:15px;
+    margin-bottom:15px;
+    text-align:center;
+    overflow:hidden;
+  }
+}
+div.info-block.marketing-block {
+  background-color: lighten(@button-bg-color,3%);
+  //color:@color-secondary;
+  border:3px @color-secondary solid;
+  div.features {
+    margin-top:2em;
+    height:13em;
+    h1, h2, h3, h4, h5 {
+      color:@color-primary;
+    }
+  }
+  .leader {
+    height:1.6em;
+    color:@color-primary;
+  }
+  .description {
+    height: 4em;
+  }
+}

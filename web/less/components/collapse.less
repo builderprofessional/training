@@ -1,0 +1,31 @@
+div[bs-collapse].panel-group {
+  .panel+.panel {
+    margin-top:0px;
+    .border-top-radius(0px);
+    border-top:solid 1px white;
+  }
+  .panel:first-child {
+    margin-bottom:0px;
+    .border-bottom-radius(0px);
+    border-bottom:none;
+  }
+  .panel-title {
+    width:100%;
+    a[bs-collapse-toggle] {
+      //width:100%;
+      display:inline-block;
+      &:link,&:hover,&:active,&:visited {
+        text-decoration:inherit;
+        color:inherit;
+      }
+      .fa;
+      &:before {
+        content:@fa-var-chevron-down;
+        margin-right:.25em;
+      }
+    }
+  }
+  span.pins {
+    float:right;
+  }
+}

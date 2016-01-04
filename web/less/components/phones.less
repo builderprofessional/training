@@ -1,0 +1,48 @@
+.phones {
+.phone {
+  clear:left;
+  margin-left:-15px;
+  margin-right:-15px;
+  div.form-group {
+    padding-left:0px !important;
+    padding-right:0px !important;
+    margin-bottom:5px !important;
+  }
+  span[ng-if]:first-child {
+    margin-left:25px;
+  }
+  span[ng-if].edit:first-child {
+    margin-left:0px;
+  }
+  span[value-property="PhoneTypeId"] div.form-group {
+    .make-xs-column(12);
+    .make-sm-column(3);
+    .make-lg-column(3);
+  }
+  span[value-property="Number"] div.form-group {
+    .make-xs-column(12);
+    .make-sm-column(3);
+    .make-lg-column(3);
+  }
+  div.edit.save{
+    .make-xs-column(12);
+    .make-sm-column(3);
+    .make-lg-column(3);
+  }
+  a.save, a.cancel{
+    .btn;
+    span {
+      margin-left:auto;
+    }
+    &.save {
+      .btn-success;
+    }
+    &.cancel {
+      .btn-warning;
+    }
+  }
+  &.add {
+    margin-left:0px;
+  }
+}
+}

@@ -1,0 +1,341 @@
+.signup {
+  div#content {
+    margin-top:40px;
+  }
+  .plan-info.info-block .header span {
+    font-size:24pt;
+  }
+  .index_main_quote {
+    padding-top:15px;
+    padding-bottom:15px;
+    display:block;
+  }
+  .change-plan {
+    position:relative;
+    top:-80px;
+  }
+  fieldset {
+    width:100%;
+  }
+  #logo {
+    padding:10px;
+    border-bottom:dotted 1px black;
+  }
+  .label.best-plan {
+    position:absolute;
+    top:.5em;
+    margin-left:1.5em;
+    background-color:whitesmoke;
+    border:1px dotted lightgreen;
+  }
+  .actions .btn[data-button-text][data-button-action], .record-actions .btn[data-button-text][data-button-action] {
+    color: #1d295b !important;
+    border-color: #1d295b;
+  }
+  /*
+  .actions .btn span.icon, .record-actions .btn span.icon {
+    top: -.3em;
+    right: -.1em;
+  }
+
+  .Gold {
+    .header {
+      margin-top:-15px;
+      h1 {
+        padding-top:5px;
+      }
+    }
+  }
+  */
+  .nav_top.pull-right
+  {
+    width: 20em;
+    position: relative;
+    top: -6em;
+  }
+  #copyright {
+    margin-top:2em;
+    background: #23282E;
+    color: #a0a0a0;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    color: #a0a0a0;
+  }
+  .index_main_quote {
+    text-align:center;
+    font-weight: 500;
+    color: #3f4e7d;
+    margin-top: 3px;
+    float: left;
+    font-size: 30px;
+    width: 100%;
+  }
+  .index_main_quote_highlight {
+    color: #9a3c2f;
+    font-size: inherit;
+  }
+  .cc-form {
+    max-width:100%;
+    width:800px;
+    min-width:320px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .index_continue {
+    display:none;
+  }
+  @media only screen and (max-width:979px) {
+    h1.sign-up-nav {
+      margin-right:5px;
+      padding-bottom:50px;
+      margin-bottom:50px;
+    }
+    .nav_top.pull-right {
+      display:none;
+    }
+    .index_main_quote.everything {
+      display:none;
+    }
+
+    .index_continue {
+      display:block;
+      text-align:center;
+      margin-left:auto;
+      margin-right:auto;
+      font-size:30px;
+      margin-top:3em;
+    }
+  }
+
+  header#header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding-top:2em;
+    margin-bottom:-4em;
+  }
+  .phase {
+    padding:10px;
+    padding-top:0px;
+    padding-bottom:0px;
+    background-color:lightgrey;
+    border-bottom: solid 1px @color-primary;
+    border-top: solid 1px @color-primary;
+    h1 {
+      margin-top:10px;
+    }
+  }
+  .expander {
+    margin-top:.5em;
+  }
+  @invoice-color: #923a1c;
+  @invoice-color-bottom: #a16c1c;
+  .invoice-bar {
+    border-color: @invoice-color;
+    border-width: 1px;
+  }
+  .totals-block {
+    table {
+      position:relative;
+      top:-10px;
+      margin-left:14px;
+    }
+    tr {
+      border-bottom: 1px solid @invoice-color-bottom;
+    }
+    tr:last-child {
+      border-bottom:none;
+      td.msg.msg.msg.msg.msg {
+        text-align:left;
+        min-width:20em;
+        padding-top:1em;
+      }
+    }
+  }
+  th,td {
+    padding:2px;
+    padding-top:4px;
+    padding-bottom:4px;
+  }
+  .description-block {
+    table {
+      position:relative;
+      top:-10px;
+    }
+    thead {
+      background-color:@invoice-color;
+      color:white;
+    }
+    tbody {
+      color:@color-secondary;
+      border-bottom:solid 3px @invoice-color-bottom;
+    }
+  }
+  table.date-line {
+    top:-10px;
+    position:relative;
+    border-top:solid 1px @invoice-color;
+    border:none;
+    * {
+      border:none;
+      * {
+        border:none;
+        * {
+          border:none;
+        }
+      }
+    }
+    thead {
+      color:@invoice-color;
+      border-top:solid 1px @invoice-color;
+      th {
+        padding-top:10px;
+        text-align:center;
+        &.empty {
+          width:30em;
+        }
+        @media only screen and (max-width:991px) {
+          &.empty {
+            width:0em;
+          }
+          &.total {
+            min-width: 6em;
+          }
+        }
+        &.total {
+          min-width:10em;
+          background-color: #c9c9e0;
+        }
+      }
+    }
+    tbody {
+      color: @color-secondary;
+      td {
+        vertical-align: top;
+        padding-bottom:1em;
+      }
+      td.date {
+        padding-left:2%;
+      }
+      td.bill-to {
+        padding-left:10%;
+      }
+      td.total {
+        text-align:center;
+        vertical-align:middle;
+        background-color: #c9c9e0;
+      }
+    }
+  }
+  .receipt-number {
+    color:@invoice-color;
+  }
+  .index_main_quote.receipt {
+    padding-top:5px;
+    padding-bottom:5px;
+  }
+  .builder-name {
+    font-size:24pt;
+    padding-top:2em;
+  }
+  .builder-address {
+    font-size:14pt;
+  }
+  @media only screen and (max-width:500px) {
+    .builder-name,.builder-address {
+      width:100%;
+    }
+  }
+
+  // Field specific formatting
+  div.field-FirstName,div.field-LastName {
+    &.field.layout-default {
+      float:left;
+      width:50%;
+    }
+  }
+  .CONFIRM {
+    .plan-info .leader,.description {
+      display:none;
+    }
+    .plan-info {
+      width: 285px;
+      max-width:100%;
+    }
+    .info-block.marketing-block.confirm-block {
+      width: 640px;
+      max-width:100%;
+      position:relative;
+      float:left;
+      .footer {
+        position:absolute;
+        bottom:0px;
+        right:0px;
+        text-align:right;
+      }
+    }
+    .confirm-block {
+      .marketing-block {
+        padding-right:14em;
+      }
+      .totals-block {
+        .make-xs-column(12);
+        .make-sm-column(6);
+        .make-lg-column(4);
+        position: absolute;
+        bottom: 3em;
+        right: 0px;
+        width: 14em;
+        table {
+          width: auto;
+          margin-right: 1em;
+          td:nth-child(2) {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  .RECEIPT {
+    @media screen and (max-width: 520px) {
+      .totals-block {
+        float:none !important;
+        padding:0px;
+        margin:0px;
+        margin-left:-1em;
+      }
+    }
+    hr {
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    .receipt-bar {
+      background-color:black;
+      color:white;
+      display:block;
+      clear:both;
+      float:none;
+      width:100%;
+    }
+    table {
+      width:100%;
+      border-collapse: collapse;
+      .currency {
+        text-align:right;
+      }
+    }
+    .totals td, td.totals {
+      text-align:right;
+      span {
+        .pull-right;
+      }
+      @media screen and (max-width: 530px) {
+        & {
+          text-align:left;
+        }
+        & span {
+          .pull-left;
+        }
+      }
+    }
+  }
+}

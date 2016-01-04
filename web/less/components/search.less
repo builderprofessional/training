@@ -1,0 +1,28 @@
+div.search-box.input-group {
+  display:table;
+  float:right;
+  width:18em;
+  line-height:1.5em;
+  margin-right:1em;
+  input.search-input.form-control {
+    width:15em;
+    height:1.7em;
+    border-right:none;
+    &:focus {
+      border-right:none;
+      border-color:#ccc;
+      box-shadow:none;
+    }
+  }
+  span.input-group-addon {
+    padding:2px;
+    padding-bottom:4px;
+    line-height:1em;
+    margin:0px;
+    height:1em;
+    &:last-child {
+      background:white;
+      border-left:none;
+    }
+  }
+}

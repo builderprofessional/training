@@ -1,0 +1,272 @@
+.column-editable,.grid-row .grid-cell {
+  position:relative;
+  &.column-editable{
+    .actions,.record-actions {
+      position:absolute;
+      top:0px;
+      right:-3em;
+    }
+  }
+  .actions,&.column-editable .record-actions, &.grid-cell > .record-actions {
+    .btn {
+      height:1.5em;
+      padding:0px;
+      width:1.5em;
+      min-width:0px;
+      .blocker {
+        height:.5em;
+      }
+      .icon {
+        top:-.25em;
+      }
+    }
+  }
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+  color: #333 !important;
+  background-color: #fff;
+  border-color: @color-primary;
+}
+.actions,.record-actions {
+  position:relative;
+  &.modal-footer {
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+  .action-buttons {
+    display:inline-block;
+    float:right;
+    position:absolute;
+    top:-2em;
+    right:0em;
+    width:25em;
+    &.modal {
+      position:inherit;
+      top:auto;
+      left:auto;
+      right:auto;
+      width:auto;
+      overflow:hidden;
+      padding:0px;
+      margin:0px;
+      height:100%;
+    }
+  }
+  &.record-actions .action-buttons {
+    position:inherit;
+    top:auto;
+    left:auto;
+    right:auto;
+    width:auto;
+    overflow:hidden;
+    padding:0px;
+    margin:0px;
+  }
+  &.footer,&.header {
+    float:none !important;
+    text-align:left;
+    .action-buttons {
+      width:auto;
+      float:right;
+      position:inherit;
+      top:auto;
+      left:auto;
+      right:auto;
+      overflow:hidden;
+      padding:2px;
+      margin:0px;
+    }
+  }
+  .btn {
+    margin-right:.75em;
+    position:relative;
+    right:0;
+    padding:.02em;
+    padding-right:1em;
+    font-weight:bolder;
+    background-color:@button-bg-color;
+    border: solid 2px;
+    padding:.01em;
+    padding-right:1em;
+    padding-left:.5em;
+    min-width:8em;
+//    font-size:12pt; // Bigger buttons everywhere
+    .border-bottom-radius(5px);
+    .border-top-radius(5px);
+    &.btn-xs.btn-lg {
+      font-size:14pt;
+      line-height:1.4;
+      &:hover {
+        text-shadow: 2px 2px @accent-color;
+      }
+      &:active {
+        text-shadow: -2px -2px @accent-color;
+      }
+    }
+    &:hover {
+      text-shadow: 1px 1px @accent-color;
+    }
+    &:active {
+      text-shadow: -1px -1px @accent-color;
+    }
+    span.icon {
+      .fa;
+      position:absolute;
+      display:inline-block;
+      top:0;
+      right:-.5em;
+      z-index:45;
+      &:before {
+        font-size: 1.3em;
+      }
+      &.icon-save,&.icon-cancel-plan,&.icon-confirm-action {
+        right:-.7em;
+      }
+      &.icon-confirm-action {
+        right:-.6em;
+      }
+      &.icon-confirm-action:before {
+        content:@fa-var-check;
+      }
+      &.icon-add:before {
+        content:@fa-var-plus;
+      }
+      &.icon-add-user:before {
+        content:@fa-var-male;
+      }
+      &.icon-add-note:before {
+        content:@fa-var-file;
+      }
+      &.icon-edit-note:before {
+        content:@fa-var-file-text;
+      }
+      &.icon-total-options:before {
+        content:@fa-var-usd;
+      }
+      &.icon-totals:before {
+        content:@fa-var-calculator;
+      }
+      &.icon-add-estimate:before {
+        content:@fa-var-files-o;
+      }
+      &.icon-save:before {
+        content:@fa-var-save;
+      }
+      &.icon-edit:before {
+        content:@fa-var-pencil;
+      }
+      &.icon-cancel-plan:before {
+        content:@fa-var-bomb;
+      }
+      &.icon-delete:before {
+        content:@fa-var-trash;
+      }
+      &.icon-disable:before {
+        content:@fa-var-unlink;
+      }
+      &.icon-restore:before {
+        content:@fa-var-undo;
+      }
+      &.icon-cancel-aside:before,&.icon-cancel-action:before {
+        content:@fa-var-ban;
+      }
+      &.icon-undo-cancel:before {
+        content:@fa-var-arrow-left;
+      }
+      &.icon-downgrade:before {
+        content:@fa-var-arrow-circle-o-down;
+      }
+      &.icon-upgrade:before {
+        content:@fa-var-arrow-circle-o-up;
+      }
+      &.icon-myplan:before {
+        content:@fa-var-circle;
+      }
+    }
+    span.icon:after,span.icon:before {
+      z-index:45;
+    }
+    .blocker {
+        position: absolute;
+        background-color: inherit;
+        width: 3px;
+        height: 1em;
+        right: -2px;
+        top: 1px;
+        z-index: 40;
+    }
+    color:@color-secondary;
+    border-color:@color-secondary;
+    &[data-button-text][data-button-action] {
+      color:@color-secondary;
+      border-color:@color-secondary;
+    }
+    &.cancel-plan {
+      color:red !important;
+      border-color:@color-secondary !important;
+    }
+    &.cancel-aside,&.cancel-action,&.delete {
+      color:red !important;
+      border-color:red !important;
+    }
+    &.save,&.confirm-action,&.restore {
+      color:green !important;
+      border-color:green !important;
+    }
+    &.add {
+      .blocker {
+        top:0px;
+      }
+      .icon {
+        top:-3px;
+        right:-0.65em;
+      }
+    }
+    &.total-options {
+      .icon {
+        top:-4px;
+      }
+      .blocker {
+        width:5px;
+        height:1.2em;
+        top:-2px;
+      }
+    }
+    &.edit {
+      .icon {
+        top:-2px;
+      }
+      .blocker {
+        height:.8em;
+      }
+    }
+    &.add-user {
+      .blocker {
+        top:0px;
+        height:1.25em;
+      }
+      .icon {
+        top:-2px;
+        right:-.55em;
+      }
+    }
+    &.confirm-action {
+      .blocker {
+        top:4px;
+        height:.6em;
+      }
+      .icon {
+        top:-1px;
+      }
+    }
+    &.undo-cancel {
+      .icon {
+        right: -0.25em;
+      }
+      .blocker {
+        height: .6em;
+        top:4px;
+      }
+    }
+  }
+}

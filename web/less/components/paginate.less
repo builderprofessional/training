@@ -1,0 +1,78 @@
+@cog-color: #23474C;
+@checkmark-color: #516161;
+
+@page-btn-border-color: #313131;
+@page-btn-bg-color-hover: #667777;
+
+@page-btn-bg-color: #414141;
+@page-btn-color: #EEEEEE;
+@page-btn-bg-color-active: #415151;
+@page-btn-color-active: #EEEEEE;
+
+.pagination-section {
+    margin-top: 10px;
+
+    button {
+        background-color: @page-btn-bg-color;
+        color: @page-btn-color;
+        border-color: @page-btn-border-color;
+
+        &:hover {
+            background-color: @page-btn-bg-color-hover;
+        }        
+    }
+
+    .btn-selected {
+        background-color: @page-btn-bg-color-active;
+        color: @page-btn-color-active;
+
+        &:hover {
+            background-color: @page-btn-bg-color-active;
+        }          
+    }
+}
+
+.pagination-section-simple {
+    margin-top: 10px;
+    a {
+    	text-decoration: none;
+    	font-size:1.3rem;
+    }
+    span {
+    	margin-right: 5px;
+    }
+}
+
+.pagination-settings {
+  margin-left:1em;
+  font-size:2.5em;
+}
+ul.popover-menu {
+  z-index:1000;
+  float:left;
+  min-width:160px;
+  padding: 5px 0;
+  margin: 2px 0;
+  list-style:none;
+  font-size:1.2em;
+  a {
+    width:100%;
+    display:block;
+    text-align:center;
+    &:hover {
+      text-decoration:none;
+      background-color:@grid-row-primary;
+    }
+  }
+}
+
+.pagination-settings-menu {
+    i.glyphicon-ok {
+        font-size:1.0em;
+        color: @checkmark-color;
+    }
+
+    li a {
+        color:#333;
+    }
+}
