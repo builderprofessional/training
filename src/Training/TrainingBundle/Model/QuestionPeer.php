@@ -20,7 +20,7 @@ class QuestionPeer extends BaseQuestionPeer
    * @var array
    */
   public $linkedData = [
-    'Question' => 'getQuestion',
+    'QuestionText' => 'getQuestion',
   ];
 
 

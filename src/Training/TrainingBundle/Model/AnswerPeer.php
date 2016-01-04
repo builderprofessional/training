@@ -17,6 +17,16 @@ use ThirdEngine\Factory\Factory;
 class AnswerPeer extends BaseAnswerPeer
 {
   /**
+   * This definition will allow the document property that holds answer text to come out through PropelSOA.
+   *
+   * @var array
+   */
+  public $linkedData = [
+    'AnswerText' => 'getAnswer',
+  ];
+
+
+  /**
    * This constructor will set up the answer as a document property to be stored in Mongo.
    */
   public function __construct()

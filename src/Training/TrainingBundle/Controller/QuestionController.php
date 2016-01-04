@@ -93,7 +93,7 @@ class QuestionController extends ModelBasedController implements Collectionable
     $request = $this->getRequest();
     $post = json_decode($request->getContent());
 
-    $question->setQuestion($post->Question);
+    $question->setQuestion($post->QuestionText);
     $question->save();
 
     return $question;
