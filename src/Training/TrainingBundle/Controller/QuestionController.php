@@ -92,9 +92,9 @@ class QuestionController extends ModelBasedController
   protected function afterSave(Question $question)
   {
     $request = $this->getRequest();
-    $post = json_decode($request->getCOntent());
+    $post = json_decode($request->getContent());
 
-    $question->setQuestion($post->question);
+    $question->setQuestion($post->Question);
     $question->save();
 
     return $question;
