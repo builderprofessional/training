@@ -31,11 +31,28 @@ class SignupController extends BillingSignupController
   /**
    * This action will start the signup process.
    *
+   * @Route("signup/json")
+   * @Method({"POST"})
+   *
    * @param Request $request
    */
   public function postAction(Request $request)
   {
     return parent::postAction($request);
+  }
+
+  /**
+   * This action will start the signup process, but will behave like a normal API call, it will not handle
+   * a standard form post.
+   *
+   * @Route("signup/json")
+   * @Method({"POST"})
+   *
+   * @param Request $request
+   */
+  public function signupAction(Request $request)
+  {
+    return parent::signupAction($request);
   }
 
   /**

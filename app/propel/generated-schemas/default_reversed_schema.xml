@@ -369,6 +369,7 @@
   </table>
   <table name="billing_product" phpName="BillingProduct" idMethod="native">
     <column name="billing_product_id" phpName="BillingProductId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="class_key" phpName="ClassKey" type="VARCHAR" size="255" required="true" defaultValue="recurring"/>
     <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
     <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
     <column name="code" phpName="Code" type="VARCHAR" size="255" required="false"/>
@@ -376,7 +377,6 @@
     <column name="amount" phpName="Amount" type="BIGINT" required="false"/>
     <column name="description" phpName="Description" type="LONGVARCHAR" required="false"/>
     <column name="position" phpName="Position" type="INTEGER" required="true" defaultValue="0"/>
-    <column name="one_time_flag" phpName="OneTimeFlag" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <index name="date_created">
       <index-column name="date_created"/>
     </index>
