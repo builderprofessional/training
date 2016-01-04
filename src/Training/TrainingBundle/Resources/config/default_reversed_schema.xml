@@ -61,13 +61,20 @@
     <column name="training_course_id" phpName="CourseId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="date_modified" phpName="DateModified" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
     <column name="date_created" phpName="DateCreated" type="TIMESTAMP" required="true"/>
+    <column name="billing_product_id" phpName="BillingProductId" type="INTEGER" required="true"/>
     <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
     <column name="code" phpName="Code" type="VARCHAR" size="255" required="true"/>
+    <foreign-key foreignTable="billing_product" name="training_course_ibfk_1">
+      <reference local="billing_product_id" foreign="billing_product_id"/>
+    </foreign-key>
     <index name="date_created">
       <index-column name="date_created"/>
     </index>
     <index name="code">
       <index-column name="code"/>
+    </index>
+    <index name="billing_product_id">
+      <index-column name="billing_product_id"/>
     </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>

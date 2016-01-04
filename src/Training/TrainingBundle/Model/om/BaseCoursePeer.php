@@ -9,6 +9,7 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Engine\BillingBundle\Model\ProductPeer;
 use Training\TrainingBundle\Model\Course;
 use Training\TrainingBundle\Model\CoursePeer;
 use Training\TrainingBundle\Model\map\CourseTableMap;
@@ -29,13 +30,13 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
     const TM_CLASS = 'CourseTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 5;
+    const NUM_COLUMNS = 6;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /** the column name for the training_course_id field */
     const TRAINING_COURSE_ID = 'training_course.training_course_id';
@@ -45,6 +46,9 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
 
     /** the column name for the date_created field */
     const DATE_CREATED = 'training_course.date_created';
+
+    /** the column name for the billing_product_id field */
+    const BILLING_PRODUCT_ID = 'training_course.billing_product_id';
 
     /** the column name for the name field */
     const NAME = 'training_course.name';
@@ -71,12 +75,12 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
      * e.g. CoursePeer::$fieldNames[CoursePeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('CourseId', 'DateModified', 'DateCreated', 'Name', 'Code', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId', 'dateModified', 'dateCreated', 'name', 'code', ),
-        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID, CoursePeer::DATE_MODIFIED, CoursePeer::DATE_CREATED, CoursePeer::NAME, CoursePeer::CODE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID', 'DATE_MODIFIED', 'DATE_CREATED', 'NAME', 'CODE', ),
-        BasePeer::TYPE_FIELDNAME => array ('training_course_id', 'date_modified', 'date_created', 'name', 'code', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('CourseId', 'DateModified', 'DateCreated', 'BillingProductId', 'Name', 'Code', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId', 'dateModified', 'dateCreated', 'billingProductId', 'name', 'code', ),
+        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID, CoursePeer::DATE_MODIFIED, CoursePeer::DATE_CREATED, CoursePeer::BILLING_PRODUCT_ID, CoursePeer::NAME, CoursePeer::CODE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID', 'DATE_MODIFIED', 'DATE_CREATED', 'BILLING_PRODUCT_ID', 'NAME', 'CODE', ),
+        BasePeer::TYPE_FIELDNAME => array ('training_course_id', 'date_modified', 'date_created', 'billing_product_id', 'name', 'code', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -86,12 +90,12 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
      * e.g. CoursePeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('CourseId' => 0, 'DateModified' => 1, 'DateCreated' => 2, 'Name' => 3, 'Code' => 4, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId' => 0, 'dateModified' => 1, 'dateCreated' => 2, 'name' => 3, 'code' => 4, ),
-        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID => 0, CoursePeer::DATE_MODIFIED => 1, CoursePeer::DATE_CREATED => 2, CoursePeer::NAME => 3, CoursePeer::CODE => 4, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID' => 0, 'DATE_MODIFIED' => 1, 'DATE_CREATED' => 2, 'NAME' => 3, 'CODE' => 4, ),
-        BasePeer::TYPE_FIELDNAME => array ('training_course_id' => 0, 'date_modified' => 1, 'date_created' => 2, 'name' => 3, 'code' => 4, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('CourseId' => 0, 'DateModified' => 1, 'DateCreated' => 2, 'BillingProductId' => 3, 'Name' => 4, 'Code' => 5, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('courseId' => 0, 'dateModified' => 1, 'dateCreated' => 2, 'billingProductId' => 3, 'name' => 4, 'code' => 5, ),
+        BasePeer::TYPE_COLNAME => array (CoursePeer::TRAINING_COURSE_ID => 0, CoursePeer::DATE_MODIFIED => 1, CoursePeer::DATE_CREATED => 2, CoursePeer::BILLING_PRODUCT_ID => 3, CoursePeer::NAME => 4, CoursePeer::CODE => 5, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('TRAINING_COURSE_ID' => 0, 'DATE_MODIFIED' => 1, 'DATE_CREATED' => 2, 'BILLING_PRODUCT_ID' => 3, 'NAME' => 4, 'CODE' => 5, ),
+        BasePeer::TYPE_FIELDNAME => array ('training_course_id' => 0, 'date_modified' => 1, 'date_created' => 2, 'billing_product_id' => 3, 'name' => 4, 'code' => 5, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -168,12 +172,14 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
             $criteria->addSelectColumn(CoursePeer::TRAINING_COURSE_ID);
             $criteria->addSelectColumn(CoursePeer::DATE_MODIFIED);
             $criteria->addSelectColumn(CoursePeer::DATE_CREATED);
+            $criteria->addSelectColumn(CoursePeer::BILLING_PRODUCT_ID);
             $criteria->addSelectColumn(CoursePeer::NAME);
             $criteria->addSelectColumn(CoursePeer::CODE);
         } else {
             $criteria->addSelectColumn($alias . '.training_course_id');
             $criteria->addSelectColumn($alias . '.date_modified');
             $criteria->addSelectColumn($alias . '.date_created');
+            $criteria->addSelectColumn($alias . '.billing_product_id');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.code');
         }
@@ -476,6 +482,246 @@ abstract class BaseCoursePeer extends \Engine\EngineBundle\Base\EnginePeer
         }
 
         return array($obj, $col);
+    }
+
+
+    /**
+     * Returns the number of rows matching criteria, joining the related Product table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinProduct(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(CoursePeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            CoursePeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+
+        // Set the correct dbName
+        $criteria->setDbName(CoursePeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(CoursePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(CoursePeer::BILLING_PRODUCT_ID, ProductPeer::BILLING_PRODUCT_ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
+     * Selects a collection of Course objects pre-filled with their Product objects.
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of Course objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinProduct(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(CoursePeer::DATABASE_NAME);
+        }
+
+        CoursePeer::addSelectColumns($criteria);
+        $startcol = CoursePeer::NUM_HYDRATE_COLUMNS;
+        ProductPeer::addSelectColumns($criteria);
+
+        $criteria->addJoin(CoursePeer::BILLING_PRODUCT_ID, ProductPeer::BILLING_PRODUCT_ID, $join_behavior);
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = CoursePeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = CoursePeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+
+                $cls = CoursePeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                CoursePeer::addInstanceToPool($obj1, $key1);
+            } // if $obj1 already loaded
+
+            $key2 = ProductPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            if ($key2 !== null) {
+                $obj2 = ProductPeer::getInstanceFromPool($key2);
+                if (!$obj2) {
+
+                    $omClass = ProductPeer::getOMClass($row, $startcol);
+                    $cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol);
+                    ProductPeer::addInstanceToPool($obj2, $key2);
+                } // if obj2 already loaded
+
+                // Add the $obj1 (Course) to $obj2 (Product)
+                $obj2->addCourse($obj1);
+
+            } // if joined row was not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
+     * Returns the number of rows matching criteria, joining all related tables
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinAll(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(CoursePeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            CoursePeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+
+        // Set the correct dbName
+        $criteria->setDbName(CoursePeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(CoursePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(CoursePeer::BILLING_PRODUCT_ID, ProductPeer::BILLING_PRODUCT_ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+    /**
+     * Selects a collection of Course objects pre-filled with all related objects.
+     *
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of Course objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinAll(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(CoursePeer::DATABASE_NAME);
+        }
+
+        CoursePeer::addSelectColumns($criteria);
+        $startcol2 = CoursePeer::NUM_HYDRATE_COLUMNS;
+
+        ProductPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + ProductPeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(CoursePeer::BILLING_PRODUCT_ID, ProductPeer::BILLING_PRODUCT_ID, $join_behavior);
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = CoursePeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = CoursePeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+                $cls = CoursePeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                CoursePeer::addInstanceToPool($obj1, $key1);
+            } // if obj1 already loaded
+
+            // Add objects for joined Product rows
+
+            $key2 = ProductPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+            if ($key2 !== null) {
+                $obj2 = ProductPeer::getInstanceFromPool($key2);
+                if (!$obj2) {
+
+                    $omClass = ProductPeer::getOMClass($row, $startcol2);
+          $cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol2);
+                    ProductPeer::addInstanceToPool($obj2, $key2);
+                } // if obj2 loaded
+
+                // Add the $obj1 (Course) to the collection in $obj2 (Product)
+                $obj2->addCourse($obj1);
+            } // if joined row not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
     }
 
     /**
