@@ -34,6 +34,13 @@ monolog:
 assetic:
     use_controller: true
 
+parameters:
+  braintree.environment: sandbox
+  braintree.merchantId:  5ntq83qz93jxvc97
+  braintree.publicKey:   mm9p272hgjtfpzzq
+  braintree.privateKey:  49424e44aac056ecc4f7dd1bb95dd837
+  braintree.cseKey:      MIIBCgKCAQEAqdbS2mXVEU1Du/NltnNbrzfxI4yVo0EJ33Y/yl/UYxfGC4jWDjg2c6HjsUVlpEYpYWVK+u3RXZhTGMltvGYRsYIhjc74wKJZTz69ckjffKfmoFBnJ+l8ViUwFNY53byLWqMEY93KbuP8KiTeXqGvisS9koSbO2SUwUEsHwMa4WpID2XNOE//56mPqmkbLGLJpLtHTaOiTdjgUGAaZpWyUeLOTok2VRpDUeKCVyGE3o9iyJgjnvZ0I+j09pSZ1Lk3GGYPTSf/TVjncyL0S930hd4Nv2LdeUW9yd9lVfObZ+GBFE0ZJZJMVfbZWr0BRusihRQsL4GTBTsimeT6KlBPwwIDAQAB
+
 swiftmailer:
   transport:  %mailer_transport%
   #host:       %mailer_host%
