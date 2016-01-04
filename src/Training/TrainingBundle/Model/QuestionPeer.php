@@ -15,6 +15,16 @@ use ThirdEngine\Factory\Factory;
 class QuestionPeer extends BaseQuestionPeer
 {
   /**
+   * This definition will allow the document property that holds question text to come out through PropelSOA.
+   *
+   * @var array
+   */
+  public $linkedData = [
+    'Question' => 'getQuestion',
+  ];
+
+
+  /**
    * This constructor will set us up to store our question text in MongoDB.
    */
   public function __construct()
