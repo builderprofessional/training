@@ -30,6 +30,7 @@
     "jms/di-extra-bundle": "^1.6",
     "jms/security-extra-bundle": "^1.5",
     "propel/propel-bundle": "1.4.5",
+    "braintree/braintree_php": "2.27.0",
     "third-engine/factory": "1.*",
     "third-engine/propelsoa": "dev-master"
   },
