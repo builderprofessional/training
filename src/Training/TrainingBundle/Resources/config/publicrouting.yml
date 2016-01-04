@@ -10,3 +10,6 @@ training_signup_findByToken_get:
 training_signup_complete:
   path:  /signup/complete
   defaults: { _controller: TrainingTrainingBundle:Signup:complete }
+training_course_get:
+  path:  /course
+  defaults: { _controller: TrainingTrainingBundle:Course:get }

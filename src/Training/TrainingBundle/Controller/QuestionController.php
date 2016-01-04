@@ -15,6 +15,7 @@ use ThirdEngine\Factory\Factory;
 use ThirdEngine\PropelSOABundle\Http\PropelSOAErrorResponse;
 use ThirdEngine\PropelSOABundle\Http\PropelSOASuccessResponse;
 use ThirdEngine\PropelSOABundle\Base\SymfonyClassInfo;
+use ThirdEngine\PropelSOABundle\Interfaces\Collectionable;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 /**
  * @route /training/question
  */
-class QuestionController extends ModelBasedController
+class QuestionController extends ModelBasedController implements Collectionable
 {
   /**
    * This method points our controller to the proper table.
@@ -41,9 +42,7 @@ class QuestionController extends ModelBasedController
   /**
    * This action will return a list of clients.
    *
-   * @route /public/billing/product
-   *
-   * @Route("/product")
+   * @Route("/question")
    * @Method({"GET"})
    *
    * @param Request $request
