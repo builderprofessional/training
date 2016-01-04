@@ -12,6 +12,7 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Engine\BillingBundle\Model\Product;
 use Training\TrainingBundle\Model\Course;
 use Training\TrainingBundle\Model\CoursePeer;
 use Training\TrainingBundle\Model\CourseQuery;
@@ -21,18 +22,24 @@ use Training\TrainingBundle\Model\Question;
  * @method CourseQuery orderByCourseId($order = Criteria::ASC) Order by the training_course_id column
  * @method CourseQuery orderByDateModified($order = Criteria::ASC) Order by the date_modified column
  * @method CourseQuery orderByDateCreated($order = Criteria::ASC) Order by the date_created column
+ * @method CourseQuery orderByBillingProductId($order = Criteria::ASC) Order by the billing_product_id column
  * @method CourseQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method CourseQuery orderByCode($order = Criteria::ASC) Order by the code column
  *
  * @method CourseQuery groupByCourseId() Group by the training_course_id column
  * @method CourseQuery groupByDateModified() Group by the date_modified column
  * @method CourseQuery groupByDateCreated() Group by the date_created column
+ * @method CourseQuery groupByBillingProductId() Group by the billing_product_id column
  * @method CourseQuery groupByName() Group by the name column
  * @method CourseQuery groupByCode() Group by the code column
  *
  * @method CourseQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CourseQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method CourseQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ *
+ * @method CourseQuery leftJoinProduct($relationAlias = null) Adds a LEFT JOIN clause to the query using the Product relation
+ * @method CourseQuery rightJoinProduct($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Product relation
+ * @method CourseQuery innerJoinProduct($relationAlias = null) Adds a INNER JOIN clause to the query using the Product relation
  *
  * @method CourseQuery leftJoinQuestion($relationAlias = null) Adds a LEFT JOIN clause to the query using the Question relation
  * @method CourseQuery rightJoinQuestion($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Question relation
@@ -43,12 +50,14 @@ use Training\TrainingBundle\Model\Question;
  *
  * @method Course findOneByDateModified(string $date_modified) Return the first Course filtered by the date_modified column
  * @method Course findOneByDateCreated(string $date_created) Return the first Course filtered by the date_created column
+ * @method Course findOneByBillingProductId(int $billing_product_id) Return the first Course filtered by the billing_product_id column
  * @method Course findOneByName(string $name) Return the first Course filtered by the name column
  * @method Course findOneByCode(string $code) Return the first Course filtered by the code column
  *
  * @method array findByCourseId(int $training_course_id) Return Course objects filtered by the training_course_id column
  * @method array findByDateModified(string $date_modified) Return Course objects filtered by the date_modified column
  * @method array findByDateCreated(string $date_created) Return Course objects filtered by the date_created column
+ * @method array findByBillingProductId(int $billing_product_id) Return Course objects filtered by the billing_product_id column
  * @method array findByName(string $name) Return Course objects filtered by the name column
  * @method array findByCode(string $code) Return Course objects filtered by the code column
  */
@@ -152,7 +161,7 @@ abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `training_course_id`, `date_modified`, `date_created`, `name`, `code` FROM `training_course` WHERE `training_course_id` = :p0';
+        $sql = 'SELECT `training_course_id`, `date_modified`, `date_created`, `billing_product_id`, `name`, `code` FROM `training_course` WHERE `training_course_id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -370,6 +379,50 @@ abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
     }
 
     /**
+     * Filter the query on the billing_product_id column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByBillingProductId(1234); // WHERE billing_product_id = 1234
+     * $query->filterByBillingProductId(array(12, 34)); // WHERE billing_product_id IN (12, 34)
+     * $query->filterByBillingProductId(array('min' => 12)); // WHERE billing_product_id >= 12
+     * $query->filterByBillingProductId(array('max' => 12)); // WHERE billing_product_id <= 12
+     * </code>
+     *
+     * @see       filterByProduct()
+     *
+     * @param     mixed $billingProductId The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CourseQuery The current query, for fluid interface
+     */
+    public function filterByBillingProductId($billingProductId = null, $comparison = null)
+    {
+        if (is_array($billingProductId)) {
+            $useMinMax = false;
+            if (isset($billingProductId['min'])) {
+                $this->addUsingAlias(CoursePeer::BILLING_PRODUCT_ID, $billingProductId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($billingProductId['max'])) {
+                $this->addUsingAlias(CoursePeer::BILLING_PRODUCT_ID, $billingProductId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(CoursePeer::BILLING_PRODUCT_ID, $billingProductId, $comparison);
+    }
+
+    /**
      * Filter the query on the name column
      *
      * Example usage:
@@ -425,6 +478,82 @@ abstract class BaseCourseQuery extends \Engine\EngineBundle\Base\EngineQuery
         }
 
         return $this->addUsingAlias(CoursePeer::CODE, $code, $comparison);
+    }
+
+    /**
+     * Filter the query by a related Product object
+     *
+     * @param   Product|PropelObjectCollection $product The related object(s) to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CourseQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByProduct($product, $comparison = null)
+    {
+        if ($product instanceof Product) {
+            return $this
+                ->addUsingAlias(CoursePeer::BILLING_PRODUCT_ID, $product->getProductId(), $comparison);
+        } elseif ($product instanceof PropelObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(CoursePeer::BILLING_PRODUCT_ID, $product->toKeyValue('PrimaryKey', 'ProductId'), $comparison);
+        } else {
+            throw new PropelException('filterByProduct() only accepts arguments of type Product or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Product relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CourseQuery The current query, for fluid interface
+     */
+    public function joinProduct($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Product');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Product');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Product relation Product object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Engine\BillingBundle\Model\ProductQuery A secondary query class using the current class as primary query
+     */
+    public function useProductQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinProduct($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Product', '\Engine\BillingBundle\Model\ProductQuery');
     }
 
     /**

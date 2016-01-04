@@ -45,6 +45,7 @@ class CourseTableMap extends TableMap
         $this->addPrimaryKey('training_course_id', 'CourseId', 'INTEGER', true, null, null);
         $this->addColumn('date_modified', 'DateModified', 'TIMESTAMP', true, null, 'CURRENT_TIMESTAMP');
         $this->addColumn('date_created', 'DateCreated', 'TIMESTAMP', true, null, null);
+        $this->addForeignKey('billing_product_id', 'BillingProductId', 'INTEGER', 'billing_product', 'billing_product_id', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 255, null);
         $this->addColumn('code', 'Code', 'VARCHAR', true, 255, null);
         // validators
@@ -55,6 +56,7 @@ class CourseTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('Product', 'Engine\\BillingBundle\\Model\\Product', RelationMap::MANY_TO_ONE, array('billing_product_id' => 'billing_product_id', ), null, null);
         $this->addRelation('Question', 'Training\\TrainingBundle\\Model\\Question', RelationMap::ONE_TO_MANY, array('training_course_id' => 'training_course_id', ), null, null, 'Questions');
     } // buildRelations()
 

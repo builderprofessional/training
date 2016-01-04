@@ -15,6 +15,8 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Engine\BillingBundle\Model\Product;
+use Engine\BillingBundle\Model\ProductQuery;
 use Training\TrainingBundle\Model\Course;
 use Training\TrainingBundle\Model\CoursePeer;
 use Training\TrainingBundle\Model\CourseQuery;
@@ -62,6 +64,12 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     protected $date_created;
 
     /**
+     * The value for the billing_product_id field.
+     * @var        int
+     */
+    protected $billing_product_id;
+
+    /**
      * The value for the name field.
      * @var        string
      */
@@ -72,6 +80,11 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
      * @var        string
      */
     protected $code;
+
+    /**
+     * @var        Product
+     */
+    protected $aProduct;
 
     /**
      * @var        PropelObjectCollection|Question[] Collection to store aggregation of Question objects.
@@ -216,6 +229,16 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     }
 
     /**
+     * Get the [billing_product_id] column value.
+     *
+     * @return int
+     */
+    public function getBillingProductId()
+    {
+        return $this->billing_product_id;
+    }
+
+    /**
      * Get the [name] column value.
      *
      * @return string
@@ -303,6 +326,31 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     } // setDateCreated()
 
     /**
+     * Set the value of [billing_product_id] column.
+     *
+     * @param int $v new value
+     * @return Course The current object (for fluent API support)
+     */
+    public function setBillingProductId($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (int) $v;
+        }
+
+        if ($this->billing_product_id !== $v) {
+            $this->billing_product_id = $v;
+            $this->modifiedColumns[] = CoursePeer::BILLING_PRODUCT_ID;
+        }
+
+        if ($this->aProduct !== null && $this->aProduct->getProductId() !== $v) {
+            $this->aProduct = null;
+        }
+
+
+        return $this;
+    } // setBillingProductId()
+
+    /**
      * Set the value of [name] column.
      *
      * @param string $v new value
@@ -379,8 +427,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $this->training_course_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->date_modified = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->date_created = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->name = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->billing_product_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
+            $this->name = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->code = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -389,7 +438,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 5; // 5 = CoursePeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 6; // 6 = CoursePeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Course object", $e);
@@ -412,6 +461,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     public function ensureConsistency()
     {
 
+        if ($this->aProduct !== null && $this->billing_product_id !== $this->aProduct->getProductId()) {
+            $this->aProduct = null;
+        }
     } // ensureConsistency
 
     /**
@@ -451,6 +503,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
 
         if ($deep) {  // also de-associate any related objects?
 
+            $this->aProduct = null;
             $this->collQuestions = null;
 
         } // if (deep)
@@ -566,6 +619,18 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
+            // We call the save method on the following object(s) if they
+            // were passed to this object by their coresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aProduct !== null) {
+                if ($this->aProduct->isModified() || $this->aProduct->isNew()) {
+                    $affectedRows += $this->aProduct->save($con);
+                }
+                $this->setProduct($this->aProduct);
+            }
+
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -630,6 +695,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         if ($this->isColumnModified(CoursePeer::DATE_CREATED)) {
             $modifiedColumns[':p' . $index++]  = '`date_created`';
         }
+        if ($this->isColumnModified(CoursePeer::BILLING_PRODUCT_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`billing_product_id`';
+        }
         if ($this->isColumnModified(CoursePeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = '`name`';
         }
@@ -655,6 +723,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                         break;
                     case '`date_created`':
                         $stmt->bindValue($identifier, $this->date_created, PDO::PARAM_STR);
+                        break;
+                    case '`billing_product_id`':
+                        $stmt->bindValue($identifier, $this->billing_product_id, PDO::PARAM_INT);
                         break;
                     case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
@@ -756,6 +827,18 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $failureMap = array();
 
 
+            // We call the validate method on the following object(s) if they
+            // were passed to this object by their coresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aProduct !== null) {
+                if (!$this->aProduct->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aProduct->getValidationFailures());
+                }
+            }
+
+
             if (($retval = CoursePeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
             }
@@ -814,9 +897,12 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 return $this->getDateCreated();
                 break;
             case 3:
-                return $this->getName();
+                return $this->getBillingProductId();
                 break;
             case 4:
+                return $this->getName();
+                break;
+            case 5:
                 return $this->getCode();
                 break;
             default:
@@ -851,10 +937,14 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $keys[0] => $this->getCourseId(),
             $keys[1] => $this->getDateModified(),
             $keys[2] => $this->getDateCreated(),
-            $keys[3] => $this->getName(),
-            $keys[4] => $this->getCode(),
+            $keys[3] => $this->getBillingProductId(),
+            $keys[4] => $this->getName(),
+            $keys[5] => $this->getCode(),
         );
         if ($includeForeignObjects) {
+            if (null !== $this->aProduct) {
+                $result['Product'] = $this->aProduct->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
             if (null !== $this->collQuestions) {
                 $result['Questions'] = $this->collQuestions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
@@ -902,9 +992,12 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                 $this->setDateCreated($value);
                 break;
             case 3:
-                $this->setName($value);
+                $this->setBillingProductId($value);
                 break;
             case 4:
+                $this->setName($value);
+                break;
+            case 5:
                 $this->setCode($value);
                 break;
         } // switch()
@@ -934,8 +1027,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         if (array_key_exists($keys[0], $arr)) $this->setCourseId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setDateModified($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setDateCreated($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setName($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setCode($arr[$keys[4]]);
+        if (array_key_exists($keys[3], $arr)) $this->setBillingProductId($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setName($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setCode($arr[$keys[5]]);
     }
 
     /**
@@ -950,6 +1044,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         if ($this->isColumnModified(CoursePeer::TRAINING_COURSE_ID)) $criteria->add(CoursePeer::TRAINING_COURSE_ID, $this->training_course_id);
         if ($this->isColumnModified(CoursePeer::DATE_MODIFIED)) $criteria->add(CoursePeer::DATE_MODIFIED, $this->date_modified);
         if ($this->isColumnModified(CoursePeer::DATE_CREATED)) $criteria->add(CoursePeer::DATE_CREATED, $this->date_created);
+        if ($this->isColumnModified(CoursePeer::BILLING_PRODUCT_ID)) $criteria->add(CoursePeer::BILLING_PRODUCT_ID, $this->billing_product_id);
         if ($this->isColumnModified(CoursePeer::NAME)) $criteria->add(CoursePeer::NAME, $this->name);
         if ($this->isColumnModified(CoursePeer::CODE)) $criteria->add(CoursePeer::CODE, $this->code);
 
@@ -1017,6 +1112,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
     {
         $copyObj->setDateModified($this->getDateModified());
         $copyObj->setDateCreated($this->getDateCreated());
+        $copyObj->setBillingProductId($this->getBillingProductId());
         $copyObj->setName($this->getName());
         $copyObj->setCode($this->getCode());
 
@@ -1081,6 +1177,58 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         }
 
         return self::$peer;
+    }
+
+    /**
+     * Declares an association between this object and a Product object.
+     *
+     * @param             Product $v
+     * @return Course The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setProduct(Product $v = null)
+    {
+        if ($v === null) {
+            $this->setBillingProductId(NULL);
+        } else {
+            $this->setBillingProductId($v->getProductId());
+        }
+
+        $this->aProduct = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Product object, it will not be re-added.
+        if ($v !== null) {
+            $v->addCourse($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated Product object
+     *
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Product The associated Product object.
+     * @throws PropelException
+     */
+    public function getProduct(PropelPDO $con = null, $doQuery = true)
+    {
+        if ($this->aProduct === null && ($this->billing_product_id !== null) && $doQuery) {
+            $this->aProduct = ProductQuery::create()->findPk($this->billing_product_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aProduct->addCourses($this);
+             */
+        }
+
+        return $this->aProduct;
     }
 
 
@@ -1350,6 +1498,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
         $this->training_course_id = null;
         $this->date_modified = null;
         $this->date_created = null;
+        $this->billing_product_id = null;
         $this->name = null;
         $this->code = null;
         $this->alreadyInSave = false;
@@ -1380,6 +1529,9 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->aProduct instanceof Persistent) {
+              $this->aProduct->clearAllReferences($deep);
+            }
 
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
@@ -1388,6 +1540,7 @@ abstract class BaseCourse extends \Engine\EngineBundle\Base\EngineModel implemen
             $this->collQuestions->clearIterator();
         }
         $this->collQuestions = null;
+        $this->aProduct = null;
     }
 
     /**
