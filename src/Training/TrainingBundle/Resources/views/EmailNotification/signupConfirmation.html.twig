@@ -1,0 +1,19 @@
+Hi |RECIPIENT_NAME|,<br />
+
+<p>Thanks for signing up for |APPLICATION_NAME|. Our training courses will make your building business faster, easier,
+  and more accurate. Get started today, just click the link below to complete our short sign up process.</p>
+
+<a href="{{ url('app_signup') }}?token=|TOKEN|">Continue to Sign Up</a>
+<br /><br />
+
+{% include 'TrainingTrainingBundle:EmailNotification:genericSignature.html.twig' %}
+
+<br /><br />
+
+<p>What have builders had to say about our product?</p>
+
+<p>"I'm not a computer person, but this software is easy enough for even the least computer savvy
+  homebuilder." - Rob Lennox, R.D.L. Custom Homes</p>
+
+<p>"We never budget a job without using [this] software. The estimating program integrates perfectly with QuickBooks to
+  produce reports and information quickly and easily." - Bob Everson, Bob Everson Homes, Inc.</p>
