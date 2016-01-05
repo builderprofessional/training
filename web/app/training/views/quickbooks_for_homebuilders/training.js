@@ -14,14 +14,15 @@
 				controller: ['$scope',
 					function($scope)
 					{
-            var pQuery = PropelSOAService.getQuery('Engine', 'Training', 'Course');
+            var pQuery = PropelSOAService.getQuery('Training', 'Training', 'Course');
             pQuery.addLinkedData('Authorized');
 						pQuery.addEqualFilter('Code','QUICKBOOKS_FOR_HOMEBUILDERS');
-            pQuery.runQuery($scope, 'course').then(function(){
-							if (! course.linkedData.Authorized)
+            pQuery.runQueryOne($scope, 'course').then(function(){
+							if (! $scope.course || ! $scope.course.linkedDataModel || ! $scope.course.linkedDataModel.Authorized)
 							{
 								engAlert("You are not authorized to access the Quickbooks for Homebuilders Course");
                 engState.go('engViewDashboard');
+								tabs[3].disabled=false;
 							}
 						});
 
@@ -49,7 +50,7 @@
 							{
 								"title":"Questions And Answers",
 								"name":"qanda",
-								"disabled":false,
+								"disabled":true,
 								"src":"/app/training/views/quickbooks_for_homebuilders/qanda.html"
 							},
 						];

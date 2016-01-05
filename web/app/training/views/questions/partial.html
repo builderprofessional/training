@@ -1,0 +1,31 @@
+<div class="questions view-content">
+  <div class="questions-list info-block">
+      <!-- Tab1: Ask a Question -->
+      <div training-view-add-question course="course"></div>
+
+      <!-- Tab2: Answered Questions -->
+      <div id="answeredQuestionsGrid" class="answered-questions-grid">
+        Your Questions:
+        <ul class="questions">
+          <li class="card-view" ng-repeat="q in questions.collection | paginate:questionPagination" ng-class="{'answered':q.relations.Answers.collection.length > 0}">
+            {{q.linkedDataModel.QuestionText}}
+            <div class="card-view" ng-if="q.relations.Answer.collection.length==0">
+              Unanswered
+            </div>
+            <div ng-if="q.relations.Answers.collection.length > 0">
+              <ul class="answers">
+                <li ng-repeat="answer in q.relations.Answers.collection">
+                  {{answer.linkedDataModel.AnswerText}}
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="card-view" ng-if="questions.collection.length==0">
+          You haven't asked any questions yet.
+        </div>
+      </div>
+      <paginate-settings service="questionPagination" class="pull-right"></paginate-settings>
+      <paginate-bar service="questionPagination" class="pull-right"></paginate-bar>
+  </div>
+</div>
