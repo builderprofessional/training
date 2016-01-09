@@ -12,7 +12,7 @@
       scope: {},
       templateUrl: "/app/training/views/manageAccount/partial.html",
       controller: ['$scope', '$http', '$location', 'PropelSOAService', 'engValidation', 'engState', 'Pagination',
-        function ($scope, $http, $location, PropelSOAService, engValidation, state, Pagination)
+        function ($scope, $http, $location, PropelSOAService, engValidation, engState, Pagination)
         {
           var pQuery = PropelSOAService.getQuery('Engine', 'Billing', 'Product');
 
@@ -69,6 +69,10 @@
                   contentTemplate: 'your-info-aside.html',
                   scope:$scope
                 });
+          };
+          $scope.changePassword = function()
+          {
+            engState.go('engViewChangePassword');
           };
           $scope.confirmCancel = function ()
           {
