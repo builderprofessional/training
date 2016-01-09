@@ -6,12 +6,9 @@
   <title>BuilderTraining.net</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" type="text/css" href="/css/kernel.css" />
+  <link rel="icon" type="image/png" href="/images/houseicon.png" />
+
   <base href="{{ app.request.getBaseUrl() }}">
-
-  <!-- Video.js has to be remote included because it fucks with bower big-time -->
-  <link href="http://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet">
-  <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
-
 
   <script>
     //optional need to be loaded before kernel for file uploads to work on older browsers
@@ -44,7 +41,6 @@
 
 
 <!-- Include all javascript at bottom of body per best practices for performance -->
-<script src="http://vjs.zencdn.net/5.4.4/video.js"></script>
 <script src="kernel.js"></script>
 <script>
   launchPropelSOA(engApp, true, domain, null, true);
