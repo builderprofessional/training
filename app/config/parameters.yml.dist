@@ -22,6 +22,8 @@ parameters:
     database_path: null
     application_name: BuilderTraining.net
     notification_from: info@builderprofessional.com
+    notification_signature_location_text: "TrainingTrainingBundle:EmailNotification:genericSignature.text.twig"
+    notification_signature_location_html: "TrainingTrainingBundle:EmailNotification:genericSignature.html.twig"
 
     mongo_host: localhost
     mongo_name: bptraining
