@@ -1,0 +1,107 @@
+<div class="manage-account view-content">
+  <eng-view-header data-title="Account #C-{{BillingClient.getPk()|engFixedLength:6}}"></eng-view-header>
+  <div ng-switch="BillingClient.linkedDataModel.Status" class="account-status">
+    <span ng-switch-when="ACCOUNT_CURRENT_WARNING">
+      <span class="label label-warning">Warning!</span> Your payment method will expire before your next payment is due.  Please update payment information now!
+    </span>
+    <span ng-switch-when="ACCOUNT_PAST_DUE">
+      <span class="label label-danger">Danger!</span> Your account is past due.  Update your payment information immediately to ensure your service is uninterrupted!
+    </span>
+    <span ng-switch-when="DEACTIVATED_CANCELLATION">
+      <span class="label label-danger">Danger!</span>Your account has been deactivated at your request.  You can reactivate your account at any time.
+    </span>
+    <span ng-switch-when="DEACTIVATED_NONPAYMENT">
+      <span class="label label-danger">Danger!</span>Your account has been deactivated.  Reactivate your account by updating your payment information now.
+    </span>
+  </div>
+  <div class="payment-information info-block" ng-if="BillingClientProduct.relations.Product.model.ClassKey == 'recurring'">
+    <div class="header">
+      <h3 class="title">
+        Payment Details
+      </h3>
+    </div>
+    <script type="text/ng-template" id="payment-info-aside.html">
+      <div eng-view-edit-payment-info class="am-slide-right"></div>
+    </script>
+    <div class="content">
+      <p>
+        XXXX-XXXX-XXXX-{{StrategyVault.model.LastFour}}<br/>
+        Expires: {{StrategyVault.model.ExpirationMonth}}/{{StrategyVault.model.ExpirationYear}}<br/>
+      </p>
+
+      <p class="next-payment" ng-if="BillingClient.model.Active == 1 && !BillingClientProduct.linkedDataModel.ScheduledChange">
+        Your next payment of
+        <span eng-currency amount="BillingClientProduct.model.Amount"></span> + tax will be charged on {{BillingClientProduct.model.NextBillDate | engDate : 'MM/dd/yyyy' }}.
+      </p>
+
+      <p class="next-payment" ng-if="!!BillingClientProduct.linkedDataModel.ScheduledChange">
+
+      <div ng-if="BillingClientProduct.linkedDataModel.ScheduledChange.cancellation" class="cancellation-warning">
+        Your account is scheduled to be cancelled on {{BillingClientProduct.linkedDataModel.ScheduledChange.effectiveDate|engDate}}.
+        <a class="link" ng-click="undo(BillingClientProduct.linkedDataModel.ScheduledChange.scheduledChangeId)">Undo</a>
+      </div>
+      <div ng-if="BillingClientProduct.linkedDataModel.ScheduledChange.productId" class="downgrade-warning">
+        <span ng-repeat="product in Products | filter:{model:{ProductId:BillingClientProduct.linkedDataModel.ScheduledChange.productId}}">
+            Your account is scheduled to be downgraded to <span class="plan" ng-class="product.model.Name">{{product.model.Name}}</span>
+            on {{BillingClientProduct.linkedDataModel.ScheduledChange.effectiveDate|engDate}}
+        </span>
+        <a class="link" ng-click="undo(BillingClientProduct.linkedDataModel.ScheduledChange.scheduledChangeId)">Undo</a>
+      </div>
+      </p>
+        <div class="actions">
+          <div class="action-buttons">
+            <eng-action-button ng-click="editPaymentInfo()" data-button-text="Edit" data-button-action="edit"></eng-action-button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="plan-information info-block">
+    <div class="header">
+      <h3 class="title">
+        Your Course Option
+      </h3>
+    </div>
+    <div class="content">
+      <h4><span class="plan" ng-class="Product.model.Name">{{Product.model.Name}}</span></h4>
+      <p>
+        {{Product.model.Description}}<br/>
+        <a ui-sref="trainingViewQuickbooksForHomebuilders">Go to course</a>
+      </p>
+      <div class="actions">
+<!--        <a class="cancel-plan header-link" ng-click="confirmCancel()">Cancel</a> |
+        <a ui-sref="engViewChangePlan" class="change-plan-link header-link">Change My Plan</a>-->
+        <div class="action-buttons">
+          <eng-action-button ng-if="BillingClientProduct.relations.Product.model.ClassKey == 'recurring'" ng-click="confirmCancel()" data-button-text="Cancel My Plan" data-button-action="cancel-plan"></eng-action-button>
+<!--          <eng-action-button ui-sref="engViewChangePlan" data-button-text="Change My Plan" data-button-action="edit"></eng-action-button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="support-information info-block last-info-block">
+    <div class="header">
+      <h3 class="title">
+        Get Support
+      </h3>
+    </div>
+    <div class="content">
+      <h4>Support is available via email at <a href="mailto:support@builderprofessional.com?subject=Account-#C-{{BillingClient.getPk()|engFixedLength:6}}">support@builderprofessional.com</a></h4>
+      <p>
+        If you have any issues, don't hesitate to reach out to us.  We're happy to help.
+        Please reference your account number in any correspondence so that we can serve you as efficiently as possible.
+      </p>
+      <div class="actions">
+        <!--        <a class="cancel-plan header-link" ng-click="confirmCancel()">Cancel</a> |
+                <a ui-sref="engViewChangePlan" class="change-plan-link header-link">Change My Plan</a>-->
+        <div class="action-buttons">
+        </div>
+      </div>
+    </div>
+  </div>
+  <eng-view-header data-title="Payment History"></eng-view-header>
+  <div class="payment-history info-block">
+    <div class="content">
+      <div eng-view-payment-history data-limit="12"></div>
+    </div>
+  </div>
+</div>

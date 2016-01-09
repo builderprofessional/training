@@ -1,0 +1,27 @@
+<div class="payment-history view-content">
+  <paginate-settings service="paymentPagination" ng-if="paginate"></paginate-settings>
+  <eng-grid id="paymentGrid" class="view grid payment-history-grid">
+    <eng-grid-header>
+      <eng-grid-header-cell sort="model.DateCreated.date">Date</eng-grid-header-cell>
+      <eng-grid-header-cell sort="model.LastFour">Card</eng-grid-header-cell>
+      <eng-grid-header-cell sort="model.Amount">Amount</eng-grid-header-cell>
+      <eng-grid-header-cell sort="relations.Product.model.Name">Product</eng-grid-header-cell>
+      <eng-grid-header-cell sort="relations.PaymentAttemptStatus.model.Name">Status</eng-grid-header-cell>
+    </eng-grid-header>
+    <eng-grid-row ng-repeat="payment in payments.collection | orderBy:sortCol:sortRev | paginate:paymentPagination">
+      <eng-grid-cell>{{payment.model.DateCreated|engDate:'MM/dd/yyyy hh:mm a'}}</eng-grid-cell>
+      <eng-grid-cell>XXXX-XXXX-XXXX-{{payment.model.LastFour}}</eng-grid-cell>
+      <eng-grid-cell class="numeric"><span eng-currency amount="payment.model.Amount"></span></eng-grid-cell>
+      <eng-grid-cell>{{payment.relations.Product.model.Name}}</eng-grid-cell>
+      <eng-grid-cell><span
+        class="label label-{{payment.relations.PaymentAttemptStatus.model.Code}}">{{payment.relations.PaymentAttemptStatus.model.Name}}</span>
+      </eng-grid-cell>
+    </eng-grid-row>
+  </eng-grid>
+  <paginate-bar service="paymentPagination" class="pull-right" ng-if="paginate"></paginate-bar>
+  <div class="actions">
+    <div class="action-buttons">
+      <a ui-sref="engViewPaymentHistoryFull" class="full-history-link header-link">View Full History</a>
+    </div>
+  </div>
+</div>

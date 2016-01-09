@@ -94,7 +94,7 @@ a.ng-binding {
 
 a {
   text-decoration: none;
-  &[ng-click] {
+  &[ng-click],&[ui-sref] {
     cursor:pointer;
   }
 }
@@ -121,4 +121,11 @@ th {
   margin-bottom:.1em;
   padding-top:0;
   padding-bottom:0;
+}
+.loader {
+  text-align:center;
+  img {
+    margin-left:auto;
+    margin-right:auto;
+  }
 }

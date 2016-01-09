@@ -1,0 +1,24 @@
+ul.questions,ul.answers {
+  list-style:none;
+  margin-left:0;
+  padding-left:0;
+  li {
+    padding-left: 1em;
+    text-indent: -1em;
+    &:before {
+      content:"Q";
+      padding-right:5px;
+      color:red;
+      font-weight: bolder;
+    }
+    &.answered:before {
+      color:green;
+    }
+  }
+  &.answers li:before {
+    content:"A";
+    padding-right:5px;
+    color:green;
+    font-weight: bolder;
+  }
+}
