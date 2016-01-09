@@ -14,6 +14,36 @@
       <span class="label label-danger">Danger!</span>Your account has been deactivated.  Reactivate your account by updating your payment information now.
     </span>
   </div>
+  <div class="your-information info-block">
+    <div class="header">
+      <h3 class="title">
+        Your Info
+      </h3>
+    </div>
+    <script type="text/ng-template" id="your-info-aside.html">
+      <div training-view-edit-your-info class="am-slide-right"></div>
+    </script>
+    <div class="content">
+      <div id="emails-div" class="email-container">
+        <div class="name-block">
+          Name: {{Person.model.FirstName}} {{Person.model.LastName}}
+        </div>
+        <div class="email-block">
+          <span ng-repeat="Email in Emails">
+            Email<span ng-show="Emails.length > 1"> {{$index+1}}</span>: {{Email.model.Email}}<br/>
+          </span>
+        </div>
+        <div class="address-block">
+          <eng-address address="Address" show-plain="true"></eng-address>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="action-buttons">
+          <eng-action-button ng-click="editYourInfo()" data-button-text="Edit" data-button-action="edit"></eng-action-button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="payment-information info-block" ng-if="BillingClientProduct.relations.Product.model.ClassKey == 'recurring'">
     <div class="header">
       <h3 class="title">
@@ -25,7 +55,7 @@
     </script>
     <div class="content">
       <p>
-        XXXX-XXXX-XXXX-{{StrategyVault.model.LastFour}}<br/>
+        Card: XXXX-XXXX-XXXX-{{StrategyVault.model.LastFour}}<br/>
         Expires: {{StrategyVault.model.ExpirationMonth}}/{{StrategyVault.model.ExpirationYear}}<br/>
       </p>
 

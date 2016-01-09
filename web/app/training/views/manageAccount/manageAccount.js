@@ -19,42 +19,36 @@
           var pmQuery = PropelSOAService.getQuery('Engine', 'Billing', 'PaymentMethod');
           pmQuery.addInnerJoin('StrategyVault');
           var query = PropelSOAService.getQuery('Engine', 'Billing', 'Client');
+          query.addInnerJoin('User->Person->Email');
           query.addInnerJoin('Company->Address');
+          /*
           query.addInnerJoin('Company->Phone');
           query.addInnerJoin('Company->Email');
-          query.addInnerJoin('Company->Employee->Person');
-          query.addLinkedData('Company->Employee->Tags');
+          */
           query.addLinkedData('Status');
           query.addInnerJoin('ClientProduct->Product');
           query.addLinkedData('ClientProduct->ScheduledChange');
           $scope.reloadData = reloadData = function ()
           {
             pmQuery.runQueryOne($scope, 'paymentMethod').then(function ()
-                                                              {
-                                                                $scope.StrategyVault = $scope.paymentMethod.relations.StrategyVault;
-                                                              });
+            {
+              $scope.StrategyVault = $scope.paymentMethod.relations.StrategyVault;
+            });
             pQuery.runQuery($scope, 'products').then(function ()
-                                                     {
-                                                       $scope.Products = $scope.products.collection;
-                                                     });
+            {
+              $scope.Products = $scope.products.collection;
+            });
             query.runQueryOne($scope, 'BillingClient').then(function ()
               {
                 $scope.Company = $scope.BillingClient.relations.Company;
                 $scope.BillingClientProduct = $scope.BillingClient.relations.ClientProducts.collection[0];
                 $scope.Address = $scope.Company.relations.Address;
                 $scope.Product = $scope.BillingClient.relations.ClientProducts.collection[0].relations.Product;
-                $scope.Emails = $scope.Company.relations.Emails.collection;
+                $scope.Person = $scope.BillingClient.relations.Users.collection[0].relations.Person;
+                $scope.Emails = $scope.Person.relations.Emails.collection;
+                /*
                 $scope.Phones = $scope.Company.relations.Phones.collection;
-                $scope.Employees = $scope.Company.relations.Employees.collection;
-                var eLength = $scope.Employees.length;
-                for (var it = 0; it < eLength; it++)
-                {
-                  if ($scope.Employees[it].linkedDataModel.Tags.indexOf('Billing') !== -1)
-                  {
-                    $scope.ResponsibleParty = $scope.Employees[it].relations.Person;
-                  }
-                }
-                $scope.ResponsibleParty = $scope.ResponsibleParty || $scope.Employees[0].relations.Person;
+                */
               });
           };
           reloadData();
@@ -66,6 +60,15 @@
                 contentTemplate: 'payment-info-aside.html',
                 scope:$scope
               });
+          };
+          $scope.editYourInfo = function()
+          {
+            $scope.yourInfoAside = $aside(
+                {
+                  title:'Edit Your Info',
+                  contentTemplate: 'your-info-aside.html',
+                  scope:$scope
+                });
           };
           $scope.confirmCancel = function ()
           {

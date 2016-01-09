@@ -1,6 +1,7 @@
 /* vendor libs */
 @import "vendors/bootstrap/bootstrap";
 @import "vendors/fontawesome/font-awesome";
+@import "bootstrap-additions";
 @import "components/components";
 @import "views/views";
 @import "marketing";
@@ -52,7 +53,9 @@ h6,.h6 {
 a a:link, a:hover, a:visited, a:active {
   color:@accent-color;
 }
-
+.aside-backdrop {
+  opacity:.75;
+}
 .view-header {
   font-weight:bold;
   position:relative;
@@ -128,4 +131,7 @@ th {
     margin-left:auto;
     margin-right:auto;
   }
+}
+div.field.layout-default {
+  margin-bottom:15px;
 }
