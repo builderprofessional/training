@@ -1,20 +1,26 @@
 /* vendor libs */
 @import "vendors/bootstrap/bootstrap";
 @import "vendors/fontawesome/font-awesome";
+
 @import "bootstrap-additions";
 @import "components/components";
 @import "views/views";
-@import "marketing";
 
 /* variables */
 @import "variables";
 
 /* our less files */
 @import "marketing";
+@import "header";
 
 /* Global Styles */
 .hidden {
   display: none;
+}
+
+@font-face {
+  font-family: Grotesque;
+  src: url('../fonts/BrandonGrotesque-Regular.otf') format('opentype');
 }
 
 body {
@@ -97,20 +103,18 @@ a.ng-binding {
 
 a {
   text-decoration: none;
-  &[ng-click],&[ui-sref] {
-    cursor:pointer;
-  }
 }
 
 th {
   font-weight: normal;
 }
 
+/*
 .navbar.primary-nav .navbar-brand img {
-  position: relative;
+  position: absolute;
   height: 60px;
-  left: -21px;
-  top: 0;
+  left: 81px;
+  top: 4px;
 }
 .navbar.primary-nav .navbar-brand {
   padding: 5px;
@@ -119,6 +123,8 @@ th {
   width: 70px;
   height:56px;
 }
+*/
+
 .download-read-divider {
   margin-top:.1em;
   margin-bottom:.1em;
