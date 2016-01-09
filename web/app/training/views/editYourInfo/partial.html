@@ -1,0 +1,24 @@
+<div class="edit-your-info view-content">
+  <div class="your-information" ng-if="pvalidator && pvalidator.rules">
+    <form>
+    <eng-alerts alert-prefix="your"></eng-alerts>
+    <fieldset class="person-email-address">
+        <eng-field type="text" placeholder="e.g. John" validator="pvalidator" ng-model="Person.model.FirstName" label="First Name" >
+        </eng-field>
+        <eng-field type="text" placeholder="e.g. Smith" validator="pvalidator" ng-model="Person.model.LastName" label="Last Name" >
+        </eng-field>
+      <eng-field type="text" placeholder="e.g. john.smith@example.com" validator="evalidator" ng-model="Email.model.Email" label="Email" >
+      </eng-field>
+      <div class="address-block">
+        <eng-address address="Address"></eng-address>
+      </div>
+    </fieldset>
+    <fieldset class="record-actions">
+      <div class="action-buttons">
+        <eng-action-button ng-click="cancel()" data-button-text="Cancel" data-button-action="cancel-aside"></eng-action-button>
+        <eng-action-button ng-click="save()" data-button-text="Save" data-button-action="save"></eng-action-button>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>

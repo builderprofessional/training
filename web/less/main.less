@@ -2,6 +2,10 @@
 @import "vendors/bootstrap/bootstrap";
 @import "vendors/fontawesome/font-awesome";
 
+@import "bootstrap-additions";
+@import "components/components";
+@import "views/views";
+
 /* variables */
 @import "variables";
 
@@ -55,7 +59,9 @@ h6,.h6 {
 a a:link, a:hover, a:visited, a:active {
   color:@accent-color;
 }
-
+.aside-backdrop {
+  opacity:.75;
+}
 .view-header {
   font-weight:bold;
   position:relative;
@@ -118,3 +124,20 @@ th {
   height:56px;
 }
 */
+
+.download-read-divider {
+  margin-top:.1em;
+  margin-bottom:.1em;
+  padding-top:0;
+  padding-bottom:0;
+}
+.loader {
+  text-align:center;
+  img {
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+div.field.layout-default {
+  margin-bottom:15px;
+}
