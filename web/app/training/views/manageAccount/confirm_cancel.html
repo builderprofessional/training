@@ -1,0 +1,34 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">Confirm Cancellation</h4>
+      </div>
+      <div class="modal-body">
+        <h4>We're very sorry to see you go.</h4>
+
+        <p>Canceling your plan is a big step. It means that you will no longer have access to all the great features that
+          Builder Professional offers.</p>
+
+        <p>We don't take your decision to cancel lightly, and we hope you'll give us another chance to keep your business.
+          You can call us at 800-659-6410 to discuss your issues and get help. If you would like to change your mind and give
+          us a chance to make things right for you, please click the "Never Mind" button below
+          and call or email us at <a href="mailto:support@builders-software.com">support@builders-software.com</a>.
+
+        <p>If you are certain you want to cancel your service completely, click the button labeled "Yes, Cancel My Account."
+          Your credit card will not be charged again, but your account will remain active until your next billing date on
+          {{BillingClientProduct.model.NextBillDate | engDate : 'MM/dd/yyyy' }}. At that time you will no longer have access to the service.</p>
+
+        <p>If you change your mind at any time, you can always log back in here and reactivate your desired plan. We will have all your existing
+          estimates and templates on file for you.</p>
+      </div>
+      <div class="modal-footer actions">
+        <div class="action-buttons modal">
+          <eng-action-button type="button" ng-click="$hide()" data-button-text="Never Mind" data-button-action="undo-cancel"></eng-action-button>
+          <eng-action-button type="button" ng-click="cancelService()" data-button-text="Yes, Cancel My Account" data-button-action="cancel-plan"></eng-action-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

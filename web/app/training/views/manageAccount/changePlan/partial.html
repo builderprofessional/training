@@ -1,0 +1,125 @@
+<div class="change-plan view-content">
+  <div class="return-link">
+    <a ui-sref="engViewManageAccount" class="return-link header-link">
+      <span class="button-text">Return to Manage Account</span>
+    </a>
+  </div>
+  <eng-view-header data-title="Change Your Plan"></eng-view-header>
+
+  <div class="plan-info info-block marketing-block" ng-repeat="plan in Products|filter:isSelected()" ng-class="plan.model.Name">
+    <div class="header">
+      <h1>
+        <span>{{plan.model.Name}}</span>
+          <span ng-if="plan.model.ProductId == Product.model.ProductId" class="label my-plan">
+              Your Plan
+          </span>
+          <span ng-if="plan.model.ProductId != Product.model.ProductId && plan.model.Code=='GOLD'" class="label best-plan">
+              Best Value
+          </span>
+      </h1>
+      <hr/>
+    </div>
+    <!--
+    <div class="header">
+      <h3 class="title">
+        <span class="plan" ng-class="plan.model.Name">{{plan.model.Name}}</span>
+          <span ng-if="plan.model.ProductId == Product.model.ProductId" class="label my-plan">
+              Your Plan
+          </span>
+          <span ng-if="plan.model.ProductId != Product.model.ProductId && plan.model.Code=='GOLD'" class="label best-plan">
+              Best Value
+          </span>
+      </h3>
+    </div>
+    -->
+    <div class="content">
+      <eng-marketing content="plan.model.Code"></eng-marketing>
+    </div>
+    <div class="footer actions">
+      <div class="pricing">
+        Plan price: <span eng-currency amount="plan.model.Amount"></span>
+      </div>
+      <div class="downgrade-message">
+        <span ng-if="plan.model.Position < Product.model.Position">
+            Downgrades take affect on the next billing cycle.
+        </span>
+      </div>
+      <div class="action-buttons" ng-if="selectedProductId===false">
+        <eng-action-button class="btn-lg" ng-if="selectedProductId===false" ng-click="change(plan)" ng-disabled="plan.model.ProductId == Product.model.ProductId || selectedProductId!==false" data-button-text="{{plan.model.Position > Product.model.Position ? 'Upgrade Now' : (plan.model.Position == Product.model.Position ? 'Your Plan' : 'Downgrade Now')}}" data-button-action="{{plan.model.Position > Product.model.Position ? 'upgrade' : (plan.model.Position == Product.model.Position ? 'myplan' : 'downgrade')}}">
+        </eng-action-button>
+        <!--
+        <button ng-if="selectedProductId===false" ng-disabled="plan.model.ProductId == Product.model.ProductId || selectedProductId!==false"
+                type="button" class="upgrade-button" ng-click="change(plan)">
+        <span class="not-my-plan"
+              ng-if="plan.model.ProductId != Product.model.ProductId && selectedProductId===false">
+        {{plan.model.Position > Product.model.Position ? 'Upgrade' : 'Downgrade'}} Now
+        </span>
+        <span class="my-plan" ng-if="plan.model.ProductId == Product.model.ProductId">
+            Your Plan
+        </span>
+        </button>
+        -->
+      </div>
+    </div>
+  </div>
+  <div class="info-block upgrade-info" ng-if="selectedProductId!==false">
+    <div ng-repeat="plan in Products|filter:isSelected()">
+      <!-- This repeat is actually just pulling the single selected record -->
+      <div class="header">
+        <h3 class="title" ng-if="plan.model.Position > Product.model.Position && ! ProductChanged">
+          Purchasing upgrade to <span class="plan" ng-class="plan.model.Name">{{plan.model.Name}}</span>
+        </h3>
+        <h3 class="title" ng-if="plan.model.Position < Product.model.Position && ! ProductChanged">
+          Downgrading to <span class="plan" ng-class="plan.model.Name">{{plan.model.Name}}</span>
+        </h3>
+        <h3 class="title" ng-if="ProductChanged">
+          Your new plan is <span class="plan" ng-class="plan.model.Name">{{plan.model.Name}}</span>
+        </h3>
+      </div>
+      <div class="content" ng-if="plan.model.Position > Product.model.Position && !ProductChanged">
+        <eng-marketing content="Product.model.Code+'_'+plan.model.Code"></eng-marketing>
+        <div class="upgrade-price" ng-if="plan.linkedDataModel.UpgradePrice.Total">
+          <h3 class="price-to-be-billed-now">
+            <span eng-currency amount="plan.linkedDataModel.UpgradePrice.Subtotal"></span>
+            + tax of <span eng-currency class="tax" amount="plan.linkedDataModel.UpgradePrice.Tax"></span>
+            for a total of
+            <span eng-currency class="total" amount="plan.linkedDataModel.UpgradePrice.Total"></span>
+            will be billed now.
+          </h3>
+          <h4>This pro-rated price covers the time remaining until your next bill date of {{ClientProduct.model.NextBillDate|engDate}}</h4>
+        </div>
+        <h4 class="price-to-be-billed-later"><span eng-currency amount="plan.model.Amount"></span> + tax will be the ongoing monthly fee.</h4>
+        <h4>You will be billed on {{ClientProduct.model.NextBillDate|engDate}} for that new amount.</h4>
+      </div>
+      <div class="content" ng-if="plan.model.Position < Product.model.Position && !ProductChanged">
+        <h4>
+          Your current plan {{Product.model.Name}} will remain active until {{ClientProduct.model.NextBillDate|engDate}}
+        </h4>
+        <h4>
+          At that time you will automatically be switched to the
+          <span class="plan" ng-class="plan.model.Name">{{plan.model.Name}}</span> plan.
+        </h4>
+          <eng-marketing additional-data="{'UserCount': BillingClient.linkedDataModel.UserCount}"
+            content="Product.model.Code+'_'+plan.model.Code"></eng-marketing>
+        <h4 class="price-to-be-billed-later">
+          <span eng-currency amount="plan.model.Amount"></span> + tax will be the ongoing monthly fee.
+        </h4>
+        <h4>Next billed on {{ClientProduct.model.NextBillDate|engDate}}</h4>
+      </div>
+      <div class="content" ng-if="ProductChanged">
+        <eng-marketing content="plan.model.Code+'_changed'"></eng-marketing>
+      </div>
+      <div class="footer actions" ng-if="!ProductChanged">
+        <div class="action-buttons">
+          <eng-action-button ng-click="change({})" data-button-text="Cancel Change" data-button-action="cancel-action"></eng-action-button>
+          <eng-action-button ng-click="confirm(plan)" data-button-text="{{(plan.model.Position < Product.model.Position ? 'Confirm' : 'Purchase Now')}}" data-button-action="confirm-action"></eng-action-button>
+        </div>
+      </div>
+      <div class="footer actions" ng-if="ProductChanged">
+        <div class="action-buttons">
+          <a ui-sref="engViewManageAccount" class="link header-link">Return to Manage Account page.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
