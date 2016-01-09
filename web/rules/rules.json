@@ -26,6 +26,30 @@
           }
       }
   },
+  "changePassword": {
+    "Password": {
+      "0": "required",
+      "equals": {
+        "otherField": "PasswordConfirm",
+        "errorMessage": "Passwords must match."
+      },
+      "minMax": {
+        "0": 10,
+        "1": 0,
+        "errorMessage": "Minimum password length is 10 characters"
+      },
+      "regex": {
+        "0": "/(?=.*[a-z])(?=.*[0-9])(?=.*[[:punct:]])(?=.*[A-Z])/",
+        "errorMessage": "Password must contain at least one upper and one lower case letter, one number, and one punctuation mark."
+      }
+    },
+    "PasswordConfirm": {
+      "equals": {
+        "otherField": "Password",
+        "errorMessage": "Passwords must match."
+      }
+    }
+  },
   "signup": {
     "Name": ["required"],
     "Email": ["required", "email"],
