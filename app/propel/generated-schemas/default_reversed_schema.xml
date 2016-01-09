@@ -41,6 +41,7 @@
     <column name="billing_client_id" phpName="BillingClientId" type="INTEGER" required="false"/>
     <column name="demographic_person_id" phpName="DemographicPersonId" type="INTEGER" required="false"/>
     <column name="support_user_role_id" phpName="SupportUserRoleId" type="INTEGER" required="false"/>
+    <column name="force_password_change_flag" phpName="ForcePasswordChangeFlag" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <foreign-key foreignTable="billing_client" name="auth_user_ibfk_1">
       <reference local="billing_client_id" foreign="billing_client_id"/>
     </foreign-key>
