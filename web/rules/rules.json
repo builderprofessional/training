@@ -26,6 +26,9 @@
           }
       }
   },
+  "changeLogin": {
+    "Login": ["required", "email"]
+  },
   "changePassword": {
     "Password": {
       "0": "required",
