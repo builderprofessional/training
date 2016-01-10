@@ -12,8 +12,9 @@
     right:0em;
     margin-right:1em;
     border:solid 1px @color-primary;
-    .border-left-radius(2px);
-    .border-right-radius(2px);
+    color:@color-primary;
+    .border-left-radius(4px);
+    .border-right-radius(4px);
     background-color: @info-bg-color;
     //.highlight-gradient(@info-color);
     .layout-total & {
@@ -22,6 +23,7 @@
     }
     &.dirty {
       background-color: @warning-bg-color;
+      color:@danger-color;
       //.highlight-gradient(@warning-color);
     }
     &:after {

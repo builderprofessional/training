@@ -4,8 +4,8 @@
 		{
 			state.add({view: 'trainingViewQuickbooksForHomebuilders', title: "Quickbooks For Homebuilders", url: '/training/quickbooksForHomebuilders', role: 'ROLE_ALL', menus: {'main': 1}});
 		}]);
-		trainingApp.directive("trainingViewQuickbooksForHomebuilders",["PropelSOAService","engState","engAlert",trainingQB]);
-		function trainingQB(PropelSOAService,engState,engAlert)
+		trainingApp.directive("trainingViewQuickbooksForHomebuilders",["PropelSOAService","engState","engAlert",'$timeout',trainingQB]);
+		function trainingQB(PropelSOAService,engState,engAlert,$timeout)
 		{
 			return {
 				restrict: "A",
@@ -22,9 +22,19 @@
 							{
 								engAlert("You are not authorized to access the Quickbooks for Homebuilders Course");
                 engState.go('engViewDashboard');
-								tabs[3].disabled=false;
 							}
+						},function(){
+							engAlert.error("You are not authorized to access the Quickbooks for Homebuilders Course");
+							engState.go('engViewDashboard');
 						});
+						/*
+						$scope.$on('event:auth-bufferRejected',function(){
+							$timeout(function(){
+								engAlert.error("You are not authorized to access the Quickbooks for Homebuilders Course");
+								engState.go('engViewDashboard');
+							},250);
+						});
+						*/
 
 
 
