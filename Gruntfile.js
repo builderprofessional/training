@@ -204,7 +204,7 @@ module.exports = function(grunt) {
       }
     },    
     clean: {
-      build: 'dist',
+      build: ['dist/*','!dist/signup.*','!dist/css/signup.*','!dist/kernel.*','!dist/css/kernel.*'],
       buildArtifacts: [vendorDir,tmpDir,appDir+'/ngTemplateCache.js','require.main.js',appDir+'/signUpTemplateCache.js','require.signup.js'],
       debugHelpers: 'dist/web'
     },
@@ -399,11 +399,11 @@ module.exports = function(grunt) {
       },
       jsApp: {
         files: [appDir+'/**/*.js','!'+vendorDir+'/**','!web/app/ngTemplateCache.js','!web/app/signUpTemplateCache.js','!'+appDir+'/signup/**/*.js'],
-        tasks: ['bower', 'ngtemplates', 'rjs:write', 'requirejs:dev', 'clean:buildArtifacts']
+        tasks: ['bower', 'ngtemplates', 'rjs:write', 'requirejs:dev', 'clean:buildArtifacts','bower','ngtemplates:signup','rjs:write','requirejs:devsignup','clean:buildArtifacts']
       },
       jsSApp: {
         files: [appDir+'/**/*.js','!'+vendorDir+'/**','!web/app/ngTemplateCache.js','!web/app/signUpTemplateCache.js','!'+appDir+'/'+appName+'/**/*.js'],
-        tasks: ['bower', 'ngtemplates', 'rjs:write', 'requirejs:devsignup', 'clean:buildArtifacts']
+        tasks: ['bower', 'ngtemplates:signup', 'rjs:write', 'requirejs:devsignup', 'clean:buildArtifacts']
       },
       ngTemplates: {
         files: [appDir+'/**/*.html','!'+appDir+'/signup/**/*.html'],
@@ -411,7 +411,7 @@ module.exports = function(grunt) {
       },
       ngSTemplates: {
         files: [appDir+'/**/*.html','!'+appDir+'/'+appName+'/**/*.html'],
-        tasks: ['bower', 'ngtemplates', 'rjs:write', 'requirejs:devsignup', 'clean:buildArtifacts']
+        tasks: ['bower', 'ngtemplates:signup', 'rjs:write', 'requirejs:devsignup', 'clean:buildArtifacts']
       },
       indexFiles: {
         files: matchers.indexFiles,
@@ -447,7 +447,6 @@ module.exports = function(grunt) {
 
   //register alias tasks
   grunt.registerTask('dist',       ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less', 'cssmin', 'rjs:write', 'requirejs:build','requirejs:buildsignup', 'clean:buildArtifacts', 'clean:debugHelpers']);
-  grunt.registerTask('dev',        ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less',           'rjs:write', 'requirejs:dev',  'requirejs:devsignup',   'clean:buildArtifacts']);
   grunt.registerTask('dev:pre',    ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build','ngtemplates:signup', 'imagemin', 'less',           'rjs:write']);
   grunt.registerTask('dev:app',    ['clean:build','jshint', 'bower', 'copy', 'ngtemplates:build',                      'imagemin', 'less',           'rjs:write', 'requirejs:dev',                           'clean:buildArtifacts']);
   grunt.registerTask('dev:signup', ['clean:build','jshint', 'bower', 'copy',                     'ngtemplates:signup', 'imagemin', 'less',           'rjs:write',                   'requirejs:devsignup',   'clean:buildArtifacts']);

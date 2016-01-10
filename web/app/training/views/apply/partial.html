@@ -6,11 +6,12 @@
   <div ng-if="!SignUp.signupId">
   <eng-field type="text" placeholder="Your Name" ng-model="SignUp.Name" label="Name" validator="validator"></eng-field>
   <eng-field type="text" placeholder="YourEmail@provider.tld" ng-model="SignUp.Email" label="Email" validator="validator"></eng-field>
-  <eng-field type="password" placeholder="" ng-model="SignUp.Password" label="Password" validator="validator"></eng-field>
+  <eng-field type="password" placeholder="" ng-model="SignUp.Password" label="Choose a Password" validator="validator"></eng-field>
   <eng-field type="password" placeholder="" ng-model="SignUp.PasswordConfirm" label="Re-Type Password" validator="validator"></eng-field>
   <fieldset class="record-actions">
     <div class="action-buttons">
       <eng-action-button ng-click="save()" data-button-text="Get Training Now" data-button-action="save"></eng-action-button>
+
     </div>
   </fieldset>
   </div>

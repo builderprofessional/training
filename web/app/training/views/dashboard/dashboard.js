@@ -21,6 +21,9 @@
 								engState.go("trainingViewQuickbooksForHomebuilders");
 							}
 						});
+						$scope.$on('event:auth-loginConfirmed', function () {
+							engState.go("trainingViewQuickbooksForHomebuilders");
+						});
 					}
 				]
 			};
