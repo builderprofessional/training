@@ -1,0 +1,33 @@
+<div>
+<div class="container footer">
+  <div class="logo">
+    <img alt="Builder Professional" src="images/BPLogo_white_gradient.png" />
+    <p>You can count on Builder Professional putting the builder first. Contact us with
+      any questions, ideas, or concerns that you have. We want to help you be the most effective building
+      business you can be.</p>
+  </div>
+
+  <div class="contactInfo">
+    <h6><span>Contact Info</span></h6>
+
+    <p>Give us feedback. We'd love to hear from you!</p>
+
+    <ul>
+      <li class="{{ contactMethod.cssClass }}" ng-repeat="contactMethod in config.contactMethods">
+        {{ contactMethod.label }}
+        <span ng-if="contactMethod.cssClass == 'email'"><a href="mailto:{{ contactMethod.value }}">{{ contactMethod.value }}</a></span>
+        <span ng-if="contactMethod.cssClass != 'email'">{{ contactMethod.value }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="happening">
+    <h6><span>What's Happening?</span></h6>
+
+    <a class="twitter-timeline" data-tweet-limit="1" data-chrome="transparent noscrollbar nofooter"  href="https://twitter.com/wehelpbuilders" data-widget-id="633066756177707008">Tweets by @wehelpbuilders</a>
+  </div>
+</div>
+<div class="container copyright">
+  &copy; 2015 Builder Professional Technology, LLC. All Rights Reserved
+</div>
+</div>

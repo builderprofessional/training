@@ -26,7 +26,11 @@ ul.navbar-nav {
     }
   }
 }
-
+@media (min-width: 768px) {
+  .navbar-nav.navbar-right:last-child {
+    margin-right: -30px;
+  }
+}
 div.primary-nav {
   margin-bottom: 20px;
 }
@@ -42,4 +46,10 @@ div.primary-nav {
   img, & {
     max-height: 96px;
   }
+}
+.navbar-nav>li>a:hover>span.menu-link-label,.navbar-nav>li>a:focus>span.menu-link-label {
+  border-bottom: solid 2px @bp-brown;
+}
+.dropdown-toggle {
+  cursor:pointer;
 }

@@ -1,7 +1,7 @@
 .site-title-container {
   .container();
-  background-color: @bp-blue;
   text-align: center;
+  background: linear-gradient(180deg, @bp-blue 0%,@bp-blue 82%,darken(@bp-blue,5%) 100%);
 
   .site-title {
     font-size: 2em;
@@ -10,13 +10,21 @@
   }
 }
 
+.sub-title {
+  font-weight:normal;
+}
 .signup-row {
-  background-color: @bp-brown;
+//  background-color: @bp-brown;
   .container();
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding:0px;
+  background: linear-gradient(180deg, @bp-brown 0%,lighten(@bp-brown,1%) 82%,darken(@bp-brown,10%) 100%);
 
+@darker-brown:darken(@bp-brown,10%);
+@trans-darker-brown:fade(@darker-brown,50%);
+@trans2-darker-brown:fade(@darker-brown,30%);
   .marketing-bullets {
+    background: linear-gradient(25deg, fade(@darker-brown,0%) 0%,fade(@darker-brown,0%) 81%,@trans2-darker-brown 83%,@trans2-darker-brown 98%,@bp-brown 99%);
+    padding:15px;
     .make-xs-column(12);
     .make-md-column(6);
 
@@ -38,8 +46,13 @@
   }
 
   .signup-container {
+    background: linear-gradient(345deg, fade(@darker-brown,0%) 0%,fade(@darker-brown,0%) 76%,@trans2-darker-brown 79%,@trans2-darker-brown 98%,@bp-brown 99%);
     .make-xs-column(12);
     .make-md-column(6);
+    label {
+      display:none;
+    }
+    padding:15px;
 
     padding-left: 120px;
     padding-right: 40px;
@@ -47,12 +60,39 @@
     color: white;
   }
 }
-
+strong.plan-name {
+  text-shadow: 2px 2px 3px fade(@bp-blue,80%);
+}
 .first-course-callout {
   .container();
 
   text-align: center;
   margin-top: 30px;
-  font-size: 2em;
+  font-size: 1.7em;
   color: @bp-blue;
+  line-height:98%;
+  padding-bottom:.5em;
 }
+.product-preview {
+  .container();
+  background: linear-gradient(180deg, darken(@bp-blue,5%) 0%,@bp-blue 18%,@bp-blue 100%);
+  color:white;
+  text-align:center;
+  padding-bottom:1em;
+  h1 {
+    text-transform: uppercase;
+    color:white;
+    font-weight:normal;
+    font-size:1.5em;
+  }
+  ul {
+    list-style: none;
+    li {
+      display:block;
+      .make-xs-column(12);
+      .make-md-column(4);
+    }
+  }
+}
+
+

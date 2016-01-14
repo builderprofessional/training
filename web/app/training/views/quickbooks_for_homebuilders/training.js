@@ -20,11 +20,11 @@
             pQuery.runQueryOne($scope, 'course').then(function(){
 							if (! $scope.course || ! $scope.course.linkedDataModel || ! $scope.course.linkedDataModel.Authorized)
 							{
-								engAlert("You are not authorized to access the Quickbooks for Homebuilders Course");
+								engAlert("Access to the Quickbooks for Homebuilders Course requires logging in");
                 engState.go('engViewDashboard');
 							}
 						},function(){
-							engAlert.error("You are not authorized to access the Quickbooks for Homebuilders Course");
+							engAlert.error("Access to the Quickbooks for Homebuilders Course requires logging in");
 							engState.go('engViewDashboard');
 						});
 						/*
