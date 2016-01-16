@@ -40,7 +40,7 @@ class QuestionController extends ModelBasedController implements Collectionable
   }
 
   /**
-   * This action will return a list of clients.
+   * This action will return a list of questions.
    *
    * @Route("/question")
    * @Method({"GET"})
