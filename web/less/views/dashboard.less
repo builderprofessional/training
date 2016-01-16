@@ -63,6 +63,46 @@
 strong.plan-name {
   text-shadow: 2px 2px 3px fade(@bp-blue,80%);
 }
+.signup-container {
+  .record-actions {
+    width:100%;
+    .action-buttons {
+      width:100%;
+    }
+    .btn.save.save.save.save.save.save.save {
+      color: white ;
+      border: solid 1px @bp-blue;
+      background-color: @bp-blue;
+      font-weight:bolder;
+      left: 50%;
+      margin-left: -150px;
+      width: 300px;
+      font-size: 1.5em;
+      -webkit-transition-duration: .2s;
+      -moz-transition-duration: .2s;
+      transition-duration: .2s;
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+      span.icon-save,span.blocker {
+        display: none;
+      }
+      &:hover,&:focus {
+        text-shadow: none;
+        border-color:darken(@bp-blue,7%);
+        background-color:darken(@bp-blue,4%);
+      }
+      &:active {
+        border-color:darken(@bp-blue,10%);
+        background-color:darken(@bp-blue,6%);
+        -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+
+      }
+    }
+  }
+}
 .first-course-callout {
   .container();
 
