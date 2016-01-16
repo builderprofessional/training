@@ -29,8 +29,8 @@ class AddPlanAndQuickBooksForHomebuildersProduct extends AbstractMigration
   {
     $this->execute("
       INSERT INTO billing_product (class_key, date_created, code, name, amount, description, position)
-        VALUES ('one_time', NOW(), 'QUICKBOOKS_FOR_HOMEBUILDERS', 'QuickBooks for Homebuilders', 2990000, '', 1, 1),
-          ('recurring', NOW(), 'NEVER_STOP_LEARNING', 'Never Stop Learning', 290000, '', 0, 0);
+        VALUES ('one_time', NOW(), 'QUICKBOOKS_FOR_HOMEBUILDERS', 'QuickBooks for Homebuilders', 2990000, '', 1),
+          ('recurring', NOW(), 'NEVER_STOP_LEARNING', 'Never Stop Learning', 290000, '', 0);
     ");
   }
 }
