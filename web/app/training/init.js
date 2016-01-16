@@ -3,7 +3,8 @@
 trainingApp = angular.module('TrainingApp', ['engApp', 'engAuth', 'ngAnimate', 'engState', 'mgcrea.ngStrap', 'LocalStorageModule','vjs.video']);
 engApp.constant('APP_CONFIG',{
   App: {
-    Name: "Builder Professional Training"
+    Name: "Builder Professional Training",
+    LogoUrl: "https://builderprofessional.com"
   },
   contactMethods:[
     {

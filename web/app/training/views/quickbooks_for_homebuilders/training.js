@@ -2,7 +2,7 @@
 {
 	  trainingApp.config(['engStateProvider', function (state)
 		{
-			state.add({view: 'trainingViewQuickbooksForHomebuilders', title: "Quickbooks For Homebuilders", url: '/training/quickbooksForHomebuilders', role: 'ROLE_ALL', menus: {'main': 1}});
+			state.add({view: 'trainingViewQuickbooksForHomebuilders', title: "Quickbooks For Homebuilders", url: '/training/quickbooksForHomebuilders', role: 'ROLE_ALL'});
 		}]);
 		trainingApp.directive("trainingViewQuickbooksForHomebuilders",["PropelSOAService","engState","engAlert",'$timeout',trainingQB]);
 		function trainingQB(PropelSOAService,engState,engAlert,$timeout)
