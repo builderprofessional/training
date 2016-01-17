@@ -109,6 +109,13 @@
     &:active {
       text-shadow: -1px -1px @accent-color;
     }
+    &.ask {
+      .blocker {
+        top:-3px;
+        width:4px;
+        height:1.4em;
+      }
+    }
     span.icon {
       .fa;
       position:absolute;
@@ -121,6 +128,9 @@
       }
       &.icon-save,&.icon-cancel-plan,&.icon-confirm-action {
         right:-.7em;
+      }
+      &.icon-ask {
+        top:-.125em;
       }
       &.icon-confirm-action {
         right:-.6em;
@@ -151,6 +161,11 @@
       }
       &.icon-save:before {
         content:@fa-var-save;
+      }
+      &.icon-ask:before {
+        content:@fa-var-question-circle;
+        font-size:1.3em;
+        font-weight:bolder;
       }
       &.icon-edit:before {
         content:@fa-var-pencil;

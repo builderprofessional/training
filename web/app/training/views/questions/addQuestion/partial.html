@@ -2,12 +2,12 @@
   <div class="add-question-info" ng-show="!waiting">
     <form>
     <fieldset class="question-fieldset">
-      <eng-field type="textarea" placeholder="Enter your question here" validator="'none'" ng-model="Question.model.QuestionText" label="Question" >
+      <eng-field type="textarea" placeholder="Enter your question here" validator="validator" ng-model="Question.model.QuestionText" label="Question" >
       </eng-field>
     </fieldset>
     <fieldset class="record-actions">
       <div class="action-buttons">
-        <eng-action-button ng-click="save()" data-button-text="Ask" data-button-action="save"></eng-action-button>
+        <eng-action-button ng-click="save()" data-button-text="Ask" data-button-action="ask"></eng-action-button>
       </div>
     </fieldset>
     </form>
