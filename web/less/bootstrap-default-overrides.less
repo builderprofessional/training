@@ -3,7 +3,7 @@
   border:solid 1px @color-primary;
   .border-left-radius(5px);
   .border-right-radius(5px);
-  background-color: @info-bg-color;
+  background-color: @info-bg-color !important;
 }
 a.no-link {
   text-decoration:none;
@@ -61,4 +61,8 @@ h1, .h1, h2, .h2, h3, .h3 {
 .one-half {
   .make-xs-column(12);
   .make-md-column(6);
+}
+div.field.layout-default {
+  padding-left:15px;
+  padding-right:15px;
 }

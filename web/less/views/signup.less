@@ -32,6 +32,16 @@
     color: #1d295b !important;
     border-color: #1d295b;
   }
+  .CONFIRM {
+    .marketing-block.info-block {
+      &.plan-info .benefits {
+        display:none;
+      }
+      &.confirm-block .features {
+        display:none;
+      }
+    }
+  }
   /*
   .actions .btn span.icon, .record-actions .btn span.icon {
     top: -.3em;
@@ -279,15 +289,20 @@
       }
       .totals-block {
         .make-xs-column(12);
-        .make-sm-column(6);
-        .make-lg-column(4);
+        .make-sm-column(8);
+        .make-lg-column(8);
         position: absolute;
         bottom: 3em;
         right: 0px;
         width: 14em;
+        width: 20em;
         table {
+          th {
+            padding-right:1em;
+          }
           width: auto;
           margin-right: 1em;
+          right:-2em;
           td:nth-child(2) {
             text-align: right;
           }

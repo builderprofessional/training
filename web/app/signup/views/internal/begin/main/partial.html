@@ -70,7 +70,6 @@
           </eng-field>
 
           <eng-field type="cvc"
-                     placeholder="CVV (3 Digit Code)"
                      validator="validator"
                      ng-model="SignUp.CVV"
                      label="CVV/CVC">
@@ -149,7 +148,7 @@
   <div class="plan-info info-block marketing-block" ng-class="getPlan('Name')">
     <div class="header">
       <h1>
-        <span>{{getPlan('Name')}} Plan</span>
+        <span>{{getPlan('Name')}}</span>
       </h1>
       <hr/>
     </div>
@@ -164,8 +163,8 @@
   </div>
   <div class="info-block marketing-block confirm-block">
     <h1>Confirm Purchase</h1>
-    <div class="pricing">
-      You will be charged: <span eng-currency amount="Totals.Total"></span><span ng-show="getPlan('ClassKey') == 'recurring'">each month until you cancel.
+    <div class="pricing" ng-show="getPLan('ClassKey') == 'recurring'">
+      You will be charged: <span eng-currency amount="Totals.Total"></span><span> each month until you cancel.
       You can cancel after the first year.</span>
     </div>
     <div>
@@ -209,11 +208,11 @@
     Builder Professional
   </div>
   <div class="col-md-4 builder-address">
-    PO Box 121068<br/>
-    Arlington, TX 76012-1068<br/><br/>
-    Phone: (916) WE-BUILD / (916) 932-8459<br/>
+    PO&nbsp;Box&nbsp;121068<br/>
+    Arlington,&nbsp;TX 76012-1068<br/><br/>
+    Phone: (916)&nbsp;WE-BUILD / (916)&nbsp;932-8459<br/>
     Fax:
-    (800) 494-7705<br/><br/>
+    (800)&nbsp;494-7705<br/><br/>
     E-mail:
     billing@builderprofessional.com<br/>
   </div>
@@ -254,7 +253,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{getPlan('Name')}} Plan</td>
+          <td>{{getPlan('Name')}}</td>
           <td><span eng-currency amount="getPlan('Amount')"></span></td>
           <td>1</td>
           <td class="totals"><span eng-currency amount="getPlan('Amount')"></span></td>

@@ -7,9 +7,9 @@
       <div id="answeredQuestionsGrid" class="answered-questions-grid">
         Your Questions:
         <ul class="questions">
-          <li class="card-view" ng-repeat="q in questions.collection | paginate:questionPagination" ng-class="{'answered':q.relations.Answers.collection.length > 0}">
+          <li class="card-view" ng-repeat="q in questions.collection |orderBy:['-relations.Answers.collection.length','-model.QuestionId']| paginate:questionPagination" ng-class="{'answered':q.relations.Answers.collection.length > 0}">
             {{q.linkedDataModel.QuestionText}}
-            <div class="card-view" ng-if="q.relations.Answer.collection.length==0">
+            <div class="card-view" ng-if="q.relations.Answers.collection.length==0">
               Unanswered
             </div>
             <div ng-if="q.relations.Answers.collection.length > 0">
