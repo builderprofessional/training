@@ -37,7 +37,6 @@ button.cancel {
 .info-block.marketing-block {
   .make-xs-column(12);
   .make-sm-column(6);
-  .make-lg-column(3);
   position:relative;
   min-height:600px;
 //  max-height:950px;
@@ -81,6 +80,7 @@ div.info-block.marketing-block {
   background-color: lighten(@button-bg-color,3%);
   //color:@color-secondary;
   border:3px @color-secondary solid;
+  /*
   div.features {
     margin-top:2em;
     height:13em;
@@ -88,6 +88,7 @@ div.info-block.marketing-block {
       color:@color-primary;
     }
   }
+  */
   .leader {
     height:1.6em;
     color:@color-primary;
@@ -95,4 +96,13 @@ div.info-block.marketing-block {
   .description {
     height: 4em;
   }
+}
+@media (min-width: 1700px) {
+  div.change-plan {
+    h1.index_main_quote {
+      margin-top:45px;
+
+    }
+  }
+
 }
