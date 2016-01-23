@@ -10,13 +10,13 @@
               "errorMessage": "Passwords must match."
           },
           "minMax": {
-              "0": 10,
+              "0": 6,
               "1": 0,
-              "errorMessage": "Minimum password length is 10 characters"
+              "errorMessage": "Minimum password length is 6 characters"
           },
           "regex": {
-              "0": "/(?=.*[a-z])(?=.*[0-9])(?=.*[[:punct:]])(?=.*[A-Z])/",
-              "errorMessage": "Password must contain at least one upper and one lower case letter, one number, and one punctuation mark."
+              "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
+              "errorMessage": "Password must contain at least one letter and one number."
           }
       },
       "PasswordConfirm": {
@@ -37,13 +37,13 @@
         "errorMessage": "Passwords must match."
       },
       "minMax": {
-        "0": 10,
+        "0": 6,
         "1": 0,
-        "errorMessage": "Minimum password length is 10 characters"
+        "errorMessage": "Minimum password length is 6 characters"
       },
       "regex": {
-        "0": "/(?=.*[a-z])(?=.*[0-9])(?=.*[[:punct:]])(?=.*[A-Z])/",
-        "errorMessage": "Password must contain at least one upper and one lower case letter, one number, and one punctuation mark."
+        "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
+        "errorMessage": "Password must contain at least one letter and one number."
       }
     },
     "PasswordConfirm": {
@@ -63,13 +63,13 @@
         "errorMessage": "Passwords must match."
       },
       "minMax": {
-        "0": 10,
+        "0": 6,
         "1": 0,
-        "errorMessage": "Minimum password length is 10 characters"
+        "errorMessage": "Minimum password length is 6 characters"
       },
       "regex": {
-        "0": "/(?=.*[a-z])(?=.*[0-9])(?=.*[[:punct:]])(?=.*[A-Z])/",
-        "errorMessage": "Password must contain at least one upper and one lower case letter, one number, and one punctuation mark."
+        "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
+        "errorMessage": "Password must contain at least one letter and one number."
       }
     },
     "PasswordConfirm": {
