@@ -55,7 +55,7 @@
   },
   "signup": {
     "Name": ["required"],
-    "Email": ["required", "email"],
+    "Email": ["required", "email", "duplicateLogin"],
     "Password": {
       "0": "required",
       "equals": {
