@@ -3,22 +3,7 @@
       "Login": ["required"],
       "FirstName": ["required"],
       "LastName": ["required"],
-      "Password": {
-          "0": "required",
-          "equals": {
-              "otherField": "PasswordConfirm",
-              "errorMessage": "Passwords must match."
-          },
-          "minMax": {
-              "0": 6,
-              "1": 0,
-              "errorMessage": "Minimum password length is 6 characters"
-          },
-          "regex": {
-              "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
-              "errorMessage": "Password must contain at least one letter and one number."
-          }
-      },
+      "Password": ["required", "password"],
       "PasswordConfirm": {
           "equals": {
               "otherField": "Password",
@@ -30,22 +15,7 @@
     "Login": ["required", "email"]
   },
   "changePassword": {
-    "Password": {
-      "0": "required",
-      "equals": {
-        "otherField": "PasswordConfirm",
-        "errorMessage": "Passwords must match."
-      },
-      "minMax": {
-        "0": 6,
-        "1": 0,
-        "errorMessage": "Minimum password length is 6 characters"
-      },
-      "regex": {
-        "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
-        "errorMessage": "Password must contain at least one letter and one number."
-      }
-    },
+    "Password": ["required", "password"],
     "PasswordConfirm": {
       "equals": {
         "otherField": "Password",
@@ -56,22 +26,7 @@
   "signup": {
     "Name": ["required"],
     "Email": ["required", "email", "duplicateLogin"],
-    "Password": {
-      "0": "required",
-      "equals": {
-        "otherField": "PasswordConfirm",
-        "errorMessage": "Passwords must match."
-      },
-      "minMax": {
-        "0": 6,
-        "1": 0,
-        "errorMessage": "Minimum password length is 6 characters"
-      },
-      "regex": {
-        "0": "/(?=.*[a-zA-Z])(?=.*[0-9])/",
-        "errorMessage": "Password must contain at least one letter and one number."
-      }
-    },
+    "Password": ["required", "password"],
     "PasswordConfirm": {
       "equals": {
         "otherField": "Password",
