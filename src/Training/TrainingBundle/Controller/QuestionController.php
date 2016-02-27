@@ -66,6 +66,18 @@ class QuestionController extends ModelBasedController implements Collectionable
   }
 
   /**
+   * This method will inject a filter on client ID into the standard query.
+   *
+   * @param $query
+   * @param $queryDefinition
+   */
+  protected function addFilters($query, $queryDefinition)
+  {
+    $this->addClientFilter($query);
+    return parent::addFilters($query, $queryDefinition);
+  }
+
+  /**
    * This method will get a model object that is populated with the data from the post. We are overriding this
    * method in order to set the user ID to the currently logged in user.
    *
