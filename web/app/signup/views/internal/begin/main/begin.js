@@ -191,6 +191,7 @@
               angular.element('body').removeClass('waiting-for-angular');
               $scope.ClientId = result.data.Data.ClientId;
               $scope.UserId = result.data.Data.UserId;
+              $scope.ReceiptNumber = result.data.Data.ReceiptNumber;
               var query = PropelSOAService.getQuery(
                   'Engine', 'Billing', 'Client'
               );

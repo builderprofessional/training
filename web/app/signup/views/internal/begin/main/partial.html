@@ -217,7 +217,7 @@
     billing@builderprofessional.com<br/>
   </div>
   <hr class="invoice-bar"/>
-  <h1 class="index_main_quote receipt">Receipt # <span class="receipt-number">{{client.model.ClientId || '1001'}}</span>
+  <h1 class="index_main_quote receipt">Receipt # <span class="receipt-number" ng-if="ReceiptNumber">{{ReceiptNumber}}</span>
     </h1>
   <div>
     <table width="100%" class="date-line">

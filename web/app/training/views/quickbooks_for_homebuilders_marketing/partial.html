@@ -18,7 +18,6 @@
        Check out this link for more information on our Estimator software, integrated with Intuit, the owner of QuickBooks<sup>®</sup>: <a href="http://marketplace.intuit.com/AppID-2685-Overview.aspx" target="_blank">QuickBooks Marketplace</a></p>
     <p>All attendees will receive a 69 page E-book "QuickBooks for Homebuilders" and a QuickBooks company file modified for a construction business, along with lots of additional resources.</p>
     <p>The price of the class package is <strong>$299</strong> or <strong>Free</strong> with our monthly "Never Stop Learning" subscription service which is only <strong>$29/month</strong>.</p>
-    <p ng-if="!isLoggedIn"><a class="btn btn-success" ui-sref="engViewDashboard">Sign up and pay with confidence!</a></p>
-    <p ng-if="isLoggedIn"><a ui-sref="trainingViewQuickbooksForHomebuilders">Go to your training class!</a></p>
+    <p><a class="btn btn-success" ui-sref="engViewDashboard">{{isLoggedIn ? 'Go to your training class!' : 'Sign up and pay with confidence!'}}</a></p>
   </div>
 </div>

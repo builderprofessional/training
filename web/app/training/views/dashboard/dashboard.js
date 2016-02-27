@@ -15,15 +15,19 @@
 					function($scope)
 					{
 						$scope.config = APP_CONFIG;
+						$scope.LoggedIn = false;
 						$http.post(env_url + '/public/auth/check' + env_postfix).success(function (response)
 						{
 							if ( response.LoggedIn != "No" )
 							{
-								engState.go("trainingViewQuickbooksForHomebuilders");
+								$scope.LoggedIn = true;
 							}
 						});
 						$scope.$on('event:auth-loginConfirmed', function () {
-							engState.go("trainingViewQuickbooksForHomebuilders");
+							$scope.LoggedIn = true;
+						});
+						$scope.$on('event:auth-loggedOut', function () {
+							$scope.LoggedIn = false;
 						});
 					}
 				]
