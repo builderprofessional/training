@@ -1,4 +1,4 @@
-<div>
+<div ng-if="!LoggedIn">
   <div class="site-title-container">
     <h1 class="site-title">BuilderTraining.net: <span class="sub-title">Helping Homebuilders Learn and Grow</span></h1>
   </div>
@@ -45,6 +45,8 @@
     </ul>
   </div>
   <training-footer></training-footer>
+</div>
+<div ng-if="LoggedIn" training-view-quickbooks-for-homebuilders>
 </div>
 
 

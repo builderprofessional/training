@@ -23,7 +23,6 @@
   </div>
 </div>
 <div class="change-plan view-content choose-plan" ng-if="!selectedProductId || phase == 'CHOOSE'" style="width:100%">
-  <h
   <h1 class="index_main_quote everything">Everything we do comes down to this:
     <span class="index_main_quote_highlight">We help builders.</span></h1>
   <h1 class="index_continue">Continue Signing Up</h1>
@@ -218,7 +217,7 @@
     billing@builderprofessional.com<br/>
   </div>
   <hr class="invoice-bar"/>
-  <h1 class="index_main_quote receipt">Receipt # <span class="receipt-number">{{client.model.ClientId || '1001'}}</span>
+  <h1 class="index_main_quote receipt">Receipt # <span class="receipt-number" ng-if="ReceiptNumber">{{ReceiptNumber}}</span>
     </h1>
   <div>
     <table width="100%" class="date-line">

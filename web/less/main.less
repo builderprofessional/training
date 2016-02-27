@@ -94,6 +94,22 @@ a a:link, a:hover, a:visited, a:active {
   }
   */
 }
+  h2.view-header {
+    position:relative;
+    margin-top:1.5em;
+    hr {
+      border-top:1px solid @color-primary;
+    }
+    span.with-bar {
+      position:absolute;
+      top:-.5em;
+    }
+  }
+  h2.view-header:first-of-type {
+    margin-top:0px;
+    padding-top:0px;
+  }
+
 .widget-title, .widget-body {
   width: 100%;
 }
@@ -149,4 +165,12 @@ th {
 }
 div.field.layout-default {
   margin-bottom:15px;
+}
+[paginate] {
+  position:relative;
+  .pagination-settings {
+    position:absolute;
+    right:0px;
+    top:-.5em;
+  }
 }

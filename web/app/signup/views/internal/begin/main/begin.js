@@ -186,9 +186,12 @@
           $scope.confirm = function ()
           {
             engAlert.clearContextSwitch();
+            angular.element('body').addClass('waiting-for-angular');
             confirmed = $http.post(env_url + '/public/training/signup/complete',$scope.SignUp).then(function (result) {
+              angular.element('body').removeClass('waiting-for-angular');
               $scope.ClientId = result.data.Data.ClientId;
               $scope.UserId = result.data.Data.UserId;
+              $scope.ReceiptNumber = result.data.Data.ReceiptNumber;
               var query = PropelSOAService.getQuery(
                   'Engine', 'Billing', 'Client'
               );
@@ -205,6 +208,7 @@
                 $scope.setPhase('RECEIPT');
               });
             },function(result){
+              angular.element('body').removeClass('waiting-for-angular');
               $scope.setPhase('COLLECT');
             });
           };

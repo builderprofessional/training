@@ -4,8 +4,8 @@
 		{
 			state.add({view: 'trainingViewQuickbooksForHomebuildersMarketing', title: "Quickbooks For Homebuilders", url: '/training/quickbooksForHomebuildersInfo', role: 'ROLE_ALL',menus:{main:10}});
 		}]);
-		trainingApp.directive("trainingViewQuickbooksForHomebuildersMarketing",["PropelSOAService","engState","engAlert",'$timeout',trainingQBM]);
-		function trainingQBM(PropelSOAService,engState,engAlert,$timeout)
+		trainingApp.directive("trainingViewQuickbooksForHomebuildersMarketing",["$http",trainingQBM]);
+		function trainingQBM($http)
 		{
 			return {
 				restrict: "A",
@@ -14,6 +14,13 @@
 				controller: ['$scope',
 					function($scope)
 					{
+						$http.post(env_url + '/public/auth/check' + env_postfix).success(function (response)
+						{
+							if ( response.LoggedIn != "No" )
+							{
+								$scope.isLoggedIn = true;
+							}
+						});
 					}
 				]
 			};

@@ -15,3 +15,21 @@
     display:none;
   }
 }
+div.return-link {
+  position:absolute;
+  top:85px;
+  right:20px;
+  .fa;
+  color:@color-secondary;
+  &:before {
+    content: @fa-var-history;
+  }
+  > a {
+    color:@color-secondary;
+    z-index:50;
+  }
+}
+
+[eng_view_payment_history_full] {
+  margin-top:2.5em;
+}
