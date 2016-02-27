@@ -1,9 +1,10 @@
 <div>
   <div ng-if="SignUp.signupId">
-    You have started the signup process.  Check your email to continue the signup process.<br/>
+    You have started the sign up process.  Check your email to continue the sign up process.<br/>
     If you need to start over with a new email address, click <a href="#" ng-click="SignUp.signupId=false">here</a>.
   </div>
   <div ng-if="!SignUp.signupId">
+  <form>
   <eng-field type="text" placeholder="Your Name" ng-model="SignUp.Name" label="Name" validator="validator"></eng-field>
   <eng-field type="text" placeholder="Your Email" ng-model="SignUp.Email" label="Email" validator="validator"></eng-field>
   <eng-field type="password" placeholder="Choose a Password" ng-model="SignUp.Password" label="Choose a Password" validator="validator"></eng-field>
@@ -14,5 +15,6 @@
 
     </div>
   </fieldset>
+  </form>
   </div>
 </div>

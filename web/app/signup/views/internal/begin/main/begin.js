@@ -29,6 +29,10 @@
            */
           $scope.setPhase = function(phase)
           {
+            if ( phase != $scope.phase )
+            {
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+            }
             $scope.phase = phase;
             if ( $scope.phase == 'CHOOSE')
             {
@@ -82,6 +86,10 @@
                 if ($scope.SignUp.ProductId) {
                   $scope.selectedProductId = $scope.SignUp.ProductId;
                   $scope.change($scope.getPlan());
+                }
+                else
+                {
+                  $scope.setPhase('CHOOSE');
                 }
               }
               else {
