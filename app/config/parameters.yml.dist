@@ -22,6 +22,16 @@ parameters:
     database_path: null
     application_name: BuilderTraining.net
     notification_from: info@builderprofessional.com
+    billing_notification_from: billing@builderprofessional.com
+
+    app_company_name: Builder Professional
+    app_company_address: PO Box 121068
+    app_company_city: Arlington
+    app_company_state: TX
+    app_company_zip: 76012
+    app_company_phone: (916) WE-BUILD / (916) 932-8459
+    app_company_fax: (800) 494-7705
+
     notification_signature_location_text: "TrainingTrainingBundle:EmailNotification:genericSignature.text.twig"
     notification_signature_location_html: "TrainingTrainingBundle:EmailNotification:genericSignature.html.twig"
 
