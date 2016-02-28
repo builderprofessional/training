@@ -32,7 +32,8 @@
     "propel/propel-bundle": "1.4.5",
     "braintree/braintree_php": "2.27.0",
     "third-engine/factory": "1.*",
-    "third-engine/propelsoa": "dev-master"
+    "third-engine/propelsoa": "dev-master",
+    "tijsverkoyen/css-to-inline-styles": "1.5.5"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3"
