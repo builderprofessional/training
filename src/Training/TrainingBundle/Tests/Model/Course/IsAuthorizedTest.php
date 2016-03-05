@@ -78,6 +78,15 @@ class IsAuthorizedTest extends Tests\TestCase
     $this->assertEquals(0, $course->isAuthorized());
   }
 
+  public function testIsAuthorizedReturnsTrueWhenClientIdIsNull()
+  {
+    $clientPeerMock = $this->getClientPeerMock(null);
+    Factory::injectObject(ClientPeer::class, $clientPeerMock);
+
+    $course = new Course();
+    $this->assertTrue($course->isAuthorized());
+  }
+
   protected function getClientPeerMock($clientId)
   {
     $clientPeerMock = $this->getMock(ClientPeer::class, ['getWorkingClientId']);

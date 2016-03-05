@@ -51,4 +51,51 @@ class AnswerController extends ModelBasedController implements Collectionable
   {
     return parent::getAction($request);
   }
+
+  /**
+   * This action will submit the answer to a course question
+   *
+   * @Route("/answer")
+   * @Method({"POST"})
+   *
+   * @param Request $request
+   */
+  public function postAction(Request $request)
+  {
+    return parent::postAction($request);
+  }
+
+  /**
+   * This method will get a model object that is populated with the data from the post. We are overriding this
+   * method in order to set the user ID to the currently logged in user.
+   *
+   * @param Request $request
+   * @return Answer
+   */
+  protected function getObjectFromRequest(Request $request)
+  {
+    $answer = parent::getObjectFromRequest($request);
+
+    $user = $this->get('Session')->get('userRecord');
+    $answer->setAuthUserId($user->getUserId());
+
+    return $answer;
+  }
+
+  /**
+   * This method will make sure the actual answer text will get sent to Mongo for us to remember.
+   *
+   * @param Request $request
+   * @param Answer $answer
+   */
+  protected function afterSave(Answer $answer)
+  {
+    $request = $this->getRequest();
+    $post = json_decode($request->getContent());
+
+    $answer->setAnswer($post->AnswerText);
+    $answer->save();
+
+    return $answer;
+  }
 }

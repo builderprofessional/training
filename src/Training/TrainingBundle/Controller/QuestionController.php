@@ -53,7 +53,7 @@ class QuestionController extends ModelBasedController implements Collectionable
   }
 
   /**
-   * This action will start the signup process.
+   * This action will submit a question about a course.
    *
    * @Route("/question")
    * @Method({"POST"})
