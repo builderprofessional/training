@@ -17,6 +17,10 @@
             var cQuery = PropelSOAService.getQuery(
                 'Training', 'Training', 'Question'
             );
+            var uQuery = PropelSOAService.getQuery(
+                'Engine', 'Auth', 'User'
+            );
+            uQuery.runQueryOne($scope,'user');
             cQuery.addEqualFilter('CourseId',$scope.course.model.CourseId);
             cQuery.addLinkedData('QuestionText');
             cQuery.addInnerJoin('Answer');
