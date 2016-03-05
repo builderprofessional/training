@@ -12,7 +12,7 @@
             <div class="card-view" ng-if="q.relations.Answers.collection.length==0">
               Unanswered
             </div>
-            <div ng-if="user.model.Role == 'ROLE_SUPER_ADMIN'">
+            <div ng-if="user.Role == 'ROLE_SUPER_ADMIN'">
               <div training-view-add-answer question="q"></div>
             </div>
             <div ng-if="q.relations.Answers.collection.length > 0">
