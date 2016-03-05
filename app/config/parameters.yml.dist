@@ -22,7 +22,7 @@ parameters:
     database_path: null
     application_name: BuilderTraining.net
     notification_from: info@builderprofessional.com
-    billing_notification_from: billing@builderprofessional.com
+    app_billing_email: billing@builderprofessional.com
 
     app_company_name: Builder Professional
     app_company_address: PO Box 121068
