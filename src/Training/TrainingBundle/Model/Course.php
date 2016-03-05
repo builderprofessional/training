@@ -27,6 +27,11 @@ class Course extends BaseCourse
     $clientPeer = Factory::createNewObject(ClientPeer::class);
     $clientId = $clientPeer->getWorkingClientId();
 
+    if ($clientId === null)
+    {
+      return true;
+    }
+
     $client = Factory::createNewQueryObject(ClientQuery::class)->findOneByClientId($clientId);
     foreach ($client->getClientProducts() as $clientProduct)
     {
