@@ -7,10 +7,13 @@
       <div id="answeredQuestionsGrid" class="answered-questions-grid">
         Your Questions:
         <ul class="questions">
-          <li class="card-view" ng-repeat="q in questions.collection |orderBy:['-relations.Answers.collection.length','-model.QuestionId']| paginate:questionPagination" ng-class="{'answered':q.relations.Answers.collection.length > 0}">
+          <li class="card-view question" ng-repeat="q in questions.collection |orderBy:['-relations.Answers.collection.length','-model.QuestionId']| paginate:questionPagination" ng-class="{'answered':q.relations.Answers.collection.length > 0}">
             {{q.linkedDataModel.QuestionText}}
             <div class="card-view" ng-if="q.relations.Answers.collection.length==0">
               Unanswered
+            </div>
+            <div ng-if="user.Role == 'ROLE_SUPER_ADMIN'">
+              <div training-view-add-answer question="q"></div>
             </div>
             <div ng-if="q.relations.Answers.collection.length > 0">
               <ul class="answers">

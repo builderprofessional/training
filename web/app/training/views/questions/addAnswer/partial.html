@@ -1,0 +1,19 @@
+<div class="add-answer view-content">
+  <div class="add-answer-info" ng-show="!waiting">
+    <form>
+    <fieldset class="answer-fieldset">
+      <eng-field type="textarea" placeholder="Enter your answer here" validator="validator" ng-model="Answer.model.AnswerText" label="Answer" >
+      </eng-field>
+    </fieldset>
+    <fieldset class="record-actions">
+      <div class="action-buttons">
+        <eng-action-button ng-click="save()" data-button-text="Answer" data-button-action="ask"></eng-action-button>
+
+      </div>
+    </fieldset>
+    </form>
+  </div>
+  <div class="loader" ng-show="waiting">
+    <img src="/images/loader.gif"/>
+  </div>
+</div>
