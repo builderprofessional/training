@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   var path = require('path');
 
   //config
-  var imageExtenstions = 'jpg|png|ico|gif|jpeg';
+  var imageExtenstions = 'jpg|png|ico|gif|jpeg|pdf';
   var appDir = 'web/app';
   var vendorDir = appDir + '/vendor';
   var tmpDir = appDir + '/tmp';

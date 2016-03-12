@@ -4,8 +4,8 @@
 		{
 			state.add({view: 'trainingViewQuickbooksForHomebuildersMarketing', title: "Quickbooks For Homebuilders", url: '/training/quickbooksForHomebuildersInfo', role: 'ROLE_ALL',menus:{main:10}});
 		}]);
-		trainingApp.directive("trainingViewQuickbooksForHomebuildersMarketing",["$http",trainingQBM]);
-		function trainingQBM($http)
+		trainingApp.directive("trainingViewQuickbooksForHomebuildersMarketing",["$http","$modal",trainingQBM]);
+		function trainingQBM($http,$modal)
 		{
 			return {
 				restrict: "A",
@@ -21,6 +21,34 @@
 								$scope.isLoggedIn = true;
 							}
 						});
+						$scope.showLightbox = function (template,title)
+						{
+							$scope.modal = $modal(
+									{
+										contentTemplate: template,
+										show: true,
+										backdrop: true,
+										title:title,
+										animation: 'lightbox-fade',
+										backdropAnimation: 'lightbox-fade-bg',
+										id:'lightboxModal',
+										scope: $scope
+									});
+						};
+						$scope.signup = function ()
+						{
+							$scope.modal = $modal(
+									{
+										contentTemplate: 'show-signup',
+										show: true,
+										backdrop: true,
+										title:'Sign Up Now',
+										animation: 'am-fade',
+										backdropAnimation: 'am-fade',
+										id:'signupModal',
+										scope: $scope
+									});
+						};
 					}
 				]
 			};

@@ -2,22 +2,72 @@
   <div class="site-title-container">
     <h1 class="site-title"> <strong>QuickBooks<sup>®</sup> for Homebuilding</strong> </h1>
   </div>
-  <div class="container">
-    <div class="pull-right" style="padding-left:1em;max-width:50%"><img src="/images/stop-estimating-mistakes.png" style="max-width:100%"/></div>
-    <p>&nbsp;</p>
-    <p>Learn the proper way to use QuickBooks for your construction business. Setup QuickBooks so that your job cost and general ledger are always in balance. Also, learn things like:</p>
-
-    <ul style="margin-left:-1.5em;font-size:1.5em;">
-      <li>The difference in "Job Cost vs. General Ledger Accounting"</li>
-      <li>How to make "Settlement Statement" entries</li>
-      <li>How to "Close a Job" to the "General Ledger"</li>
+  <div class="qb-callout">
+    <h2 class="highlight">Traditional accounting practices are failing you!</h2>
+    <h2><strong>Boost your profits</strong> by learning the proper way to use QuickBooks for your construction business.</h2>
+    <h3>Keep your general ledger and your job costs always accurate, up to the minute, and in balance.</h3>
+    <a class="btn btn-default call-to-action" ng-click="signup()">Boost Your Profits</a>
+  </div>
+  <div class="container qb-body">
+    <div class="pull-right image-preview" ng-click="showLightbox('show-full-image','Screenshot from the Training Class')"><img src="/images/monitor-screenshot-preview.png" /><br/>Screenshot from the Training Class</div>
+    <h2>Learn things like:</h2>
+    <ul>
+      <li>The difference between Job Cost Accounting and General Ledger Accounting</li>
+      <li>How to make Settlement Statement entries</li>
+      <li>How to close a job to the General Ledger</li>
       <li>How to handle "Change Orders", "Warranty Work", "Payroll and Job Related Timesheets" within QuickBooks and so much more!</li>
     </ul>
-    <p>You are invited to attend an online training seminar from the convenience of your own office.</p>
-    <p>Rick Powell, the developer of the course content, taught this course on a national stage at the IBS (International Builders Show).
+    <p>Have Questions? Call us at 844-632-8453</p>
+    <a class="btn btn-default call-to-action" ng-click="signup()">Learn Now</a>
+    <hr/>
+  </div>
+  <script type="text/ng-template" id="show-full-image">
+    <div class="lightbox-container"><img src="/images/monitor-screenshot.png"/></div>
+  </script>
+  <script type="text/ng-template" id="show-full-pdf">
+    <div class="lightbox-container"><iframe width="100%" height="800px" src="/images/QuickBooksforHomebuilding-sample.pdf"/></div>
+  </script>
+  <script type="text/ng-template" id="show-signup">
+    <div class="signup-container">
+      <training-signup></training-signup>
+    </div>
+  </script>
+  <div class="container qb-body">
+    <div class="pull-left image-preview pdf" ng-click="showLightbox('show-full-pdf','Sample Pages from the E-book')"><img src="/images/QuickbooksForHomebuilders-preview.png" /><br/>Sample Pages from the E-book</div>
+    <h2>You are invited!</h2>
+    <p>Attend an online training course from the convenience of your own office.</h2>
+    <p>Training is designed for people with even little to no accounting background--If you manage or work in the office of a construction business - you need this course.</p>
+    <p>Accountants are welcome to take the course as well.  Learn how to better help your construction clients.</p>
+    <p>Rick Powell, the developer of QuickBooks for Homebuilders, taught this course on a national stage at the IBS (International Builders Show).
        Check out this link for more information on our Estimator software, integrated with Intuit, the owner of QuickBooks<sup>®</sup>: <a href="http://marketplace.intuit.com/AppID-2685-Overview.aspx" target="_blank">QuickBooks Marketplace</a></p>
-    <p>All attendees will receive a 69 page E-book "QuickBooks for Homebuilders" and a QuickBooks company file modified for a construction business, along with lots of additional resources.</p>
-    <p>The price of the class package is <strong>$299</strong> or <strong>Free</strong> with our monthly "Never Stop Learning" subscription service which is only <strong>$29/month</strong>.</p>
-    <p><a class="btn btn-success" ui-sref="engViewDashboard">{{isLoggedIn ? 'Go to your training class!' : 'Sign up and pay with confidence!'}}</a></p>
+    <h2>All attendees will receive</h2>
+    <ul class="pull-left">
+      <li>69 page E-book "QuickBooks for Homebuilders"</li>
+      <li>QuickBooks company file modified for a construction business</li>
+      <li>Many additional resources</li>
+    </ul>
+    <a class="btn btn-default call-to-action" style="margin-left:1.5em;" ng-click="signup()">Get Started</a>
+    <div class="clearfix clear-fix"></div>
+    <hr/>
+  </div>
+
+  <div class="container qb-body">
+    <h2>Choose between:</h2>
+  </div>
+  <div class="container qb-body choose">
+    <button class="btn btn-lg btn-accent">
+      <span><strong>$299</strong></span>
+      <span>Class Package</span>
+      <span>One Time Purchase</span>
+    </button>
+    <button class="btn btn-lg btn-accent">
+      <span><strong>$29/Month</strong></span>
+      <span>Never Stop Learning</span>
+      <span>Monthly Subscription*</span>
+    </button>
+  </div>
+  <div class="container qb-body final-call">
+    <a class="btn btn-default call-to-action clearfix" ng-click="signup()">Sign Up Today</a>
+    <p class="small clear-fix clearfix">* Terms and conditions apply.  1 year minimum subscription length.</p>
   </div>
 </div>

@@ -23,6 +23,8 @@
                 engAlert.success("Your request has been received, please check your email for the next steps.");
                 $scope.SignUp.signupId = result.data.Data.signupId;
                 $scope.loading=false;
+              },function(){
+                $scope.loading=false;
               });
             },function(result){
               engAlert.error("We didn't quite get that.  Check the signup form for errors and try again.");
