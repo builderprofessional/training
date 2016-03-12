@@ -21,6 +21,9 @@
 								$scope.isLoggedIn = true;
 							}
 						});
+						$scope.$on('event:auth-loginConfirmed', function () {
+							$scope.isLoggedIn = true;
+						});
 						$scope.showLightbox = function (template,title)
 						{
 							$scope.modal = $modal(
