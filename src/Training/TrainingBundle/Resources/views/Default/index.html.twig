@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="/css/kernel.css" />
   <link rel="icon" type="image/png" href="/images/houseicon.png" />
 
-  <base href="{{ app.request.getBaseUrl() }}/#/">
+  <base href="{{ app.request.getBaseUrl() }}">
 
   <!-- Video.js has to be remote included because it fucks with bower big-time -->
   <link href="//vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet">
@@ -48,7 +48,7 @@
 <!-- Include all javascript at bottom of body per best practices for performance -->
 <script src="https://js.braintreegateway.com/v1/braintree.js"></script>
 <script src="//vjs.zencdn.net/5.4.4/video.js"></script>
-<script src="kernel.js"></script>
+<script src="/kernel.js"></script>
 <script>
   launchPropelSOA(engApp, true, domain, null, true);
   launchPropelSOA(trainingApp, true, domain, null, true);
