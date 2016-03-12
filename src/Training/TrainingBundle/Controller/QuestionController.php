@@ -8,6 +8,7 @@ namespace Training\TrainingBundle\Controller;
 
 
 use Training\TrainingBundle\Model\Question;
+use Training\TrainingBundle\Notification\NewQuestion;
 
 use Engine\EngineBundle\Controller\ModelBasedController;
 
@@ -107,6 +108,10 @@ class QuestionController extends ModelBasedController implements Collectionable
 
     $question->setQuestion($post->QuestionText);
     $question->save();
+
+    // Let the support team know that a customer has a question
+    $newQuestionNotification = Factory::createNewObject(NewQuestion::class, [$question]);
+    $newQuestionNotification->send();
 
     return $question;
   }
