@@ -54,8 +54,8 @@
 										id:'signupModal',
 										scope: $scope
 									});
+							}
 						};
-						}
 					}
 				]
 			};
