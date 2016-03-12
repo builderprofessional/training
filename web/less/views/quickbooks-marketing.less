@@ -160,6 +160,7 @@ a.btn {
   }
   button,button.btn-accent {
     min-width:18em;
+    border-radius:0px;
     font-size:.85em;
     float:left;
     width:33%;
@@ -207,4 +208,25 @@ a.btn {
 }
 [ng-click] {
   cursor:pointer;
+}
+@media (max-width:@screen-xs-max) {
+    body {
+      margin-right:5px;
+    }
+    .quickbooks-for-homebuilders-marketing {
+    * {
+      max-width:100% !important;
+      margin-left:0px !important;
+      font-size:1em !important;
+      &.btn {
+        padding-left:5px !important;
+        padding-left:5px !important;
+        text-align:center !important;
+      }
+      &.choose,&.final-call {
+        padding-left:0px;
+        margin-left:0px;
+      }
+    }
+  }
 }
