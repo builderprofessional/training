@@ -1,7 +1,7 @@
 (function()
 {
-  trainingApp.directive("trainingFooter",["APP_CONFIG",
-  function (APP_CONFIG)
+  trainingApp.directive("trainingFooter",["APP_CONFIG", '$modal',
+  function (APP_CONFIG, $modal)
   {
     return {
       restrict: "E",
@@ -16,6 +16,24 @@
         function($scope)
         {
           $scope.config = APP_CONFIG;
+
+          $scope.privacy = function ()
+          {
+            $scope.privacyModal = $modal({
+              'title': 'Builder Professional Privacy Policy',
+              'contentTemplate': 'privacy-modal.html',
+              scope: $scope
+            });
+          };
+
+          $scope.refundPolicy = function ()
+          {
+            $scope.refundPolicyModal = $modal({
+              'title': 'Builder Professional Refund Policy',
+              'contentTemplate': 'refund-policy-modal.html',
+              scope: $scope
+            });
+          };
         }
       ]
     };

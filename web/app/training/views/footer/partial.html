@@ -12,13 +12,23 @@
 
     <p>Give us feedback. We'd love to hear from you!</p>
 
-    <ul>
+    <ul class="contact-method">
       <li class="{{ contactMethod.cssClass }}" ng-repeat="contactMethod in config.contactMethods">
         {{ contactMethod.label }}
         <span ng-if="contactMethod.cssClass == 'email'"><a href="mailto:{{ contactMethod.value }}">{{ contactMethod.value }}</a></span>
         <span ng-if="contactMethod.cssClass != 'email'">{{ contactMethod.value }}</span>
       </li>
+
+      <li class="address">
+        <span><a ng-click="privacy()">Privacy Policy</a></span>
+      </li>
+
+      <li class="address">
+        <span><a ng-click="refundPolicy()">Refund Policy</a></span>
+      </li>
     </ul>
+    <div view-privacy></div>
+    <div view-refund-policy></div>
   </div>
 
   <div class="happening">
