@@ -29,7 +29,7 @@ parameters:
     app_company_city: Arlington
     app_company_state: TX
     app_company_zip: 76012
-    app_company_phone: (916) WE-BUILD / (916) 932-8459
+    app_company_phone: (844) 63-BUILD / (844) 632-8453
     app_company_fax: (800) 494-7705
 
     notification_signature_location_text: "TrainingTrainingBundle:EmailNotification:genericSignature.text.twig"
