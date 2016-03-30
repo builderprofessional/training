@@ -1,7 +1,7 @@
 (function ()
 {
-  trainingApp.directive("trainingViewQuestions", ["$filter","PropelSOAService","Pagination",
-    function ($filter, PropelSOAService, Pagination)
+  trainingApp.directive("trainingViewQuestions", ["$filter","PropelSOAService","Pagination","$sce",
+    function ($filter, PropelSOAService, Pagination, $sce)
     {
       return {
         restrict: "E",
@@ -27,7 +27,17 @@
             cQuery.addLinkedData('QuestionText');
             cQuery.addInnerJoin('Answer');
             cQuery.addLinkedData('Answer->AnswerText');
-            cQuery.runQuery($scope, 'questions');
+            cQuery.runQuery($scope, 'questions').then(
+                function() {
+                  angular.forEach($scope.questions.collection,
+                      function (q) {
+                        angular.forEach(q.relations.Answers.collection, function (a) {
+                          a.linkedDataModel.AnswerText = $sce.trustAsHtml(a.linkedDataModel.AnswerText);
+                        });
+                      }
+                  );
+                }
+            );
           };
           $scope.reloadData();
 

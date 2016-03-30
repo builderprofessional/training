@@ -18,7 +18,7 @@
             <div ng-if="q.relations.Answers.collection.length > 0">
               <ul class="answers">
                 <li ng-repeat="answer in q.relations.Answers.collection">
-                  {{answer.linkedDataModel.AnswerText}}
+                  <span ng-bind-html="answer.linkedDataModel.AnswerText"></span>
                 </li>
               </ul>
             </div>
