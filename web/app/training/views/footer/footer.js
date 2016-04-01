@@ -26,7 +26,7 @@
             });
           };
           $scope.$on('$stateChangeSuccess',function(){
-//            window.scrollTo(0,0);
+            window.scrollTo(0,0);
           });
 
           $scope.refundPolicy = function ()
