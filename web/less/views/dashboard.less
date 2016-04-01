@@ -110,7 +110,17 @@ strong.plan-name {
     }
   }
 }
+.call-only {
+  .product-preview;
+  background:transparent;
+  color:@bp-blue;
+}
 .first-course-callout {
+  a.btn.btn-default,a.btn.btn-default:visited ,a.btn.btn-default:hover ,a.btn.btn-default:link {
+    color:white;
+    font-size:1.25em;
+    text-transform:none;
+  }
   .container();
 
   text-align: center;
@@ -125,12 +135,30 @@ strong.plan-name {
 }
 .product-preview {
   .container();
+  &.quotes {
+    background:transparent;
+    color:@bp-blue;
+  }
+  a.btn.btn-default,a.btn.btn-default:visited ,a.btn.btn-default:hover ,a.btn.btn-default:link {
+    color:white;
+    font-size:1.25em;
+    text-transform:none;
+  }
   background: linear-gradient(180deg, darken(@bp-blue,5%) 0%,@bp-blue 18%,@bp-blue 100%);
   color:white;
   text-align:center;
   padding-bottom:1em;
   .preview-blocks {
     padding-top:15px;
+  }
+  .quote {
+    position:relative;
+    padding-bottom:1.5em;
+    span.author {
+      position:absolute;
+      right:0;
+      bottom:0;
+    }
   }
   h1 {
     text-transform: uppercase;

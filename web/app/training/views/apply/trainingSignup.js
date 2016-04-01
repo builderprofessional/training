@@ -23,6 +23,10 @@
                 engAlert.success("Your request has been received, please check your email for the next steps.");
                 $scope.SignUp.signupId = result.data.Data.signupId;
                 $scope.loading=false;
+                if ( result.data.Data.token )
+                {
+                  document.location.href = env_url+'/signup?token='+result.data.Data.token;
+                }
               },function(){
                 $scope.loading=false;
               });

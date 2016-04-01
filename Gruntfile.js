@@ -223,7 +223,15 @@ module.exports = function(grunt) {
           src: 'bundles/**',
           dest: 'dist'
         }]
-      },      
+      },
+      video: {
+        files: [{
+          expand: true,
+          cwd: 'web',
+          src: 'video/**',
+          dest: 'dist'
+        }]
+      },
       indexFiles: {
         files: [{
           expand: true,
