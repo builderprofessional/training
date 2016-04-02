@@ -1,11 +1,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://www.yourwebsite.com/#/training/quickbooksForHomebuildersInfo</loc>
+        <loc>https://buildertraining.net/#/training/quickbooksForHomebuildersInfo</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://www.yourwebsite.com/#/dashboard</loc>
+        <loc>https://buildertraining.net/#/dashboard</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
