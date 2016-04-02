@@ -7,9 +7,13 @@ ul.questions,ul.answers {
       margin-left:2em;
     }
   }
-  li {
+  > li.ng-scope  {
     padding-left: 1em;
     text-indent: -1em;
+    ul li,ol li {
+      padding-left:0em;
+      text-indent:0em;
+    }
     &:before {
       content:"Q";
       padding-right:5px;
@@ -20,7 +24,7 @@ ul.questions,ul.answers {
       color:green;
     }
   }
-  &.answers li:before {
+  &.answers > li:before {
     content:"A";
     padding-right:5px;
     color:green;
