@@ -103,7 +103,7 @@
 <!--        <a class="cancel-plan header-link" ng-click="confirmCancel()">Cancel</a> |
         <a ui-sref="engViewChangePlan" class="change-plan-link header-link">Change My Plan</a>-->
         <div class="action-buttons">
-          <eng-action-button ng-if="BillingClientProduct.relations.Product.model.ClassKey == 'recurring'" ng-click="confirmCancel()" data-button-text="Cancel My Plan" data-button-action="cancel-plan"></eng-action-button>
+          <eng-action-button ng-if="BillingClientProduct.relations.Product.model.ClassKey == 'recurring' && !BillingClientProduct.linkedDataModel.ScheduledChange.cancellation" ng-click="confirmCancel()" data-button-text="Cancel My Plan" data-button-action="cancel-plan"></eng-action-button>
 <!--          <eng-action-button ui-sref="engViewChangePlan" data-button-text="Change My Plan" data-button-action="edit"></eng-action-button> -->
         </div>
       </div>

@@ -17,9 +17,14 @@
           and call or email us at <a href="mailto:support@builderprofessional.com">support@builderprofessional.com</a>.
 
         <p>If you are certain you want to cancel your service completely, click the button labeled "Yes, Cancel My Account."
+        <span ng-if="BillingClientProduct.model.DowngradeAllowedDate.date > BillingClientProduct.model.NextBillDate.date">
+          <br/><span class="label label-warning">NOTE</span> Your account will remain active and your credit card will continue be charged until the end of your contractual obligation on
+          {{BillingClientProduct.model.DowngradeAllowedDate | engDate : 'MM/dd/yyyy' }}. At that time you will no longer have access to the service and no further charges to your credit card will be made.
+        </span>
+        <span  ng-if="BillingClientProduct.model.DowngradeAllowedDate.date <= BillingClientProduct.model.NextBillDate.date">
           Your credit card will not be charged again, but your account will remain active until your next billing date on
-          {{BillingClientProduct.model.NextBillDate | engDate : 'MM/dd/yyyy' }}. At that time you will no longer have access to the service.</p>
-
+          {{BillingClientProduct.model.NextBillDate | engDate : 'MM/dd/yyyy' }}. At that time you will no longer have access to the service.
+        </span></p>
         <p>If you change your mind at any time, you can always log back in here and reactivate your desired plan.</p>
       </div>
       <div class="modal-footer actions">
