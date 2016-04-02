@@ -24,7 +24,7 @@
 						$scope.$on('event:auth-loginConfirmed', function () {
 							$scope.isLoggedIn = true;
 						});
-						$scope.showLightbox = function (template,title)
+						$scope.showLightbox = function (template,title,prefix)
 						{
 							$scope.modal = $modal(
 									{
@@ -32,7 +32,7 @@
 										show: true,
 										backdrop: true,
 										title:title,
-										animation: 'lightbox-fade',
+										animation: (prefix ? prefix : '')+'lightbox-fade',
 										backdropAnimation: 'lightbox-fade-bg',
 										id:'lightboxModal',
 										scope: $scope
