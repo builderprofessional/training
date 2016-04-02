@@ -44,9 +44,6 @@
       text-align:center;
     }
   }
-  .modal.video-lightbox-fade & {
-    width:885px;
-  }
 }
 .modal-backdrop.lightbox-fade-bg {
   background-color:rgba(0,0,0,.7);
@@ -163,7 +160,7 @@ a.btn {
     font-size:.5em;
   }
   button,button.btn-accent {
-    min-width:18em;
+    min-width: 23em;
     border-radius:0px;
     font-size:.85em;
     float:left;
@@ -190,14 +187,14 @@ a.btn {
     font-size:.5em;
   }
   &.choose {
-    padding-left:23.5%;
+    text-align: center;
   }
-  @media(max-width:@screen-sm-max)
-  {
-    &.choose {
-      padding-left:30.5%;
-    }
-  }
+//  @media(max-width:@screen-sm-max)
+//  {
+//    &.choose {
+//      text-align: center;
+//    }
+//  }
   &.final-call {
     text-align:center;
     margin-left:0px;
@@ -212,6 +209,10 @@ a.btn {
 }
 [ng-click] {
   cursor:pointer;
+}
+.qb-body-buttons {
+  margin: 0 auto;
+  display: inline-block;
 }
 @media (max-width:@screen-xs-max) {
     body {
