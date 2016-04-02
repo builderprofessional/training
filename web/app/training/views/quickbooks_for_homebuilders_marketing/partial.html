@@ -9,7 +9,7 @@
     <a class="btn btn-default call-to-action" ng-click="signup()">Boost Your Profits</a>
   </div>
   <div class="container qb-body">
-    <div class="pull-right image-preview" ng-click="showLightbox('show-full-image','Example Video','video-')"><img src="/images/monitor-screenshot-preview.png" /><br/>Click to View Sample Video Except</div>
+    <div class="pull-right image-preview" ng-click="showLightbox('show-full-image','Example Video')"><img src="/images/monitor-screenshot-preview.png" /><br/>Click to View Sample Video Except</div>
     <h2>Learn things like:</h2>
     <ul>
       <li>The difference between Job Cost Accounting and General Ledger Accounting</li>
@@ -60,18 +60,20 @@
     <h2>Choose between:</h2>
   </div>
   <div class="container qb-body choose" ng-if="!isLoggedIn">
-    <button class="btn btn-lg btn-accent">
-      <span><strong>Up Front</strong></span>
-      <span>$299/Once</span>
-      <span>$49 Savings</span>
-      <span>One Time Purchase</span>
-    </button>
-    <button class="btn btn-lg btn-accent">
-      <span><strong>Installment Plan</strong></span>
-      <span>$348 Total</span>
-      <span>$29/Month</span>
-      <span>12 Monthly Payments</span>
-    </button>
+    <div class="qb-body-buttons">
+      <button class="btn btn-lg btn-accent">
+        <span><strong>Up Front</strong></span>
+        <span>$299/Once</span>
+        <span>$49 Savings</span>
+        <span>One Time Purchase</span>
+      </button>
+      <button class="btn btn-lg btn-accent">
+        <span><strong>Installments</strong></span>
+        <span>$348 Total for 1 Year</span>
+        <span>$29/Month</span>
+        <span>12 Monthly Payments</span>
+      </button>
+    </div>
   </div>
   <div class="container qb-body final-call" ng-if="!isLoggedIn">
     <a class="btn btn-default call-to-action clearfix" ng-click="signup()">Sign Up Today</a>
