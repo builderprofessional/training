@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
   //matchers
   var matchers = {
-    indexFiles: ['web/*.+(php|txt|ico|html)','web/.htaccess']
+    indexFiles: ['web/*.+(php|txt|ico|htm|xml)','web/.htaccess']
   };
 
   //requirejs helper object
