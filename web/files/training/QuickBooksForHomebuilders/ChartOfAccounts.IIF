@@ -1,0 +1,84 @@
+!HDR	PROD	VER	REL	IIFVER	DATE	TIME	ACCNTNT	ACCNTNTSPLITTIME
+HDR	QuickBooks Pro	Version 25.0D	Release R9P	1	2016-04-20	1461197685	N	0
+!ACCNT	NAME	REFNUM	TIMESTAMP	ACCNTTYPE	OBAMOUNT	DESC	ACCNUM	SCD	BANKNUM	EXTRA	HIDDEN	DELCOUNT	USEID
+ACCNT	Your First Bank Account	2	862500806	BANK	0.00			0			N	0	N
+ACCNT	Your Second Bank Account	160	933209714	BANK	0.00	First National Bank		0			N	1	N
+ACCNT	Accounts Receivable	161	862500806	AR	0.00		1200	0			N	0	N
+ACCNT	Jobs In Progress	292	1056396341	OCASSET	0.00	Jobs In Progress		0			N	1	N
+ACCNT	Inventory Asset	283	1048632838	OCASSET	0.00		1120	0		INVENTORYASSET	N	1	N
+ACCNT	Cash	6	862500806	OCASSET	0.00			0			N	0	N
+ACCNT	Undeposited Funds	93	862500806	OCASSET	0.00		1499	0		UNDEPOSIT	N	2	N
+ACCNT	Fixed Assets	279	862500806	FIXASSET	0.00	Fixed Assets	1400	0			N	0	N
+ACCNT	Fixed Assets:Accumulated Depreciation	280	862500806	FIXASSET	0.00	Accumulated Depreciation	1420	0			N	0	N
+ACCNT	Accounts Payable	281	862500806	AP	0.00		2000	0			N	0	N
+ACCNT	Credit Card	282	862500806	CCARD	0.00	Credit Card	2050	0			N	0	N
+ACCNT	Credit Card:Amex	152	933737717	CCARD	0.00	Amex		0	12345-4567-123456		N	1	N
+ACCNT	Credit Card:Visa	151	933737772	CCARD	0.00	Visa		0	1234-5678-1234-5678		N	1	N
+ACCNT	Revenues In Progress	291	1113006643	OCLIAB	0.00	Revenues In Progress		0			N	1	N
+ACCNT	Sales Tax Payable	293	1055444251	OCLIAB	0.00		2200	0		SALESTAX	N	1	N
+ACCNT	Payroll Liabilities	154	932880654	OCLIAB	0.00		2101	0			N	1	N
+ACCNT	Loan Payable	295	862500806	LTLIAB	0.00	Loan Payable	2300	0			N	0	N
+ACCNT	Owner's Draw	324	933740250	EQUITY	0.00			0	Owner's Draw		N	1	N
+ACCNT	Loans From Stockholders	288	933737395	EQUITY	0.00	Loans From Stockholders		0			N	1	N
+ACCNT	Opening Bal Equity	157	862500806	EQUITY	0.00		3000	0		OPENBAL	N	0	N
+ACCNT	Retained Earnings	1	862500806	EQUITY	0.00		3900	0		RETEARNINGS	N	0	N
+ACCNT	Sales Income	297	862500806	INC	0.00	Sales Income	4100	0			N	0	N
+ACCNT	Cost of Sales	298	862500806	COGS	0.00	Cost of Sales	5000	0		COGS	N	0	N
+ACCNT	Advertising	299	862500806	EXP	0.00	Advertising	6020	0			N	0	N
+ACCNT	Automobile Expense	300	862500806	EXP	0.00	Automobile Expense	6050	0			N	0	N
+ACCNT	Automobile Expense:Auto Insurance	351	862500807	EXP	0.00	Auto Insurance		0			N	0	N
+ACCNT	Automobile Expense:Gas Expense	301	862500806	EXP	0.00	Gas Expense		0			N	0	N
+ACCNT	Automobile Expense:Loan Payments	303	862500806	EXP	0.00	Loan Payments		0			N	0	N
+ACCNT	Automobile Expense:Maintenance & Repairs	302	862500806	EXP	0.00	Maintenance & Repairs		0			N	0	N
+ACCNT	Bank Service Charges	304	862500806	EXP	0.00	Bank Service Charges	6060	0			N	0	N
+ACCNT	Cellular Phone	305	862500806	EXP	0.00	Cellular Phone		0			N	0	N
+ACCNT	Cleaning	306	862500806	EXP	0.00	Cleaning Expense	6140	0			N	0	N
+ACCNT	Computer Accessories	307	862500806	EXP	0.00	Computer Accessories		0			N	0	N
+ACCNT	Continuing Education	308	862500806	EXP	0.00	Continuing Education		0			N	0	N
+ACCNT	Contributions	309	862500806	EXP	0.00	Contributions	6180	0			N	0	N
+ACCNT	Depreciation Expense	310	862500806	EXP	0.00	Depreciation Expense	6200	0			N	0	N
+ACCNT	Dues and Subscriptions	311	862500806	EXP	0.00	Dues and Subscriptions	6220	0			N	0	N
+ACCNT	Equipment Rental	312	862500806	EXP	0.00	Equipment Rental	6240	0			N	0	N
+ACCNT	Freight & Delivery	313	862500806	EXP	0.00	Freight and Delivery	6300	0			N	0	N
+ACCNT	Insurance	314	862500806	EXP	0.00	Insurance	6380	0			N	0	N
+ACCNT	Insurance:Disability Insurance	315	862500806	EXP	0.00	Disability Insurance	6400	0			N	0	N
+ACCNT	Insurance:Liability Insurance	316	862500806	EXP	0.00	Liability Insurance	6410	0			N	0	N
+ACCNT	Interest Expense	317	862500806	EXP	0.00	Interest Expense	6440	0			N	0	N
+ACCNT	Interest Expense:Finance Charge	318	862500806	EXP	0.00	Finance Charge	6450	0			N	0	N
+ACCNT	Interest Expense:Loan Interest	319	862500806	EXP	0.00	Loan Interest Expense	6460	0			N	0	N
+ACCNT	Licenses and Permits	320	862500806	EXP	0.00	Licenses	6500	0			N	0	N
+ACCNT	Miscellaneous	321	862500806	EXP	0.00	Miscellaneous	6530	0			N	0	N
+ACCNT	Office Supplies	322	862500806	EXP	0.00	Office Supplies	6550	0			N	0	N
+ACCNT	Pager	323	862500807	EXP	0.00	Pager		0			N	0	N
+ACCNT	Payroll Expenses	132	932880654	EXP	0.00		6561	0			N	1	N
+ACCNT	Postage and Delivery	325	862500807	EXP	0.00	Postage and Delivery	6610	0			N	0	N
+ACCNT	Printing and Reproduction	326	862500807	EXP	0.00	Printing and Reproduction	6620	0			N	0	N
+ACCNT	Professional Fees	327	862500807	EXP	0.00	Professional Fees	6640	0			N	0	N
+ACCNT	Professional Fees:Accounting	328	862500807	EXP	0.00	Accounting Fees	6650	0			N	0	N
+ACCNT	Professional Fees:Legal Fees	329	862500807	EXP	0.00	Legal Fees	6660	0			N	0	N
+ACCNT	Rent	147	862500806	EXP	0.00	Rent	6690	0			N	0	N
+ACCNT	Repairs	330	862500807	EXP	0.00	Repairs and Maintenance	6710	0			N	0	N
+ACCNT	Repairs:Building Repairs	331	862500807	EXP	0.00	Building Repairs	6720	0			N	0	N
+ACCNT	Repairs:Computer Repairs	332	862500807	EXP	0.00	Computer Repairs	6730	0			N	0	N
+ACCNT	Repairs:Equipment Repairs	333	862500807	EXP	0.00	Equipment Repairs	6740	0			N	0	N
+ACCNT	Security Expense	334	862500807	EXP	0.00	Security Expense		0			N	0	N
+ACCNT	Taxes	335	862500807	EXP	0.00	Taxes	6820	0			N	0	N
+ACCNT	Taxes:Federal	336	862500807	EXP	0.00	Federal Taxes	6830	0			N	0	N
+ACCNT	Taxes:Local	337	862500807	EXP	0.00	Local Taxes	6840	0			N	0	N
+ACCNT	Taxes:Property	338	862500807	EXP	0.00	Property Taxes	6850	0			N	0	N
+ACCNT	Taxes:State	339	862500807	EXP	0.00	State Taxes	6860	0			N	0	N
+ACCNT	Telephone	153	862500806	EXP	0.00	Telephone	6880	0			N	0	N
+ACCNT	Tools and Machinery	340	862500807	EXP	0.00	Tools and Machinery	6935	0			N	0	N
+ACCNT	Travel & Ent	341	862500807	EXP	0.00	Travel and Entertainment	6900	0			N	0	N
+ACCNT	Travel & Ent:Entertainment	342	862500807	EXP	0.00	Entertainment	6910	0			N	0	N
+ACCNT	Travel & Ent:Meals	343	862500807	EXP	0.00	Meals	6920	0			N	0	N
+ACCNT	Travel & Ent:Travel	344	862500807	EXP	0.00	Travel	6930	0			N	0	N
+ACCNT	Utilities	345	862500807	EXP	0.00	Utilities	6940	0			N	0	N
+ACCNT	Utilities:Gas and Electric	346	862500807	EXP	0.00	Gas and Electric	6950	0			N	0	N
+ACCNT	Utilities:Water	347	862500807	EXP	0.00	Water	6960	0			N	0	N
+ACCNT	Void Checks	156	862500806	EXP	0.00	Void Checks		0			N	0	N
+ACCNT	Warranty Work	278	862500806	EXP	0.00	Warranty Work		0			N	0	N
+ACCNT	Interest Income	348	862500807	EXINC	0.00	Interest Income	7010	0			N	0	N
+ACCNT	Other Income	349	862500807	EXINC	0.00	Other Income	7030	0			N	0	N
+ACCNT	Other Expenses	350	862500807	EXEXP	0.00	Other Expenses	8010	0			N	0	N
+ACCNT	Estimates	155	1048023144	NONPOSTING	0.00		4	0		ESTIMATE	N	2	N

@@ -1,0 +1,162 @@
+!HDR	PROD	VER	REL	IIFVER	DATE	TIME	ACCNTNT	ACCNTNTSPLITTIME
+HDR	QuickBooks Pro	Version 25.0D	Release R9P	1	2016-04-20	1461197660	N	0
+!CUSTITEMDICT	INDEX	LABEL	INUSE
+!ENDCUSTITEMDICT
+CUSTITEMDICT	0		N
+CUSTITEMDICT	1		N
+CUSTITEMDICT	2		N
+CUSTITEMDICT	3		N
+CUSTITEMDICT	4		N
+CUSTITEMDICT	5		N
+CUSTITEMDICT	6		N
+CUSTITEMDICT	7		N
+CUSTITEMDICT	8		N
+CUSTITEMDICT	9		N
+CUSTITEMDICT	10		N
+CUSTITEMDICT	11		N
+CUSTITEMDICT	12		N
+CUSTITEMDICT	13		N
+CUSTITEMDICT	14		N
+ENDCUSTITEMDICT
+!INVITEM	NAME	REFNUM	TIMESTAMP	INVITEMTYPE	DESC	PURCHASEDESC	ACCNT	ASSETACCNT	COGSACCNT	QNTY	QNTY	PRICE	COST	TAXABLE	SALESTAXCODE	PAYMETH	TAXVEND	PREFVEND	REORDERPOINT	EXTRA	CUSTFLD1	CUSTFLD2	CUSTFLD3	CUSTFLD4	CUSTFLD5	DEP_TYPE	ISPASSEDTHRU	HIDDEN	DELCOUNT	USEID	ISNEW	PO_NUM	SERIALNUM	WARRANTY	LOCATION	VENDOR	ASSETDESC	SALEDATE	SALEEXPENSE	NOTES	ASSETNUM	COSTBASIS	ACCUMDEPR	UNRECBASIS	PURCHASEDATE
+INVITEM	1000 Lot Cost	941	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	1010 Lot Closing Cost	942	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2000 Lot Clear & Pad Setup	943	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2010 Piers	944	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2020 Concrete Pumping	945	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2030 Retainer Wall System	946	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2040 Swimming Pool	947	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2050 Hot Tub	948	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2060 Wood Deck	949	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2070 Sprinkler System	950	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2080 French Drain	951	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2090 Septic Tank	952	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2100 Perk Test	953	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2110 Water Tap	954	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2120 Misc Lot Prep	955	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2130 Soil Testing	956	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	2140 Exterminators	957	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3000 Water Department Fee	958	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3010 Permit Fee	959	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3020 Impact Fee	960	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3030 Insurance	961	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3040 Blueprints	962	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3050 Warranty - Startup Fee	963	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3055 Portable Toilet	964	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3060 Foundation Design	965	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3070 Postension Cables	966	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3080 Sand & Dirt	967	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3090 Plumbing (phased)	968	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3091 Plumbing - Rough	969	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3092 Plumbing - Top-out	970	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3093 Plumbing - Final	971	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3100 Concrete Slab	972	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3105 Concrete Flatwork	973	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3110 Structural Steel	974	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3120 Lumber (phased)	975	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3121 Lumber - Wall Load	976	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3122 Lumber - Joist & Rafter	977	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3123 Lumber - Cornice Load	978	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3130 Framers (phased)	979	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3131 Framers - 1st Draw	980	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3132 Framers - 2nd Draw	981	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3133 Framers - 3rd Draw	982	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3140 Roofing	983	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3150 Windows	984	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3160 Skylht-transom-sidelht	985	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3170 Ac/heat (phased)	986	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3171 Ac/heat - Rough	987	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3172 Ac/heat - Final	988	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3180 Electrical (phased)	989	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3181 Electrical - Rough	990	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3182 Electrical - Final	991	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3190 Phone-tv Jack (phased)	992	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3191 Phone Install - Rough	993	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3192 Phone Install - Final	994	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3200 Exterior Doors	995	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3210 Security System (phased)	996	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3211 Security System - Rough	997	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3212 Security System - Final	998	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3220 Intercom Sys (phased)	999	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3221 Intercom Sys - Rough	1000	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3222 Intercom Sys - Final	1001	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3230 Vacuum Sys (phased)	1002	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3231 Vacuum Sys - Rough	1003	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3232 Vacuum Sys - Final	1004	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3240 Insulate & Poly (phased)	1005	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3241 Insulate/poly - Walls/poly	1006	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3242 Insulate/poly - Attic Blow	1007	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3250 Sheetrock	1008	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3260 Tape And Bed	1009	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3270 Tile Crew	1010	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3280 Cabinets And Install	1011	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3290 Garage Door	1012	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3300 Interior Doors	1013	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3305 Trim Material	1014	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3310 Trim Labor	1015	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3315 Columns	1016	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3317 Shutters	1017	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3320 Brick & Accessories	1018	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3330 Brick Labor (phased)	1019	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3331 Brick Labor - 1st Draw	1020	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3332 Brick Labor - 2nd Draw	1021	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3333 Brick Labor - 3rd Draw	1022	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3335 Stone & Accessories	1023	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3336 Stone Labor	1024	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3340 Pre-fab Insert	1025	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3350 Gutters & Installation	1026	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3360 Paint Crew (phased)	1027	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3361 Paint Crew - 1st Draw	1028	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3362 Paint Crew - Final Draw	1029	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3370 Counter Tops	1030	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3380 Marble	1031	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3390 Lighting	1032	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3400 Appliances	1033	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3410 Mirrors & Shower Door	1034	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3420 Hardware Costs	1035	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3430 Carpet & Vinyl	1036	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3440 Custom Wood Floors	1037	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3445 Flooring Labor	1038	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3450 Garage Door Opener	1039	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3460 Wall Paper	1040	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3480 Mini-blinds	1041	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3490 Hydromulch & Sod	1042	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3500 Address Number Block	1043	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3510 Lockout	1044	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3520 Exterior Clean (phased)	1045	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3521 Exterior Clean - 1st Draw	1046	1451945603	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3522 Exterior Clean - 2nd Draw	1047	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3523 Exterior Clean - 3rd Draw	1048	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3524 Exterior Clean - 4th Draw	1049	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3525 Exterior Clean - 5th Draw	1050	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3526 Exterior Clean - 6th Draw	1051	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3530 Interior Clean (phased)	1052	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3531 Interior Clean - 1st Draw	1053	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3532 Interior Clean - 2nd Draw	1054	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3540 Final Grade	1055	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3550 Fence Installation	1056	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3560 Decorating	1057	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3570 Drapery	1058	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3580 Survey	1059	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3590 Temporary Utilities	1060	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3600 Landscaping & Plants	1061	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3610 Misc Custom Features	1062	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3620 Inspection Fees	1063	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	3630 Appraisals	1064	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4000 Interim Interest	1065	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4010 Discount Points	1066	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4020 Buydown Points	1067	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4030 Title Policy	1068	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4040 Other Closing Costs	1069	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4050 Warranty Premium	1070	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4060 Brokers Fees	1071	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4070 Salesmans Commission	1072	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	4080 Misc Closing Costs	1073	1451945604	SERV			Revenues In Progress		Jobs In Progress			0.00	0.00	N	Non											0	Y	N	0	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6000 Earnest Money	677	1142540466	PART			Revenues In Progress					0.00	0	N												0	N	N	3	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6010 Bank Draws	512	1142540518	PART			Revenues In Progress					0.00	0	N												0	N	N	2	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6020 Proceeds	11	1142540559	PART			Revenues In Progress					0.00	0	N												0	N	N	1	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6030 Property Tax Revenues	60	1142540592	PART			Revenues In Progress					0.00	0	N												0	N	N	2	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6040 Change Orders	58	1142540642	PART			Revenues In Progress					0.00	0	N												0	N	N	2	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6050 Other Misc Job Revenues	86	1142540721	PART			Revenues In Progress					0.00	0	N												0	N	N	2	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6060 Commission on Lot	85	1142540775	PART			Revenues In Progress					0.00	0	N												0	N	N	2	N	Y								0.00			0.00	0.00	0.00	
+INVITEM	6070 Utilities Refund	12	1142540814	PART			Revenues In Progress					0.00	0	N												0	N	N	1	N	Y								0.00			0.00	0.00	0.00	
